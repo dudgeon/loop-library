@@ -16,7 +16,7 @@ project's intent looks like."
 - A convention is **repeated 3+ times** or stated as a rule ("always…", "never…", "from now on…").
 - Scope is **explicitly** narrowed or widened ("out of scope", "we also want…").
 - A **belief** is asserted, raised, or lowered in confidence (→ a hypothesis).
-- A **loop** is added, changed, re-encoded, activated, or retired (→ the registry).
+- A **loop** is added, changed, re-encoded, activated, or retired (→ the loops list in `README.md`).
 - The **goal / work-product / done-criteria** is restated or refined.
 
 ## Anti-signals — looks like drift but usually isn't
@@ -34,7 +34,7 @@ project's intent looks like."
 | Goal / scope / work-product / done-criteria | [`GOAL.md`](GOAL.md) | edit freely (alpha) |
 | New / changed belief or confidence | [`HYPOTHESES.md`](HYPOTHESES.md) | edit freely (alpha) |
 | New work, priority, or status change | [`TASKS.md`](TASKS.md) | edit freely (alpha) |
-| New / changed / retired loop, or its status | [`loops.registry.json`](loops.registry.json) → run `scripts/gen-loops.sh` | edit freely (alpha) |
+| New / changed / retired loop, or its status | the "Loops in this project" list in [`README.md`](README.md) | edit freely (alpha) |
 | Convention / operating rule | `CLAUDE.md` | **propose only** — co-evolve (§4) |
 | Schema / taxonomy | `_meta/` | **propose only** — co-evolve |
 | A shipped kit | `dist/` | **never via this loop** — gated (§8) |
@@ -46,6 +46,13 @@ Newest-first. Each entry: the proposed change, the user's call (accepted / rejec
 the session evidence. Seeded with this loop's own origin session (dogfooding).
 
 ### 2026-06-15
+- **accepted** | "Collapse the generated loops registry" — at ~5 loops a hand list beats the
+  machinery, and the registry's `--check` gave false anti-rot comfort (guarded source↔view, not
+  view↔reality). Deleted `loops.registry.json` + `gen-loops.*` + `LOOPS.md` + the lint check; the
+  loop portfolio is now a hand-maintained list in `loop/README.md`. *Evidence:* user asked to
+  stress-test whether the registry was useful and flagged context-rot from non-use. *Signal
+  learned:* generated tooling must earn its keep at the **current** scale and carry a *real* (not
+  illusory) anti-rot guard.
 - **accepted** | "The registry must be **self-contained** — it cannot read the wiki, because a
   user's repo *uses* loops but has no research wiki" → decoupled the generator from wiki frontmatter;
   `loops.registry.json` now carries all fields; `catalog` is an optional link only. *Evidence:* user

@@ -34,8 +34,8 @@ as real drift vs. noise, and which doc each change lands in); **Learn** appends 
 3. **Validate** — present the list to the user; they accept / reject / edit each item. **Mandatory.**
    If the user is absent, stop here with the proposal — do not apply.
 4. **Execute** — apply **only approved** items, respecting ownership:
-   - **Edit freely (alpha):** `loop/GOAL.md`, `loop/HYPOTHESES.md`, `loop/TASKS.md`, and the loop
-     registry `loop/loops.registry.json` (then run `scripts/gen-loops.sh` to rebuild `LOOPS.md`).
+   - **Edit freely (alpha):** `loop/GOAL.md`, `loop/HYPOTHESES.md`, `loop/TASKS.md`, and the
+     "Loops in this project" list in `loop/README.md` (hand-maintained).
    - **Propose only — never self-apply:** `CLAUDE.md` and anything under `_meta/` (the constitution
      / schema are co-evolved with the human, `CLAUDE.md` §4). Surface these as a separate "needs
      your go-ahead" list.
@@ -44,8 +44,8 @@ as real drift vs. noise, and which doc each change lands in); **Learn** appends 
    feedback: append accepted/rejected calls (with evidence) to the **Decisions log**, and refine
    **Signals / Anti-signals** when a rejection or edit reveals a better rule. This is the step that
    makes the loop compound — don't skip it.
-6. **Verify** — if you touched the registry, run `scripts/gen-loops.sh --check`; if you touched any
-   `wiki/` page, run `scripts/conformance.sh` (must pass) and `scripts/lint.sh`.
+6. **Verify** — if you touched any `wiki/` page, run `scripts/conformance.sh` (must pass) and
+   `scripts/lint.sh`.
 
 ## Don'ts
 

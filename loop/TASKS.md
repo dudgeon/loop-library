@@ -12,7 +12,7 @@ bar in `CLAUDE.md` §8.
 | --- | --- | --- | --- | --- | --- |
 | T1 | Define the loop primitives (goal · work product · tasks/sub-goals) | pattern-candidate | active | low | H1, H2, H3, H4 |
 | T2 | Research goal & work-product specification, grounded in sources | research-question | open | low | T1, goal-directed-task-loop |
-| T3 | Loop registry + visualization (inventory table + mermaid topology; registry = source of truth, chart = a view) | pattern-candidate | active | low | H5, H6, LOOPS.md |
+| T3 | Loop portfolio — how to track/see the project's loops (generated registry tried, then collapsed to a hand list) | pattern-candidate | done | low | H5, H6, loop/README |
 | T4 | `session-harvest` skill — review → validate → execute → update-heuristics loop over session evidence | pattern-candidate | active | low | H7, intent-heuristics.md |
 | T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
 
@@ -43,16 +43,21 @@ home (`loop/` alpha vs. a `wiki/` Overview page); medium (mermaid-in-markdown vs
 **Definition of done:** a registry covering this repo's current loops + one rendered view; a
 defended medium choice. **Note:** revising `CLAUDE.md`'s "two engines" wording (per H5) is part of
 this once validated — gated, not yet.
-**Progress (2026-06-15):** dogfooded, self-syncing, and now **wiki-independent**.
-[`LOOPS.md`](LOOPS.md) inventory + mermaid topology are **generated** by
+**Progress (2026-06-15) — superseded by the collapse note below:** dogfooded, self-syncing, and
+wiki-independent. `LOOPS.md` inventory + mermaid topology were **generated** by
 [`scripts/gen-loops.sh`](../scripts/gen-loops.sh) from a **self-contained**
 [`loops.registry.json`](loops.registry.json); the generator reads no wiki content, so the
 registry + generator travel with any repo that *uses* loops (a user's repo has no research wiki).
 A `catalog` link to a wiki page is an optional cross-reference only. `--check` (wired into
-`lint.sh`) fails on stale output. **Still open:** (a) the natural next step — let loops
-*self-describe* via their own encoding's frontmatter (a skill/agent's metadata), so the registry
-manifest shrinks to edges + non-encoded loops; (b) graduate the registry+generator into a shippable
-`dist/` kit (the vendorable Purpose-1 artifact).
+`lint.sh`) fails on stale output.
+**Progress (2026-06-15, later — DONE/collapsed):** removed the generated registry after
+stress-testing its usefulness. Deleted `loops.registry.json`, `scripts/gen-loops.{py,sh}`,
+`LOOPS.md`, and the `lint.sh` check; the loop portfolio is now a hand-maintained list in
+[`README.md`](README.md). Rationale: at ~5 loops the machinery cost more than it returned; its
+`--check` only guarded source↔view, not view↔reality (false anti-rot comfort); its source needed
+manual upkeep anyway; the topology edges can't be auto-derived; and loopkit ships no generated map,
+so this aligns the root with the kit. **Reopen** (option b: auto-derive nodes from `.claude/skills/`)
+only past ~8–10 loops. The H5/H6 *insight* and the self-contained sub-finding stand.
 
 ## T4 — `session-harvest` skill
 **Goal:** design the loop that keeps project intent fresh from session evidence: (1) review the
