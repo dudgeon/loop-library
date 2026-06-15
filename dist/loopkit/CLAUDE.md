@@ -117,6 +117,33 @@ reference is required** for anything in `golden/` and for any finalized recommen
 deliverable claim — "why do we believe this?" is the whole value. One topic per file;
 lowercase-hyphenated names; keep each `index.md` to about one screen.
 
+**Links between notes are plain relative markdown** — `[label](./other-note.md)`, never
+`[[wikilinks]]` and never absolute `/paths`. This keeps notes readable on GitHub and portable if the
+project is vendored into a subfolder. (It also happens to be the form Duo expects — see the optional
+Duo section at the end.)
+
 ## 9. The one-line rule
 The knowledge base is the product; ingest / query / distill just keep it sharp — grounded always in
 `PROJECT.md`, and never at the expense of golden context.
+
+## Optional: open this project in Duo
+This knowledge base is plain markdown — the same shape Duo's Note Vault uses — so you *can* open the
+project in Duo to get capture, full-text search, and automatic link-repair on top of the same files.
+**Nothing here depends on Duo:** every operation works with just the assistant, and the files stay
+readable on GitHub. Duo is a convenience, never a requirement. If you don't use Duo, ignore this
+section — a fresh project needs none of it (don't add anything below by default).
+
+To turn it on, the user asks the assistant to **"make this folder openable in Duo."** Then, and only
+then, add a small marker to the **very top of `knowledge/index.md`** — an `okf_version: "0.1"` +
+`type: index` header as the file's **first lines** (above the `#` heading, or GitHub won't render it
+cleanly), with a `<!-- duo:listing -->` line below it so Duo knows where its generated listing
+begins. The marker is inert otherwise; anything that doesn't understand it ignores it. Never add it
+during first-run setup (§0), and never put a `type:` anywhere else — notes use `kind:`, not `type:`.
+
+A few things to expect, none of which break the no-Duo path:
+- **Capture lands in `inbox/`.** Notes quick-captured in Duo drop into an `inbox/` folder; tell the
+  assistant to file them and they fold into `knowledge/` on the next ingest.
+- **`kind:` vs Duo's `type:`.** Your notes keep `kind:` (this kit's contract). Duo files on its own
+  `type:` field and may offer to add one — expected and harmless; `kind:` stays put.
+- **Moves.** Duo moves and re-links notes safely. Without Duo, if you move a note by hand, fix its
+  links in the same change (the assistant does this for you).
