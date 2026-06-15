@@ -4,6 +4,10 @@ Chronological, newest-first. Grep recent activity:
 `grep -nE '^- (ingest|query|lint|supersede)' wiki/log.md`.
 
 ## 2026-06-15
+- lint   | DECOUPLED registry from wiki: a registry must travel with any repo that *uses* loops (no research wiki there). gen-loops no longer reads wiki frontmatter; loops.registry.json is self-contained; `catalog` is an optional cross-ref link. Refined H6.
+- lint   | clarified registry model: loop/LOOPS.md = loops ACTIVE in this project (instances) + status; wiki = catalog of loop *types*. Inverted gen-loops drift-check (no longer flags unregistered catalog pages); added Status column + dashed non-active nodes.
+- lint   | session-harvest → alpha skill (.claude/skills/session-harvest/) + repo heuristics doc (loop/intent-heuristics.md, not gated in skill); added Mechanism diagrams to session-harvest + ingest-query-lint pages; updated session-harvest hedge.
+- query  | reframed: a project hosts a PORTFOLIO of loops, not one (H5–H7 in loop/); filed Session-Harvest Loop design (/loops/automation/session-harvest.md); opened T3 (loop registry + viz) + T4 (session-harvest).
 - supersede | WITHDREW vanilla-loop kit from dist/ — shipped prematurely from a notional idea. dist/ now governed by a promotion bar (CLAUDE.md §8); goal-directed-task-loop demoted to unvalidated hypothesis + open research question.
 - query  | repo purpose defined (build vendorable loop kits + a research loop) — filed Goal-Directed Task Loop (/loops/agentic/goal-directed-task-loop.md); updated synthesis.
 - lint   | wired dist/ (Purpose 1): vanilla-loop kit documented as a wiki loop; indexes updated.

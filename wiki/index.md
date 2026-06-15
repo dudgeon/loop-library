@@ -15,6 +15,7 @@ resolved from this `wiki/` directory.
 * [Loops index](/loops/index.md) — all loops by family.
 * [Goal-Directed Task Loop](/loops/agentic/goal-directed-task-loop.md) — hypothesis (unvalidated, not shipped): the most vanilla loop.
 * [Ingest → Query → Lint Loop](/loops/automation/ingest-query-lint.md) — the compile-and-maintain loop this repo runs on.
+* [Session-Harvest Loop](/loops/automation/session-harvest.md) — design (unvalidated, not shipped): the retro loop turned inward onto project intent.
 
 ## Concepts
 * [Concepts index](/concepts/index.md) — cross-cutting ideas loops rely on.

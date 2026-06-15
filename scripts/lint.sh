@@ -29,5 +29,11 @@ find "$WIKI" -type f -name '*.md' ! -name index.md ! -name log.md | while IFS= r
   grep -rqF "]($id" "$WIKI" --include='*.md' 2>/dev/null || echo "WARN: orphan (no inbound link): $id"
 done
 
+echo "== loop registry (loop/LOOPS.md) freshness =="
+if [ -f scripts/gen-loops.py ]; then
+  python3 scripts/gen-loops.py --check 2>&1 | sed 's/^/  /' || \
+    echo "WARN: loop/LOOPS.md is stale or has an unregistered loop — run scripts/gen-loops.sh"
+fi
+
 echo "lint complete (warnings above are advisory)"
 exit 0
