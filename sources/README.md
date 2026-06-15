@@ -16,3 +16,5 @@ Current sources:
 - `google-2026-okf-spec.md` — Open Knowledge Format Specification v0.1 (Apache-2.0 upstream).
 - `google-2026-okf-blog.md` — Google Cloud "Introducing the Open Knowledge Format" (digest;
   blog is Google-copyrighted — keep verbatim use minimal, prefer the canonical URL).
+- `duo-2026-note-vault.md` — Duo's `vault` skill reference (ENH-208 · ENH-216); the maintainer's
+  own project (github.com/dudgeon/duo), mirrored verbatim with permission.

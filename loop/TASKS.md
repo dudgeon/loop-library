@@ -15,6 +15,8 @@ bar in `CLAUDE.md` §8.
 | T3 | Loop portfolio — how to track/see the project's loops (generated registry tried, then collapsed to a hand list) | pattern-candidate | done | low | H5, H6, loop/README |
 | T4 | `session-harvest` skill — review → validate → execute → update-heuristics loop over session evidence | pattern-candidate | active | low | H7, intent-heuristics.md |
 | T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
+| T6 | Ingest the Duo `vault` skill reference as a proper source (currently cited as a local doc, not in `sources/`) | chore | done | n/a | duo-vault-vs-wiki, loopkit-on-duo |
+| T7 | **Loopkit on Duo** — progressive-enhancement spec written (`_meta/SPEC-loopkit-on-duo.md`); A–D resolved; next is §8 go/no-go on P2/P3/P4 dist changes | pattern-candidate | active | medium | T5, loopkit-on-duo, duo-vault-vs-wiki, SPEC-loopkit-on-duo |
 
 ## T1 — Define the loop primitives
 **Goal:** prototype the primitive shape at the root (alpha — this `loop/` folder), validate it,
@@ -73,3 +75,33 @@ seeded at [`intent-heuristics.md`](intent-heuristics.md) (repo-level, not gated 
 mechanism diagram added to the [catalog page](../wiki/loops/automation/session-harvest.md). **Still
 open:** run it on real sessions to gather the evidence H7 needs; decide whether the 5-phase +
 heuristics-doc shape generalizes enough to ship.
+
+## T6 — Ingest the Duo `vault` skill reference as a source
+**Goal:** the Duo-side claims in [duo-vault-vs-wiki](../wiki/comparisons/duo-vault-vs-wiki.md) and
+[loopkit-on-duo](../wiki/concepts/loopkit-on-duo.md) currently cite a **local** skill doc
+(`~/.claude/skills/duo/references/vault.md`), not a source in `sources/`. Both pages are `inferred`
+and flagged. Mirror the doc immutably under `sources/`, write its Source concept under
+`wiki/sources/`, and re-ground those two pages (provenance → `extracted` where warranted).
+**Honors** "do not invent sources / nothing ingested without human review" — needs the maintainer's
+OK that this local doc is an approved source.
+
+## T7 — Loopkit on Duo (progressive enhancement)
+**Goal:** turn the [loopkit-on-duo](../wiki/concepts/loopkit-on-duo.md) design into a decision. The
+governing principle (baseline runs Duo-less + renders on GitHub; Duo only accelerates) is settled;
+the open forks are the four decisions in that page: **A** `kind:`→`type:` field, **B** vault root
+(`knowledge/` vs repo root), **C** ship the OKF `index.md` marker by default, **D** `id:` minting
+(leave to Duo vs. mint in `ingest`).
+**Definition of done:** A–D decided; a forkable loopkit that a Duo user can set as a default OKF
+vault (capture → `inbox/`, verbs operate on the base, moves stay GitHub-renderable) **and** that a
+Duo-less clone runs unchanged. **Gated:** any `dist/loopkit` change rides the §8 bar + an explicit
+go/no-go — this design is research input, not authorization.
+**Progress (2026-06-15):** spec written at [`_meta/SPEC-loopkit-on-duo.md`](../_meta/SPEC-loopkit-on-duo.md),
+hardened by an adversarial multi-agent pass (18 agents; 3 blockers + 4 majors + 23 completeness
+items folded in; ground-truth re-verified against the shipped skills + `sync.sh`). **Key reframe:**
+schema-as-a-file is *rejected* (violates loopkit §7 "no databases" AND Duo's no-sidecar rule) →
+encoded vocabulary = **golden prose** (`knowledge/golden/vocabulary.md`), "observed" rung =
+**computed live by `distill`**, never persisted. A–D resolved in §9 (A overridden: keep `kind:`).
+Re-derivation guarantee is **query-path only** (shipped `ingest`/`distill` don't read golden today).
+**Still open:** the §8 go/no-go on the dist-touching phases — **P2** (distill reads vocabulary +
+emits the live observed-count / off-vocabulary flags), **P3** (opt-in OKF marker), **P4** (ingest-time
+resolution + `inbox/` scan). P1 (golden vocabulary as a user-side convention) touches no managed file.

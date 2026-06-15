@@ -21,10 +21,12 @@ resolved from this `wiki/` directory.
 * [Concepts index](/concepts/index.md) — cross-cutting ideas loops rely on.
 * [Progressive disclosure](/concepts/progressive-disclosure.md) — index-first, context-budget-aware navigation.
 * [Provenance](/concepts/provenance.md) — extracted vs inferred vs ambiguous; the anti-hallucination discipline.
+* [Loopkit on Duo](/concepts/loopkit-on-duo.md) — design (unvalidated, not shipped): progressive enhancement by an optional host.
 
 ## Comparisons
 * [Comparisons index](/comparisons/index.md) — contrasts between loops/patterns.
 * [loopkit ↔ the root repo](/comparisons/loopkit-vs-root.md) — shipped kit vs this repo; which v0 decisions the root adopts vs rejects.
+* [Duo Note Vault ↔ the wiki/loopkit construct](/comparisons/duo-vault-vs-wiki.md) — same OKF substrate, three operating models; the vault as a candidate runtime.
 
 ## Sources
 * [Sources index](/sources/index.md) — digests of ingested sources.
