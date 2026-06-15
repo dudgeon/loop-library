@@ -38,6 +38,19 @@ One full turn of the loop has three operations; any one can fire independently.
 The defining move is **filing answers back**: a good query result (a comparison, a discovered
 connection) becomes a new page, so explorations compound just like ingested sources do.
 
+```mermaid
+flowchart TD
+  src([approved source]) --> I[Ingest]
+  q([question]) --> Q[Query]
+  hc([health check / pre-merge]) --> L[Lint]
+  I ==>|compiles many pages| W[(wiki/ bundle)]
+  Q -->|reads, files novel answers back| W
+  L -->|checks, fixes, supersedes| W
+  W -.->|index-first read| Q
+```
+
+Any one operation fires independently; all three maintain the same artifact — the `wiki/` bundle.
+
 # When to use
 - A body of knowledge accumulates over time and you want it organized, cross-referenced, and
   current rather than scattered (research, competitive analysis, an evolving thesis).

@@ -1,0 +1,83 @@
+{
+  "_comment": "Single, SELF-CONTAINED source of truth for this project's active-loop registry. Edit here, then run scripts/gen-loops.sh. The generator does NOT read the wiki — a registry must travel with any repo that uses loops, and a user's repo has no research wiki. `catalog` is an optional cross-reference link only (here it points at our wiki page); it is never read for data.",
+  "loops": [
+    {
+      "id": "root",
+      "name": "Root / meta loop",
+      "anchor": "G",
+      "status": "active",
+      "encoded_in": "loop/ (GOAL·HYPOTHESES·TASKS)",
+      "goal": "a better repo (research + shipped kits)",
+      "work_product": "the repo itself (self-referential)",
+      "page": null,
+      "cadence": "steady-state",
+      "maturity": "alpha",
+      "mermaid": { "shape": "subgraph", "label": "Root / meta loop · loop/ (alpha)", "inner_id": "G", "inner_label": "GOAL · WORK-PRODUCT · TASKS · HYPOTHESES" }
+    },
+    {
+      "id": "research",
+      "name": "Ingest → Query → Lint",
+      "anchor": "research",
+      "status": "active",
+      "encoded_in": "skills (.claude/skills/) + CLAUDE.md §3",
+      "goal": "keep the wiki/ corpus current",
+      "work_product": "the wiki/ OKF bundle",
+      "cadence": "event-driven",
+      "maturity": "stable",
+      "catalog": "../wiki/loops/automation/ingest-query-lint.md",
+      "mermaid": { "shape": "subgraph", "label": "Ingest → Query → Lint · skills", "inner_id": "IQL", "inner_label": "wiki/ corpus grows + self-heals" }
+    },
+    {
+      "id": "deliver",
+      "name": "Goal-Directed Task Loop",
+      "anchor": "deliver",
+      "status": "proposed",
+      "encoded_in": "a wiki/ hypothesis page (no skill yet)",
+      "goal": "deliver a defined artifact",
+      "work_product": "the artifact",
+      "cadence": "per-step",
+      "maturity": "experimental",
+      "catalog": "../wiki/loops/agentic/goal-directed-task-loop.md",
+      "mermaid": { "shape": "subgraph", "label": "Goal-Directed Task Loop · wiki hypothesis (unshipped)", "inner_id": "DL", "inner_label": "define → plan → produce → check → revise" }
+    },
+    {
+      "id": "session",
+      "name": "Session-Harvest",
+      "anchor": "SH",
+      "status": "active",
+      "encoded_in": "skill (.claude/skills/session-harvest/)",
+      "goal": "keep project intent current",
+      "work_product": "GOAL/HYPOTHESES/TASKS/CLAUDE + a heuristics doc",
+      "cadence": "per-session",
+      "maturity": "experimental",
+      "catalog": "../wiki/loops/automation/session-harvest.md",
+      "mermaid": { "shape": "subroutine", "label": "Session-Harvest · skill (alpha)" }
+    },
+    {
+      "id": "promote",
+      "name": "/promote loop",
+      "anchor": "PR",
+      "status": "planned",
+      "encoded_in": "planned — a future skill (CLAUDE.md §8)",
+      "goal": "move a validated pattern → dist/",
+      "work_product": "a shipped kit",
+      "page": null,
+      "cadence": "on demand",
+      "maturity": "not built",
+      "mermaid": { "shape": "hexagon", "label": "/promote · planned" }
+    }
+  ],
+  "extra_nodes": [
+    { "id": "dist", "shape": "cylinder", "label": "dist/ — shipped" }
+  ],
+  "edges": [
+    { "from": "G", "to": "research", "label": "sets direction" },
+    { "from": "G", "to": "deliver", "label": "sets direction" },
+    { "from": "research", "to": "deliver", "label": "validated patterns" },
+    { "from": "deliver", "to": "research", "label": "usage throws off sources" },
+    { "from": "research", "to": "PR", "label": "validated + very-high confidence" },
+    { "from": "PR", "to": "dist", "label": "ships a kit" },
+    { "from": "SH", "to": "G", "label": "revises intent + heuristics" },
+    { "from": "research", "to": "SH", "label": "session evidence", "dotted": true }
+  ]
+}

@@ -12,6 +12,9 @@ bar in `CLAUDE.md` §8.
 | --- | --- | --- | --- | --- | --- |
 | T1 | Define the loop primitives (goal · work product · tasks/sub-goals) | pattern-candidate | active | low | H1, H2, H3, H4 |
 | T2 | Research goal & work-product specification, grounded in sources | research-question | open | low | T1, goal-directed-task-loop |
+| T3 | Loop registry + visualization (inventory table + mermaid topology; registry = source of truth, chart = a view) | pattern-candidate | active | low | H5, H6, LOOPS.md |
+| T4 | `session-harvest` skill — review → validate → execute → update-heuristics loop over session evidence | pattern-candidate | active | low | H7, intent-heuristics.md |
+| T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
 
 ## T1 — Define the loop primitives
 **Goal:** prototype the primitive shape at the root (alpha — this `loop/` folder), validate it,
@@ -27,3 +30,41 @@ acceptance criteria, reward specification & specification-gaming (Goodhart), LLM
 design, self-refine / reflexion verifiers.
 **Definition of done:** a grounded `wiki/` concept page (cited) that raises or lowers confidence
 on H1–H4 and the goal-directed-task-loop hypothesis. **Honors** "nothing ingested without review."
+
+## T3 — Loop registry + visualization
+**Goal:** maintain an enumeration of a project's loops — one record per loop (name · encoding
+location: skill/agent/`CLAUDE.md`/`loop/` · the H1–H3 primitive triple · `trigger`/`cadence`/
+`exit_condition` · `maturity`) — rendered as (a) an **inventory** table and (b) a **topology**
+graph (how loops feed/trigger/improve one another). The registry is the source of truth; the
+diagram is a *generated view*. Extends T1: the per-loop record **is** the primitive triple, and
+the registry is `wiki/index.md` filtered to `type: Loop` + a "where encoded" field.
+**Open forks:** dogfood on this repo now vs. scope as a research→`dist` pattern first; registry
+home (`loop/` alpha vs. a `wiki/` Overview page); medium (mermaid-in-markdown vs. generated SVG).
+**Definition of done:** a registry covering this repo's current loops + one rendered view; a
+defended medium choice. **Note:** revising `CLAUDE.md`'s "two engines" wording (per H5) is part of
+this once validated — gated, not yet.
+**Progress (2026-06-15):** dogfooded, self-syncing, and now **wiki-independent**.
+[`LOOPS.md`](LOOPS.md) inventory + mermaid topology are **generated** by
+[`scripts/gen-loops.sh`](../scripts/gen-loops.sh) from a **self-contained**
+[`loops.registry.json`](loops.registry.json); the generator reads no wiki content, so the
+registry + generator travel with any repo that *uses* loops (a user's repo has no research wiki).
+A `catalog` link to a wiki page is an optional cross-reference only. `--check` (wired into
+`lint.sh`) fails on stale output. **Still open:** (a) the natural next step — let loops
+*self-describe* via their own encoding's frontmatter (a skill/agent's metadata), so the registry
+manifest shrinks to edges + non-encoded loops; (b) graduate the registry+generator into a shippable
+`dist/` kit (the vendorable Purpose-1 artifact).
+
+## T4 — `session-harvest` skill
+**Goal:** design the loop that keeps project intent fresh from session evidence: (1) review the
+current/prior session for changes to intent, guided by a **heuristics doc**; (2) validate proposed
+changes with the human; (3) execute the approved ones; (4) update the heuristics doc from the
+feedback so it improves. Encoded as a skill; a candidate `Loop`/recursive-improvement page.
+**Definition of done:** a hedged `wiki/` loop design page + a heuristics-doc shape; evidence it
+helps on real sessions; later, **very-high confidence + go/no-go** before any `dist/` ship (§8).
+**Honors** "validate with the human" and "nothing auto-promoted."
+**Progress (2026-06-15):** built as an alpha skill at
+[`.claude/skills/session-harvest/`](../.claude/skills/session-harvest/SKILL.md); heuristics doc
+seeded at [`intent-heuristics.md`](intent-heuristics.md) (repo-level, not gated in the skill);
+mechanism diagram added to the [catalog page](../wiki/loops/automation/session-harvest.md). **Still
+open:** run it on real sessions to gather the evidence H7 needs; decide whether the 5-phase +
+heuristics-doc shape generalizes enough to ship.

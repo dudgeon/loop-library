@@ -6,7 +6,18 @@ high confidence** in. Nothing lands here by default.
 
 ## Currently shipped
 
-_None._ The bar has not yet been met by any pattern.
+### loopkit — v0.1.0 (2026-06-15)
+A forkable **context-aware project**: a knowledge base of plain markdown that stays sharp through
+three operations — **ingest / query / distill** (the Karpathy LLM-wiki loop; `distill` = his
+`lint`). Ships golden (locked) context with a "pin this" promotion path, and multiple deliverables
+in `work/` whose sections can be locked and finalized one at a time. Setup and golden-pinning are
+`CLAUDE.md` rules, not skills. **Self-contained** — no dependency on this repo's wiki.
+
+- Path: [`dist/loopkit/`](loopkit/) · README, CLAUDE.md, three skills, templates, semver +
+  CHANGELOG + `loop.manifest.json` + `scripts/sync.sh` (managed-vs-user split realized & tested).
+- Go/no-go: explicit human decision (2026-06-15), after a multi-pass design review.
+- Status: **v0 — shipped for use and dogfooding.** Real-use validation is ongoing; expect
+  refinement before a 1.0. Known v0 limits are in its CHANGELOG.
 
 ## The promotion bar (research → `dist/`)
 
@@ -37,4 +48,6 @@ Each shipped kit will carry a self-describing `loop.manifest.json` splitting fil
   never touches these.
 
 This is the OKF "self-describing bundle" idea applied to a code artifact: a vendored copy knows
-where it came from and updates only its engine. (Design retained here; no kit ships it yet.)
+where it came from and updates only its engine. **Realized in `loopkit` v0.1.0** —
+`dist/loopkit/loop.manifest.json` lists `managed_files`; `scripts/sync.sh` overwrites only those
+and never touches `PROJECT.md`, `knowledge/`, or the user's `work/` deliverables.

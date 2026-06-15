@@ -13,6 +13,9 @@ set of enduring things every loop seems to need.
 - **Tasks / sub-goals** — the actionable decomposition. → [`TASKS.md`](TASKS.md)
 - **Hypotheses** — beliefs we're testing. → [`HYPOTHESES.md`](HYPOTHESES.md)
 
+A project runs **more than one** loop (hypotheses H5/H6). The full portfolio this repo runs — and
+how the loops feed each other — is the registry: → [`LOOPS.md`](LOOPS.md)
+
 The bet (hypothesis H4): these primitives are enduring and recur at every level, so a *validated*
 version of this shape is itself a candidate to ship as a `dist/` kit — that's task **T1**.
 Prototype the shape here (alpha), validate it, then ship.
