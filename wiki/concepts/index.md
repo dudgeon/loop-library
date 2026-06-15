@@ -1,0 +1,9 @@
+# Concepts
+
+Cross-cutting ideas that loops rely on.
+
+* [Progressive disclosure](/concepts/progressive-disclosure.md) — read the index first; keep each pass inside the context window.
+* [Provenance](/concepts/provenance.md) — extracted vs inferred vs ambiguous; the safeguard against compounding hallucination.
+
+_Candidates awaiting sources:_ termination conditions, idempotency, convergence,
+cost-control, context-management, human-in-the-loop.
