@@ -62,6 +62,31 @@ definitions. It is loaded first and **wins on contradiction**. You **do not chan
 "pin this", "make this golden", or "this is the rule", move that item into `golden/` after
 confirming the exact content. Changing golden is always deliberate.
 
+## 4.1 A vocabulary the project resolves against (optional, grows over time)
+As a project matures it tends to track recurring *kinds of things* — initiatives, people, customers,
+experiments. Left implicit, you re-derive "what counts as an initiative" on every pass and the name
+drifts (initiative one day, project the next). To stop that, the project can keep **one plain golden
+note**, `knowledge/golden/vocabulary.md`, that says — in ordinary language — what it tracks:
+
+> *We track **initiatives**. Each has a **scope** that is **internal** or **external**, and an
+> **owner** (a person).*
+
+It is **prose, not a schema or a table of fields.** Because it lives in `golden/`, `query` loads it
+as an authoritative constraint and **resolves against it**: a note about an initiative gets
+`kind: initiative`, and a value like *internal* / *external* is a **property** of that initiative —
+**not** its own `kind:`. Defining the concept once is the whole point; you stop reinventing it.
+
+- **Optional and emergent.** A fresh project has none — just use sensible `kind:` labels as you go.
+  The vocabulary gets written down only once a pattern is clearly worth pinning.
+- **Pinning is the user's call.** When `distill` notices the same kind of thing recurring, it
+  *suggests* pinning it (§3, the numbered list); it never writes vocabulary silently. Say yes and it
+  lands in `vocabulary.md` like any "pin this." Retiring or changing it is a deliberate golden edit.
+- **Resolution happens at `query` time** (and drift is caught by `distill`). `ingest` stays light —
+  it doesn't read golden — so a freshly-filed `kind:` is reconciled against the vocabulary when you
+  next query or distill, not blocked at capture.
+- **Keep it prose.** No `## Fields` / `## Types` tables, no per-value lists — that's a database,
+  which this kit deliberately doesn't do.
+
 ## 5. Deliverables can be many, and locked in pieces
 `work/` holds the deliverable(s) — there may be **several**, and one deliverable can be **split into
 section files** (e.g. a PRD as `work/prd/01-problem.md`, `02-plan.md`, …) so parts can be finalized

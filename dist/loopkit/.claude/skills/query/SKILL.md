@@ -9,7 +9,9 @@ Use the knowledge base toward the goal, and file useful results back. Read `CLAU
 
 ## Steps
 1. Read `PROJECT.md` and `knowledge/index.md` first — don't blind-scan. Pull the relevant notes,
-   and load `knowledge/golden/` as authoritative constraints.
+   and load `knowledge/golden/` as authoritative constraints. If `knowledge/golden/vocabulary.md`
+   exists, **resolve names and `kind:` labels against it** (see `CLAUDE.md` §4.1) so the same
+   concept isn't reinvented — and so a value like *internal* stays a property, not its own `kind:`.
 2. Answer the question, or advance a deliverable in `work/`, citing the notes you used. Treat golden
    context as hard constraints — flag anything that conflicts with it rather than overriding it.
 3. Respect locked work: don't rewrite a `locked: true` file without asking. Advance only the
