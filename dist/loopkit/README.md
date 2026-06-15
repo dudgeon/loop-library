@@ -34,10 +34,21 @@ Some things shouldn't drift: a PRD template, team rules, an API contract. Keep t
 `knowledge/golden/`. The assistant treats them as the source of truth and won't change them without
 asking. To lock something new, just say **"pin this."**
 
+One handy kind of golden note is a **vocabulary** — a plain-language description of the recurring
+things your project tracks (*"we track initiatives, each with a scope of internal or external"*). Pin
+one once a pattern is clear, and the assistant names things consistently instead of reinventing them
+each time. It's optional and grows with use.
+
 ## Your deliverables
 They live in `work/`. You can have **several**, and you can split one into sections so you can
 **finalize them one at a time** — mark a section `locked: true` and the assistant won't rewrite it
 without asking. See `work/README.md`.
+
+## Works with Duo (optional)
+Because the knowledge base is plain markdown, you can open the project in [Duo](https://github.com/dudgeon/duo)
+to get capture, search, and link-repair on top of the same files — or not. **Nothing here depends on
+Duo;** every operation works with just the assistant, and the files stay readable on GitHub. If you
+want it, ask the assistant to *"make this folder openable in Duo."* See `CLAUDE.md` for the details.
 
 ## Where things live
 ```

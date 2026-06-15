@@ -76,8 +76,8 @@ as an authoritative constraint and **resolves against it**: a note about an init
 `kind: initiative`, and a value like *internal* / *external* is a **property** of that initiative —
 **not** its own `kind:`. Defining the concept once is the whole point; you stop reinventing it.
 
-- **Optional and emergent.** A fresh project has none — just use sensible `kind:` labels as you go.
-  The vocabulary gets written down only once a pattern is clearly worth pinning.
+- **Optional, and it grows with use.** A fresh project has none — just use sensible `kind:` labels
+  as you go. The vocabulary gets written down only once a pattern is clearly worth pinning.
 - **Pinning is the user's call.** When `distill` notices the same kind of thing recurring, it
   *suggests* pinning it (§3, the numbered list); it never writes vocabulary silently. Say yes and it
   lands in `vocabulary.md` like any "pin this." Retiring or changing it is a deliberate golden edit.
