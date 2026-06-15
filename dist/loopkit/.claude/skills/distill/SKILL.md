@@ -21,9 +21,11 @@ Keep the knowledge base sharp — the cleanup that stops it from bloating. Read 
      `vocabulary.md`, *suggest* pinning it (e.g. *"'initiative' shows up in 5 notes with an
      internal/external split — pin this as vocabulary?"*). You never write golden yourself; the user
      decides. Compute this live from the current notes — don't keep a count anywhere.
-   - **vocabulary drift** — if notes use a `kind:` the vocabulary doesn't mention, or that conflicts
-     with it (e.g. `kind: external-initiative` where the vocabulary says scope is a property of an
-     initiative), flag it for alignment.
+   - **off-vocabulary** — if notes use a `kind:` the vocabulary doesn't mention (e.g.
+     `kind: external-initiative` where the vocabulary says scope is a *property* of an initiative),
+     suggest aligning the notes — or pinning the kind if it's genuinely new.
+   - **contradiction** — if notes consistently use a value the vocabulary prose doesn't allow,
+     suggest **revising the vocabulary prose** (it may have moved on); the user decides, as always.
 3. **Get the user's approval before deleting anything.** Apply only what's approved. Prefer
    tightening over erasing; never delete to hit a size target.
 4. Never touch `knowledge/golden/` or any `locked: true` file. (You may **read** `vocabulary.md`;

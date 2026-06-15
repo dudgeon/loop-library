@@ -81,9 +81,9 @@ as an authoritative constraint and **resolves against it**: a note about an init
 - **Pinning is the user's call.** When `distill` notices the same kind of thing recurring, it
   *suggests* pinning it (§3, the numbered list); it never writes vocabulary silently. Say yes and it
   lands in `vocabulary.md` like any "pin this." Retiring or changing it is a deliberate golden edit.
-- **Resolution happens at `query` time** (and drift is caught by `distill`). `ingest` stays light —
-  it doesn't read golden — so a freshly-filed `kind:` is reconciled against the vocabulary when you
-  next query or distill, not blocked at capture.
+- **Resolution happens at `query` time** (and drift is caught by `distill` — both read golden).
+  `ingest` alone stays light and doesn't read golden, so a freshly-filed `kind:` is reconciled
+  against the vocabulary when you next query or distill, not blocked at capture.
 - **Keep it prose.** No `## Fields` / `## Types` tables, no per-value lists — that's a database,
   which this kit deliberately doesn't do.
 
@@ -141,8 +141,9 @@ begins. The marker is inert otherwise; anything that doesn't understand it ignor
 during first-run setup (§0), and never put a `type:` anywhere else — notes use `kind:`, not `type:`.
 
 A few things to expect, none of which break the no-Duo path:
-- **Capture lands in `inbox/`.** Notes quick-captured in Duo drop into an `inbox/` folder; tell the
-  assistant to file them and they fold into `knowledge/` on the next ingest.
+- **Capture lands in `inbox/`.** Notes quick-captured in Duo drop into an `inbox/` folder; point the
+  assistant at them and it files them into `knowledge/` on the next ingest (today that's a manual
+  hand-off — `ingest` doesn't scan `inbox/` on its own yet).
 - **`kind:` vs Duo's `type:`.** Your notes keep `kind:` (this kit's contract). Duo files on its own
   `type:` field and may offer to add one — expected and harmless; `kind:` stays put.
 - **Moves.** Duo moves and re-links notes safely. Without Duo, if you move a note by hand, fix its
