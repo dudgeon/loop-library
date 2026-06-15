@@ -19,6 +19,13 @@ in `work/` whose sections can be locked and finalized one at a time. Setup and g
 - Status: **v0 — shipped for use and dogfooding.** Real-use validation is ongoing; expect
   refinement before a 1.0. Known v0 limits are in its CHANGELOG.
 
+#### Proposed: v0.2.0 — Duo-optional + resolve-once vocabulary (PENDING go/no-go)
+Built on branch `claude/loopkit-on-duo-build` per [`_meta/SPEC-loopkit-on-duo.md`](../_meta/SPEC-loopkit-on-duo.md)
+(phases P1–P3; P4 deferred). Adds an optional golden-prose **vocabulary** the kit resolves against at
+query time, a relative-markdown link convention, and an **opt-in** "open in Duo" path — all
+degrading cleanly when Duo is absent. **Not shipped:** this is a separate PR awaiting the §8 go/no-go;
+`main` remains v0.1.0 until that decision. On merge, update this entry to "shipped".
+
 ## The promotion bar (research → `dist/`)
 
 A pattern may be promoted from the research loop (`wiki/`) into `dist/` only when **all** hold:
