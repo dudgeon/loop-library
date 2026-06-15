@@ -23,7 +23,8 @@ resolved from this `wiki/` directory.
 * [Provenance](/concepts/provenance.md) — extracted vs inferred vs ambiguous; the anti-hallucination discipline.
 
 ## Comparisons
-* [Comparisons index](/comparisons/index.md) — contrasts between loops/patterns (none yet).
+* [Comparisons index](/comparisons/index.md) — contrasts between loops/patterns.
+* [loopkit ↔ the root repo](/comparisons/loopkit-vs-root.md) — shipped kit vs this repo; which v0 decisions the root adopts vs rejects.
 
 ## Sources
 * [Sources index](/sources/index.md) — digests of ingested sources.

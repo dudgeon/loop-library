@@ -48,17 +48,19 @@ doc audit — do **not** edit `CLAUDE.md` yet). **Validated by:** counting loops
 projects (supports) / a useful project running on exactly one loop (refutes). _(Your hypothesis,
 2026-06-15.)_
 
-## H6 — Loops accrete and are encoded heterogeneously → need a self-contained registry
-Over time a project adds loops via skills, agents, and `CLAUDE.md` prose; encoding location
-varies, so no single file shows you the whole portfolio. The fix is an explicit **loop registry**:
-one record per loop (name · status · encoding location · the [H1–H3](HYPOTHESES.md) primitive
-triple · `cadence` · `maturity`), with the chart a *rendered view* of it, not hand-drawn.
-**Critically, the registry must be self-contained.** A project that *uses* loops has no research
-wiki — only this repo does — so the registry cannot depend on wiki content (an earlier version
-pulled `cadence`/`maturity` from `type: Loop` frontmatter; that coupling breaks the moment the
-registry is vendored). The registry carries its own fields; a `catalog` link to a wiki page is an
-optional cross-reference, never a data source. **Links:** [`TASKS.md`](TASKS.md) (T3),
-[`LOOPS.md`](LOOPS.md). _(Your hypothesis, 2026-06-15; refined after the wiki-coupling correction.)_
+## H6 — Loops accrete and are encoded heterogeneously → you need *some* way to see the portfolio
+Over time a project adds loops via skills, agents, and `CLAUDE.md` prose; encoding location varies,
+so no single file shows you the whole set. You want an explicit enumeration (name · where encoded ·
+what it reads/writes · how loops relate). **What *form* that takes is scale-dependent.** We
+prototyped a *generated* registry (`loops.registry.json` → `gen-loops.py` → `LOOPS.md`) and then
+**collapsed it** (2026-06-15): at ~5 loops a hand-maintained list in [`README.md`](README.md) beats
+the machinery, whose topology can't be auto-derived and whose source rots if unmaintained, and whose
+`--check` only guarded source↔view (not view↔reality — false anti-rot comfort). The *need* stands;
+the heavy mechanism didn't earn its place yet (revisit a generated form past ~8–10 loops).
+**One durable sub-finding survives:** any *shippable* registry must be **self-contained** — a
+vendored kit has no research wiki, so it can't depend on wiki content. (That insight drove the
+loopkit decoupling.) **Links:** [`TASKS.md`](TASKS.md) (T3), [`README.md`](README.md).
+_(Your hypothesis, 2026-06-15; mechanism collapsed after stress-testing usefulness.)_
 
 ## H7 — A self-improving intent loop (session-harvest) is a high-value class
 A meta-loop that (1) reviews the current/prior session for changes to project intent, guided by a

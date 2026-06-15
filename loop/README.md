@@ -13,8 +13,21 @@ set of enduring things every loop seems to need.
 - **Tasks / sub-goals** — the actionable decomposition. → [`TASKS.md`](TASKS.md)
 - **Hypotheses** — beliefs we're testing. → [`HYPOTHESES.md`](HYPOTHESES.md)
 
-A project runs **more than one** loop (hypotheses H5/H6). The full portfolio this repo runs — and
-how the loops feed each other — is the registry: → [`LOOPS.md`](LOOPS.md)
+This `loop/` folder **is this repo's PROJECT** (loopkit's term for it): the goal, beliefs, work, and
+the loops we run, in one place.
+
+A project runs **more than one** loop (hypotheses H5/H6). The loops this repo runs — hand-maintained;
+add a row when you add a loop:
+
+| loop | encoded in | reads / writes |
+| --- | --- | --- |
+| root / meta loop | this `loop/` folder | GOAL · HYPOTHESES · TASKS |
+| ingest → query → lint | `.claude/skills/` + `CLAUDE.md` §3 | the `wiki/` corpus |
+| session-harvest | `.claude/skills/session-harvest/` | the session + heuristics → intent docs |
+| goal-directed task loop | a `wiki/` hypothesis page (unshipped) | goal+reqs → an artifact |
+
+(We removed the generated `LOOPS.md` registry: at ~5 loops a hand list beats the machinery, whose
+topology can't be auto-derived and whose source rots if unmaintained — see [`TASKS.md`](TASKS.md) T3.)
 
 The bet (hypothesis H4): these primitives are enduring and recur at every level, so a *validated*
 version of this shape is itself a candidate to ship as a `dist/` kit — that's task **T1**.

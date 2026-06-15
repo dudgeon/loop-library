@@ -147,6 +147,10 @@ then review for what a script can't catch:
 - stale `timestamp`s relative to the sources they cite.
 Record findings as a `lint` entry in `log.md` and fix what's safe.
 
+> **Vocabulary:** the shipped kit ([`dist/loopkit`](dist/loopkit/)) calls this same operation
+> **`distill`** for end users; at the root it stays `lint` because it also runs OKF conformance —
+> more than distilling notes. See [`/comparisons/loopkit-vs-root`](wiki/comparisons/loopkit-vs-root.md).
+
 > **Optional, later:** a search tool over `wiki/` (the index is enough at moderate scale;
 > add hybrid BM25/vector search — e.g. `qmd` — only when page count outgrows the index).
 

@@ -4,6 +4,8 @@ Chronological, newest-first. Grep recent activity:
 `grep -nE '^- (ingest|query|lint|supersede)' wiki/log.md`.
 
 ## 2026-06-15
+- query  | filed comparison: loopkit ↔ root (/comparisons/loopkit-vs-root.md) — correspondence + which v0 decisions the root adopts vs rejects (root = reference impl, kit = distilled floor).
+- lint   | COLLAPSED the generated loop registry (loops.registry.json + gen-loops.* + LOOPS.md + the lint check) → hand-maintained loops list in loop/README.md; aligns root with loopkit (no generated map). Documented lint = loopkit's distill.
 - lint   | DECOUPLED registry from wiki: a registry must travel with any repo that *uses* loops (no research wiki there). gen-loops no longer reads wiki frontmatter; loops.registry.json is self-contained; `catalog` is an optional cross-ref link. Refined H6.
 - lint   | clarified registry model: loop/LOOPS.md = loops ACTIVE in this project (instances) + status; wiki = catalog of loop *types*. Inverted gen-loops drift-check (no longer flags unregistered catalog pages); added Status column + dashed non-active nodes.
 - lint   | session-harvest → alpha skill (.claude/skills/session-harvest/) + repo heuristics doc (loop/intent-heuristics.md, not gated in skill); added Mechanism diagrams to session-harvest + ingest-query-lint pages; updated session-harvest hedge.
