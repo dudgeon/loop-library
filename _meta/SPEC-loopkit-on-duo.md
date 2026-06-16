@@ -20,6 +20,13 @@ unless this spec says otherwise.
 > "observed" rung is **computed live, never persisted**; Duo only accelerates a kit that already
 > works alone and renders on GitHub.
 
+> **Implementation status (as built — [PR #6](https://github.com/dudgeon/loop-library/pull/6)).**
+> Phases **P1–P3 are built; P4 is deferred.** One spec↔build divergence was found in a post-build
+> audit and **fixed** (T11 `id:` preservation — the kit now carries its *own* preserve-unknown-keys
+> rule; it was wrongly assumed to inherit one). The phase-by-phase and test-by-test record, the
+> divergences, and the not-complete items are in **[§12 As-built record](#12-as-built-record-pr-6)**.
+> Until PR #6 merges, `dist/loopkit` on `main` stays **v0.1.0** and this remains a *proposal*.
+
 ---
 
 ## 0. The reframe that defines this spec
@@ -293,7 +300,7 @@ side to the same rule.
 | --- | --- |
 | Rel-md links at rest | Identical to Duo OKF at-rest form. |
 | Renders on GitHub | Yes, with or without Duo — **pre-Duo-filing** (see below). |
-| Unknown keys (e.g. Duo's `id:`) | Preserved on every `ingest`/`distill` rewrite (OKF graceful degradation). |
+| Unknown keys (e.g. Duo's `id:`) | Preserved on every `ingest`/`distill` rewrite — the kit's §8 note conventions carry an explicit *"keep frontmatter keys you didn't write"* rule (added in PR #6; the kit does **not** silently inherit the root repo's preserve-keys rule). T11. |
 | OKF marker (when enabled) | `duo vault publish` preserves the marker frontmatter byte-identically and regenerates only the body after `<!-- duo:listing -->`. |
 
 **Does NOT round-trip cleanly — stated, not glossed:**
@@ -334,7 +341,7 @@ side to the same rule.
 | **A** | `kind:` vs `type:` | **Keep `kind:`; do NOT rename.** Encoded type-names become `kind:` **values**; `type:` appears only as the reserved index marker, never on a note. | The frozen contract wins (§4). This **overrides** the `loopkit-on-duo.md` Decision-A *recommendation* to introduce `type:`, on purpose. The cost is accepted and stated: Duo re-types/re-files notes each pass (§8). Honest round-trip claim = renders-on-GitHub + inert-`id:` only. |
 | **B** | Vault root | **`knowledge/`.** | Keeps `work/`, `scripts/`, skills out of the graph; the marker lives at `knowledge/index.md`. |
 | **C** | Ship the OKF marker by default? | **No — opt-in only**, Duo-detected or user-asked; never by `sync`, never during §0; placed as the file's first bytes with the listing fence (§6). | Default-shipping it stamps a schema/version header onto every fork (incl. the majority that never run Duo) and injects a non-optional first-run step — the over-formalization this design forbids. Fresh non-Duo forks stay frontmatter-free. |
-| **D** | `id:` minting | **Preserve only, never mint.** | No ceremony without the host; preserve-unknown-keys makes a Duo-minted `id:` safe in a no-Duo clone. **Acknowledged asymmetry (§8):** loopkit→Duo notes are id-less until Duo heals them; `relink` falls back to slug and reports ambiguity. Relaxing D (minting for Duo-bound vaults) is a deferred, §8-gated option — **not adopted here.** |
+| **D** | `id:` minting | **Preserve only, never mint.** | No ceremony without the host; the kit's own preserve-unknown-keys rule (§8 note conventions, added in PR #6 — not inherited from the root repo) carries a Duo-minted `id:` untouched in a no-Duo clone. **Acknowledged asymmetry (§8):** loopkit→Duo notes are id-less until Duo heals them; `relink` falls back to slug and reports ambiguity. Relaxing D (minting for Duo-bound vaults) is a deferred, §8-gated option — **not adopted here.** |
 
 ---
 
@@ -376,6 +383,62 @@ Concrete, checkable assertions. Each must pass before any `dist/` promotion.
 | **P2 — distill enhancements** | Add the live observed-count, the observed→encoded suggestion, and the off-vocabulary/contradiction flags to `distill/SKILL.md` (which must now **read** `vocabulary.md`). | **Yes** — `distill/SKILL.md` ∈ `managed_files` | §8 + explicit go/no-go. |
 | **P3 — OKF marker, opt-in** | Assistant writes the marker (first-bytes + listing fence) to `knowledge/index.md` on Duo-detect/user request; document by-hand maintenance. | Possibly `CLAUDE.md`/`query` text (managed) | §8 + explicit go/no-go. |
 | **P4 — ingest-time resolution (optional)** | Amend `ingest/SKILL.md` to read `vocabulary.md` first (and to scan `inbox/`), lifting resolution from query-only to both paths and making the capture fallback real. | **Yes** — `ingest/SKILL.md` ∈ `managed_files` | §8 + explicit go/no-go. Deferred; not implied by P1. |
+
+**Build status (PR #6):** P0 ✓ (merged via PR #5) · P1 ✓ built · P2 ✓ built · P3 ✓ built ·
+P4 ⏳ deferred. Details in §12.
+
+---
+
+## 12. As-built record (PR #6)
+
+What actually shipped on branch `claude/loopkit-on-duo-build`, where it diverged from the design
+above, and what is **not** complete. This section is the part to read to trust the rest as a record.
+`main` stays v0.1.0 until [PR #6](https://github.com/dudgeon/loop-library/pull/6) merges.
+
+### Phases
+
+| Phase | Status | What landed (files) |
+| --- | --- | --- |
+| P1 — golden vocabulary, query-time | ✓ built | `CLAUDE.md` §4.1; `query/SKILL.md` step 1; `knowledge/golden/README.md` |
+| P2 — distill reads vocabulary | ✓ built | `distill/SKILL.md` — read-only golden, suggest pinning (live count), off-vocabulary + contradiction flags, link hygiene |
+| P3 — link convention + opt-in Duo | ✓ built | `CLAUDE.md` §8 (rel-md links; preserve-unknown-keys) + "Optional: open in Duo" appendix |
+| release | ✓ | `loop.manifest.json` 0.1.0→0.2.0; `CHANGELOG.md`; `README.md`; `dist/REGISTRY.md` (marked *proposed*) |
+| P4 — ingest-time resolution + `inbox/` scan | ⏳ deferred | not built; `ingest` unchanged (reads `PROJECT.md` + `index.md` only) |
+
+### Acceptance tests (§10) — as built
+
+| Test | Status | Note |
+| --- | --- | --- |
+| T2, T3, T5, T6, T7, T9, T14, T15 | ✓ verified | checked mechanically against the kit (no `duo` dep; no `[[ ]]`/`/absolute`; index frontmatter-free; §0 untouched; `managed_files` unchanged; live count not persisted; no schema grid + fence required; no rung words) |
+| T8 | ✓ built | `query` resolves against `vocabulary.md`; **query-path only** by design |
+| T10 | ✓ built | off-vocabulary + contradiction flags are **suggest-only**, by design |
+| T11 | ✓ fixed | **the divergence** — preserve-unknown-keys rule added in PR #6 (see below) |
+| T13, T14b | ✓ documented | marker rule (first bytes + `<!-- duo:listing -->` fence) stated in the Duo appendix; marker is opt-in, not shipped |
+| T1, T4 | ◑ by construction | no-Duo completion / GitHub rendering follow from the above but were **not run live** in a real fork — confirm on dogfood |
+| T12 | n/a (external) | `duo vault publish`'s byte-identical marker preservation is Duo's behavior; the kit only guarantees it writes the anchor fence |
+
+### Divergences from the design
+
+1. **T11 `id:` preservation — found in audit, fixed (PR #6).** §4/§8/§9-D assumed a Duo-minted `id:`
+   survives rewrites via "OKF's preserve-unknown-keys rule." That rule is a **root-repo** guarantee;
+   the vendored kit never carried it and never mentioned `id:`. As first built, T11 was **unbacked**.
+   Fix: `CLAUDE.md` §8 now says *"keep frontmatter keys you didn't write."* Build now matches spec.
+2. **§3.7 "distill doesn't read golden today" — superseded by P2, by design (not a contradiction).**
+   That row is the *pre-build baseline* used to justify query-only resolution. P2 deliberately makes
+   `distill` read `vocabulary.md`; the spec gated exactly that edit as P2 and the build performs it.
+   Read §3.7 as "the baseline the build then advances," not as current state.
+
+### Not complete (deferred or best-effort, on purpose)
+
+- **P4 — ingest-time resolution + `inbox/` auto-scan.** `ingest` still reads only `PROJECT.md` +
+  `index.md`. So resolution against the vocabulary is **query/distill-time only**, and Duo capture
+  into `inbox/` is a **manual hand-off** (the assistant files it when pointed at it). §8-gated.
+- **Vocabulary resolution is best-effort, not enforced (T10).** Nothing mechanically rejects an
+  off-vocabulary `kind:`; `distill` flags it for the user. By design — loopkit ships no gate beyond
+  the 3-line note contract.
+- **Duo round-trip caveats (§8) are inherent, not bugs.** Duo re-types/re-files `kind:` notes as
+  untyped; prose vocabulary is invisible to Duo's corpus; `id`-less notes get weaker `relink`. These
+  follow from Decision A and are documented, not closed.
 
 ---
 
