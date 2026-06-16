@@ -122,6 +122,10 @@ lowercase-hyphenated names; keep each `index.md` to about one screen.
 project is vendored into a subfolder. (It also happens to be the form Duo expects — see the optional
 Duo section at the end.)
 
+**Keep frontmatter keys you don't recognize.** The three lines above are the contract, but if a note
+also carries other frontmatter — e.g. an `id:` a tool like Duo added — leave it untouched when you
+edit the note. Don't strip metadata you didn't write.
+
 ## 9. The one-line rule
 The knowledge base is the product; ingest / query / distill just keep it sharp — grounded always in
 `PROJECT.md`, and never at the expense of golden context.

@@ -12,6 +12,8 @@ Resolve-once vocabulary + Duo-optional.
   kinds and flags drift — suggest-only, the user pins. It is **prose, never a schema or table**.
 - **Relative-markdown link convention** — notes link with `[label](./note.md)`; no `[[wikilinks]]`,
   no absolute `/paths`. Readable on GitHub and portable.
+- **Preserve unknown frontmatter keys** — when editing a note, keep keys you didn't write (e.g. an
+  `id:` a tool like Duo added) instead of stripping them.
 - **Optional: open in Duo** — a fork can be opened as a Duo OKF Note Vault for capture, search, and
   link-repair. **Opt-in only** (a marker the assistant adds to `knowledge/index.md` on request); the
   kit never depends on Duo and every operation still runs without it.
