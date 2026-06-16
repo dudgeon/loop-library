@@ -1,5 +1,5 @@
 ---
-kind: deliverable-template
+type: deliverable-template
 summary: starting scaffold for a recommended-best-practices document
 ---
 

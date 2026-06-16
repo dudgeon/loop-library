@@ -1,97 +1,160 @@
 # CLAUDE.md — how this project works
 
-This project keeps a **knowledge base that stays sharp**: as you work, useful context is filed into
-a small set of plain-markdown notes, and you (the assistant) use them to help the user produce their
-deliverables. Three operations keep the knowledge base useful — **ingest, query, distill**. (This is
-the same loop Andrej Karpathy's "LLM wiki" uses; `distill` is what he calls `lint`.) Read this file
-before you ingest anything, do work, or distill.
+This project keeps a small **graph of typed notes** that gets sharper as you use it. As you work,
+what you learn is filed as **entities** — typed markdown notes — linked to each other, and you (the
+assistant) use that graph to help the user produce their deliverables. Three operations keep it
+useful: **ingest, query, distill** (the same loop Andrej Karpathy's "LLM wiki" uses; `distill` is
+what he calls `lint`). Read this file before you ingest, do work, or distill.
+
+This kit is a **foundation**, not a finished application. It gives you the primitives — typed
+entities, links that can carry a little data, and entity resolution — that a richer work agent is
+built *on*. Keep it that way: **own the mechanism, not the vocabulary.** Ship the *kind* of thing (a
+`person` note, a `status:` field); don't bake in one team's lifecycle, proximity tiers, or domain
+scheme. Those are for the application to add on top.
+
+The notes are plain markdown and the links are plain relative-markdown, so everything renders on
+GitHub — and the folder is already a **Duo vault**, so if you use Duo you can just open the folder and
+select it (the marker is already in `knowledge/index.md`). Nothing here *requires* Duo; it's an
+accelerator, never a dependency.
 
 ## 0. First run — set the project up
-If `PROJECT.md` is still a template (it has TODO placeholders) or `knowledge/` is empty, this is a
-fresh fork. **Do not guess what the user wants — interview them first.** Ask, in plain language:
+If `PROJECT.md` is still a template (TODO placeholders) or `knowledge/` is empty, this is a fresh
+fork. **Don't guess what the user wants — interview them first.** Ask, in plain language:
 
 1. **What are you trying to do?** — the goal.
 2. **What do you want to produce?** — the deliverable(s): a PRD, a best-practices doc, a report.
 3. **What should never drift?** — golden context to lock now: a template, hard rules, contracts.
 4. **When will you tend it?** — roughly how often they'll add to it and clean it up.
 
-Then write the answers into `PROJECT.md`, create `knowledge/` (and `knowledge/golden/`), pin any
-golden context they named, and — if one fits — start a deliverable in `work/` from a template.
-Until `PROJECT.md` is filled in, the only thing to do is this setup.
+Write the answers into `PROJECT.md`, create `knowledge/` (and `knowledge/golden/`), pin any golden
+context they named, and — if one fits — start a deliverable in `work/` from a template. Until
+`PROJECT.md` is filled in, the only thing to do is this setup. Don't author any types up front; they
+emerge with use (§4).
 
 ## 1. The shape
 ```
 this project/
   CLAUDE.md            how the assistant works here (this file)
   PROJECT.md           the goal, deliverables, and what's golden — the source of truth
-  knowledge/           the knowledge base — plain markdown notes
-    index.md           one-screen catalog (kept current)
-    golden/            locked context: templates, rules, contracts — never trimmed
+  knowledge/           the graph — typed markdown notes (entities) linked to each other
+    index.md           one-screen catalog (kept current); carries the Duo-vault marker
+    golden/            locked context — definitions, rules, contracts, and type templates
+      types/           a note per entity type, once a type has earned being written down
   work/                the deliverable(s) (may be several; sections can be locked)
-    templates/         starting scaffolds (managed)
+    templates/         deliverable scaffolds (managed) — NOT entity types
   .claude/skills/      ingest · query · distill
   scripts/sync.sh      update the kit's machinery from origin
   loop.manifest.json   what sync.sh may overwrite (vs the user's content)
   CHANGELOG.md         kit version history
 ```
-**Self-contained:** everything this project needs is in this repo. It does not depend on any
-outside service, wiki, or parent repository.
+**Self-contained:** everything this project needs is in this repo. It doesn't depend on any outside
+service, wiki, or parent repo. Duo, when present, reads these same files.
 
 ## 2. PROJECT.md is the source of truth
 Read it before any operation — the goal, the deliverables, the named golden context, the cadence.
-It is **co-evolved with the user**: propose changes to what the project is *for*; make only small,
+It's **co-evolved with the user**: propose changes to what the project is *for*; make only small,
 clearly-implied fixes yourself. If a request conflicts with it, surface the conflict and ask.
 
-## 3. The three operations
-- **ingest** — file new material into `knowledge/` as a short note, one topic per file, with a
-  one-line `summary:`, a `kind:` label, and a `source:` line (where it came from). Link it to
-  related notes and update `knowledge/index.md`. Don't write into `golden/`.
-- **query** — read `knowledge/index.md` first, then the relevant notes, plus `golden/` as
-  authoritative constraints. Answer the question or advance a deliverable in `work/`, citing the
-  notes you used. File genuinely new conclusions back as notes. If the knowledge base can't answer,
-  say so and suggest what to ingest — don't fabricate.
-- **distill** — keep the knowledge base lean and trustworthy (this is Karpathy's "lint"): propose a
-  numbered list — merge duplicates, retire stale notes, resolve contradictions (golden wins), fix
-  broken links, and flag any deliverable that has drifted from its notes. **Suggest-only:** get
-  approval before deleting. Never touch `golden/` or locked work (§4–§5).
+## 3. Notes are typed entities (the contract)
+Every `knowledge/` note is an **entity** — one thing, one file. It carries three frontmatter lines as
+a **floor, not a ceiling**:
 
-## 4. Golden context — locked
-`knowledge/golden/` holds context that must not drift: templates, hard rules, contracts, OKRs,
-definitions. It is loaded first and **wins on contradiction**. You **do not change anything under
-`golden/` without asking**, and `distill` never trims it. **Promotion path:** when the user says
-"pin this", "make this golden", or "this is the rule", move that item into `golden/` after
-confirming the exact content. Changing golden is always deliberate.
+- `summary:` — one line.
+- `type:` — what kind of thing this is (`finding`, `decision`, `person`, `source`, `topic`, …). This
+  is the field that makes a note a typed node; it's also the field Duo files and heals on.
+- `source:` — where it came from (a link, a person, a date; may be brief, or `unverified`).
 
-## 5. Deliverables can be many, and locked in pieces
-`work/` holds the deliverable(s) — there may be **several**, and one deliverable can be **split into
-section files** (e.g. a PRD as `work/prd/01-problem.md`, `02-plan.md`, …) so parts can be finalized
-one at a time. Add `locked: true` at the top of a file to **lock** it: you then treat it like golden
-— you won't rewrite a locked file without asking. `query` advances the **unlocked** parts from the
-knowledge base; `distill` flags an unlocked part that has drifted. See `work/README.md`.
+Then:
+- **Add any other typed attributes you need** — a `status:`, a date, an owner. The three lines are the
+  minimum; richer notes carry more.
+- **Keep frontmatter keys you don't recognize.** When you edit a note, never drop a key you didn't
+  write — an `id:` a tool like Duo added, an application's `status:` or `owner:`. Don't strip metadata
+  you didn't author. *(This is load-bearing: dropping an unknown key silently deletes someone's data.)*
+- **`id:` is optional and you never mint it.** If a note has one (Duo mints a stable `id:` when it
+  opens the vault), preserve it. Without one, links resolve by filename.
+- One topic per file; lowercase-hyphenated names; keep each `index.md` to about one screen.
 
-## 6. Ownership & safety
-Write freely in ordinary `knowledge/` notes and **unlocked** `work/` drafts (keep
-`knowledge/index.md` honest). **Confirm before changing** `knowledge/golden/` and any `locked: true`
-file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`, `scripts/`,
+## 4. Types emerge, then get written down (golden)
+Don't design a schema up front. Start flat — just give each note a sensible `type:`. When the same
+type keeps showing up and is worth pinning, **write it down as a golden note** under
+`knowledge/golden/types/<type>.md`: what the type is, the attributes it usually carries, and — if it
+has a lifecycle — its **ordered status ladder** (e.g. `statuses: [unread, reading, read, processed]`).
+Because it lives in `golden/`, it's loaded first, never trimmed, and the user owns it. That's how a
+concept like "initiative" gets defined once instead of reinvented every time — and `distill` resolves
+notes against it (§7). Keep these as plain prose + a little frontmatter, **not** a hand-maintained
+`## Fields` grid.
+
+## 5. Links are edges (and can carry a little data)
+A link between notes is an **edge** in the graph. Three faces of one edge: the link in the body, an
+optional structured payload in frontmatter, and a sentence nearby saying what the link means.
+
+- **Links are plain relative markdown** — `[label](./other-note.md)`. Never `[[wikilinks]]`, never
+  absolute `/paths`. (If you type `[[Name]]` as a quick gesture, resolve it to a rel-md link before
+  saving — nothing with `[[ ]]` lands in a commit.) This renders on GitHub and is exactly what a Duo
+  OKF vault expects.
+- **An edge can carry a payload.** `source:` is the floor; when a link needs to carry more — a
+  citation's key quote, who requested the work — put that in frontmatter next to the link. Keep the
+  vocabulary general; the application names specific edges.
+- **Edges survive a split.** If you decompose one note into several, **copy the source/attribution
+  edge onto each child** so every piece keeps its own back-reference.
+
+## 6. Entity resolution — resolve vague references to the canonical note
+Turn "the analytics tool" into the `Amplitude` note, "Sarah's manager" into the actual person. Do
+this **at ingest and again at distill** — at capture and at cleanup — not just when answering.
+
+- **When a Duo vault is present, the vault resolves.** `duo vault schema` is the live table of types,
+  entities, and aliases — read it; don't keep a second index of your own.
+- **Headless,** resolve against the notes already in `knowledge/`, then `golden/`, then ask the user.
+  An illustrative order, not a law — an application can override it. Persist nothing.
+- **Prefer a vague-but-correct name over a confident-but-invented one.** Never upgrade a name you
+  can't verify. If you can't resolve it, keep what you have and flag it.
+
+## 7. The three operations
+- **ingest** — file new material as a typed entity note (§3): pick its `type:`, **resolve the entities
+  it mentions** (§6), link it to related notes with rel-md edges (§5), and update `knowledge/index.md`.
+  If it extends an existing entity, enrich that note instead of making a near-duplicate. Don't write
+  into `golden/`.
+- **query** — read `knowledge/index.md` first, then the relevant notes, plus `golden/` (types and
+  definitions) as authoritative constraints. Answer, or advance a deliverable in `work/`, citing the
+  notes you used. File genuinely new conclusions back as notes. If the graph can't answer, say so and
+  suggest what to ingest — don't fabricate.
+- **distill** — keep the graph lean and trustworthy (Karpathy's "lint"): propose a numbered list —
+  merge duplicates, retire stale notes, resolve contradictions (golden wins), fix broken links and
+  rewrite any stray `[[wikilink]]` to rel-md, **resolve entities** and flag a `type:` that drifts from
+  a written-down type (§4), and regenerate any stamped view (§8). **Suggest-only:** get approval before
+  deleting. Never touch `golden/` or locked work (§9–§10). You may *read* `golden/` for context.
+
+## 8. Derived views are regenerated, never hand-cached
+A roll-up — a map of people, a list of notes behind on a template — is its own note with
+`type: index-view`. Its body is **regenerated from the graph and stamped** (when, from what), not
+hand-maintained and not a live cache. Reserved files `index.md` / `log.md` are **not** entity nodes —
+don't give them a `type:`-node's frontmatter or links; a view is a separate node.
+
+## 9. Golden context — locked
+`knowledge/golden/` holds context that must not drift: definitions, hard rules, contracts, and the
+**type templates** from §4. It's loaded first and **wins on contradiction**. You **don't change
+anything under `golden/` without asking**, and `distill` never trims it. **Promotion path:** when the
+user says "pin this", "make this golden", or "this is the rule" — or when a type has earned being
+written down — move it into `golden/` after confirming the exact content.
+
+## 10. Deliverables can be many, and locked in pieces
+`work/` holds the deliverable(s) — there may be **several**, and one can be **split into section
+files** so parts can be finalized one at a time. Add `locked: true` at the top of a file to lock it;
+you then treat it like golden — no rewrites without asking. `query` advances the unlocked parts;
+`distill` flags an unlocked part that has drifted. See `work/README.md`.
+
+## 11. Ownership & safety
+Write freely in ordinary `knowledge/` notes and **unlocked** `work/` drafts (keep `knowledge/index.md`
+honest, and preserve keys you didn't write — §3). **Confirm before changing** `knowledge/golden/` and
+any `locked: true` file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`, `scripts/`,
 `loop.manifest.json`, `CHANGELOG.md`, and `work/templates/` as the kit's engine (updated by
-`scripts/sync.sh`) — don't edit them casually. `distill` is destructive, so: propose first and apply
-only what's approved; work in git so every change is a reviewable diff; prefer tightening over
-deleting; never delete to hit a size target.
+`scripts/sync.sh`) — don't edit them casually. `sync.sh` overwrites only the managed files and deletes
+nothing else, so your notes, your `golden/`, and your `work/` are safe. `distill` is destructive:
+propose first, apply only what's approved, work in git, prefer tightening over deleting.
 
-## 7. Keep it light
-Use only what the platform already gives you: skills, this `CLAUDE.md`, and plain files. No
-databases, no elaborate schemas. Three operations, one knowledge base (split into labelled folders
-only if a real need shows up). Prefer fewer, better notes. Talk to the user about *their* knowledge
-and *their* deliverable — not about loops or theory.
-
-## 8. Note conventions (the only hard rule)
-Every `knowledge/` note carries three frontmatter lines: `summary:` (one line), `kind:` (a short
-label like note/finding/decision/recommendation), and `source:` (where it came from — a link, a
-person, a date; may be brief, or `unverified`). Sourcing is light at capture, but a **real source
-reference is required** for anything in `golden/` and for any finalized recommendation or
-deliverable claim — "why do we believe this?" is the whole value. One topic per file;
-lowercase-hyphenated names; keep each `index.md` to about one screen.
-
-## 9. The one-line rule
-The knowledge base is the product; ingest / query / distill just keep it sharp — grounded always in
-`PROJECT.md`, and never at the expense of golden context.
+## 12. Keep it light — and keep it a foundation
+Use only what the platform gives you: skills, this `CLAUDE.md`, plain files. No databases, no
+hand-maintained schema grids. Three operations, one graph. Add a type or a folder only when a real
+need shows up. And remember what this kit is *for*: it's the foundation a richer agent is built on, so
+resist baking in the one obvious lifecycle — ship the mechanism, let the application bring the policy.
+Talk to the user about *their* knowledge and *their* deliverable, not about graphs or theory.

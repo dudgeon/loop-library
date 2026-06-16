@@ -19,6 +19,19 @@ in `work/` whose sections can be locked and finalized one at a time. Setup and g
 - Status: **v0 — shipped for use and dogfooding.** Real-use validation is ongoing; expect
   refinement before a 1.0. Known v0 limits are in its CHANGELOG.
 
+### loopkit — v0.2.0 (CANDIDATE, 2026-06-16 · built on branch `claude/loopkit-entity-foundation`)
+The **entity-graph foundation**: loopkit becomes the typed-entity graph a richer work agent (the next
+work-agent-harness) is built *on*, not *in*. Typed `type:` nodes, payload-bearing relative-markdown
+edges, preserve-unknown-keys, entity resolution in `ingest` + `distill`, types written down as golden
+templates, and **ships-as-a-Duo-vault** (the marker rides the starter `knowledge/index.md`).
+
+- Spec: [`_meta/SPEC-loopkit-entity-foundation.md`](../_meta/SPEC-loopkit-entity-foundation.md) —
+  decisions Q1–Q7 resolved with the human; designed + foreclosure-tested by a 23-agent pass.
+- Go/no-go: the human **authorized building a candidate** (2026-06-16). **Not yet validated by real
+  use**, so it stays a candidate on its branch/PR — `main` keeps v0.1.0 until a deliberate merge.
+- Supersedes the **parked** prose-vocabulary v0.2.0 (PR #6, draft), which under-read the goal.
+- Open for confirm: ship-as-vault means a never-opens-Duo fork still carries the inert OKF marker (Q7).
+
 ## The promotion bar (research → `dist/`)
 
 A pattern may be promoted from the research loop (`wiki/`) into `dist/` only when **all** hold:

@@ -4,8 +4,9 @@ A starter kit for a project that **learns as you use it.**
 
 Most projects start cold every time — you re-explain the goal, re-paste the constraints, re-find
 what you decided last week. This one is different: as you work, what you learn is filed into a small
-**knowledge base** of plain markdown right here in the repo, and the assistant draws on it to help
-you produce your work. The more you use it, the sharper it gets.
+**graph** of plain-markdown notes — each one *typed* (a finding, a person, a source) and *linked* to
+the others — right here in the repo, and the assistant draws on it to help you produce your work. The
+more you use it, the sharper it gets.
 
 The catch with "remember everything" setups is bloat — heavy, stale, contradictory, until nobody
 trusts them. This kit keeps a cleanup step in the rhythm, so the knowledge base stays lean and worth
@@ -39,11 +40,18 @@ They live in `work/`. You can have **several**, and you can split one into secti
 **finalize them one at a time** — mark a section `locked: true` and the assistant won't rewrite it
 without asking. See `work/README.md`.
 
+## Already a Duo vault
+The notes are plain markdown and the links are plain relative links, so everything renders on GitHub —
+and the folder ships as a [Duo](https://github.com/dudgeon/duo) **vault**. If you use Duo, just open
+the folder and select it; the marker's already in `knowledge/index.md`. **Nothing here needs Duo** —
+it's an accelerator (capture, search, link-repair), never a dependency.
+
 ## Where things live
 ```
 your project/
   PROJECT.md     your goal and deliverables (set up on first run)
-  knowledge/     your knowledge base  (golden/ holds locked context)
+  knowledge/     your notes — typed and linked
+    golden/      locked context: definitions, rules, and your type templates
   work/          your deliverables
   CLAUDE.md      how the assistant works here
 ```

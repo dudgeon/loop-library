@@ -223,82 +223,50 @@ once — which is why "edges can carry data" is a primitive, not a convention.
 
 ---
 
-## Still to design (mechanisms this foundation needs and doesn't have yet)
+## Mechanisms — now designed (2026-06-16)
 
-The foreclosure review found these are load-bearing for the application layer but **not actually
-specified**. They're not foreclosed — but the foundation isn't done until they are. Don't treat them as
-settled.
+The four gaps the foreclosure review flagged, resolved consistent with the decisions below:
 
-1. **Where a status enum's *order* lives.** A vault's observed values are a *set*, not an order, but
-   "below canonical" needs an order. It can't be a hand-authored grid (banned) and isn't in observed
-   values. Open: per-type template declares the order? A small ordered list in the type's template
-   frontmatter is the likely home — needs design.
-2. **How an edge survives a one-note→many-notes split.** Preserve-unknown-keys protects a *single*
-   note's rewrite; fan-out is one note becoming N. Something has to *copy* the attribution edge onto
-   each child. The split/decompose path needs a real rule, not just preserve-keys.
-3. **Whether "derived view" nodes (the stakeholder map, a drift view, a roadmap) are persisted or
-   live.** A persisted derived node fights the no-sidecar rule; a live query isn't a node and can't
-   carry an `id:`. Pick one per view, or define a "regenerated artifact, stamped" middle (the way
-   `duo vault publish` stamps listings).
-4. **Resolution precedence when a vault is present.** Stated as "the vault resolves," but the headless
-   fallback and the vault's table need an explicit "vault wins, loopkit never keeps a parallel index"
-   rule so they can't drift into two engines.
+1. **A status ladder's order lives in its golden type-template.** When a type is written down (Q6),
+   its template frontmatter carries a small *ordered* list — `statuses: [unread, reading, read,
+   processed]`. That's a user-authored ordered list, not a machine-cached corpus, so it's golden, not
+   a sidecar. "Below canonical" reads the order from there.
+2. **An edge survives a split because the split path copies it.** Preserve-unknown-keys protects a
+   single rewrite; for a one-note→many-notes fan-out, `ingest` / `distill` **copy the source/
+   attribution edge onto each child** as an explicit step. Decompose a note → every child inherits the
+   edge.
+3. **Derived views are stamped, regenerated artifacts** — the `duo vault publish` model. A stakeholder
+   map or drift view is a real `type: index-view` node (so it can carry an `id:` and links), but its
+   body is *regenerated* from the graph and stamped (generated-at + source-hash), never hand-maintained
+   and never a live cache. The no-sidecar rule bans machine-cached *corpora*, not regenerated *views* —
+   the same line Duo draws between its live schema and its stamped publish output.
+4. **When a vault is present, the vault resolves — loopkit keeps no parallel index.** `duo vault
+   schema` is the resolution table; loopkit reads it and persists no aliases/graph of its own. Headless,
+   it falls back to in-fork nodes → golden → ask, still persisting nothing. Precedence: vault first.
 
 ---
 
-## Open decisions (for the human — lettered, one recommended each)
+## Decisions — resolved 2026-06-16
 
-Each is a §8-gated change against shipped v0.1.0.
+Walked with the human via lettered questions. All seven are settled and **built** into the v0.2.0
+candidate (a §8 decision the human authorized).
 
-**Q1 — `type:` vs `kind:`.** Today the field is `kind:`, a free-text body label; the vault files and
-heals only on `type:`.
-- **a) Adopt `type:`, fold `kind:` into it** *(recommended)* — it's the field the whole foundation
-  turns on; provide a migration for existing `kind:` notes.
-- b) Keep both — a dual-write tax; the separate `kind:` is invisible to the vault.
-- c) Keep `kind:` only — the vault sees every note as untyped, which forecloses the foundation.
+| # | Decision | Resolution |
+|---|---|---|
+| **Q1** | `type:` vs `kind:` | **Adopt `type:`.** Fold the old free-text `kind:` into it (`type: finding`); migrate existing notes. The field Duo files (D19) and heals (id-relink) on — the foundation turns on it. |
+| **Q2** | `id:` when headless | **Optional, slug-fallback.** loopkit never mints; a fresh fork stays light; Duo mints on first contact and preserve-unknown-keys carries it after. Links resolve by slug until then. |
+| **Q3** | `source:` → edge | **Keep `source:` as the floor; add an optional payload-bearing edge alongside it.** Nothing breaks; the richer citation/attribution edge is there when an app needs attribution to survive a split. |
+| **Q4** | Resolution | **Ship the mechanism + an illustrative, overridable order — and run resolution in *both* `ingest` and `distill`.** Resolve a vague reference to its canonical node at capture *and* at cleanup, not only at read time. |
+| **Q5** | `index.md` / `log.md` | **Stay reserved** (no `id:`, no app frontmatter). Derived views (a stakeholder map, a drift view) are their own `type: index-view` nodes — never the reserved files. |
+| **Q6** | Where type-templates live | **Golden knowledge.** An entity type's template is a golden note under `knowledge/golden/types/` — loaded first, never trimmed, user-owned, never synced. No new top-level `templates/`, no sync clobber. Also where a type's status ladder is declared (Mechanisms #1). |
+| **Q7** | How the kit becomes a vault | **Ship-as-vault** (the human's ideal: download → just select it in Duo). The starter `knowledge/index.md` ships *with* the OKF marker as its first bytes + the `<!-- duo:listing -->` fence. Because `index.md` is user content (not in `managed_files`), it ships once and `sync` never touches it — the marker is delivered without `sync` ever writing it. *(One thing to confirm — below.)* |
 
-**Q2 — Minting `id:` when headless.**
-- **a) Optional; slug-fallback when no Duo is present** *(recommended)* — a fresh fork stays light;
-  Duo mints the `id:` on first contact and preserve-keys carries it after.
-- b) loopkit mints its own — risks colliding with Duo's scheme later.
-- c) Require `id:` always — breaks the no-Duo baseline.
-
-**Q3 — `source:` → a citation/attribution edge.** The single `source:` line wants to become a payload-
-bearing edge so attribution can survive a split (Still-to-design #2). This is a *second* breaking change
-to the baseline triad, with its own migration.
-- **a) Keep `source:` as the floor; add an optional edge form alongside it** *(recommended)* — nothing
-  breaks; the richer edge is available when an app needs it.
-- b) Replace `source:` with the edge form — cleaner, but a breaking migration on every note.
-- c) Defer — leave `source:` as-is; routing/attribution waits.
-
-**Q4 — A default resolution order.**
-- **a) Ship the mechanism with the order as illustrative and app-overridable** *(recommended)*.
-- b) Ship a fixed default (local → aliases → schema → web → ask) — leaks app policy into the foundation.
-- c) No default — every fork writes a chain from scratch.
-
-**Q5 — Are `index.md` / `log.md` reserved files or typed nodes?** The OKF contract this leans on says
-they're reserved (not concepts). But the seam wants a "map view" and "timelines," which are index- and
-log-shaped.
-- **a) Keep them reserved (no `id:`, no app frontmatter); derived views are separate typed nodes**
-  *(recommended)* — stays OKF-clean; the map is a `type: index-view` node, not `index.md` itself.
-- b) Let `index.md`/`log.md` be typed nodes — simpler, but breaks the OKF reserved-file rule and Duo
-  publish.
-
-**Q6 — Where entity-type templates live, and how `sync` treats them.** A new top-level `templates/`
-collides with the existing `work/templates/` (deliverable scaffolds), and the managed-vs-user split has
-no slot for a *user-authored but loopkit-contracted* directory — if it's managed, `sync` clobbers the
-user's types; if not, loopkit can't ship its README/convention there.
-- **a) Put entity types under `knowledge/templates/` (user-owned, never synced); ship the convention as
-  docs in CLAUDE.md, not as files in that dir** *(recommended)* — no collision, no clobber.
-- b) Reuse `work/templates/` — overloads a managed dir with user content.
-- c) New managed `templates/` — `sync` would overwrite user-authored types. Don't.
-
-**Q7 — How the OKF marker ships.** The marker (`okf_version` + `type: index` + the `<!-- duo:listing -->`
-fence) doesn't exist in v0.1.0's `index.md`, and `index.md` isn't a managed file — so `sync` can't
-deliver it, and the spec elsewhere says `sync` must never write it.
-- **a) The assistant writes the marker into `index.md` on opt-in (Duo-detected or user-asked), by hand,
-  once** *(recommended)* — consistent with "never by sync"; it's user content thereafter.
-- b) Add `index.md` to managed files — then `sync` owns the user's catalog. Don't.
+> **Q7, the bit to confirm.** Ship-as-vault means every fresh fork — even ones that never open Duo —
+> carries an `okf_version` / `type: index` header on `knowledge/index.md`. That's coherent now that
+> loopkit *is* an OKF-vault foundation, and it's inert + renders clean on GitHub (first-bytes, so it
+> shows as a table, not raw text). The only call: are you fine that a plain, never-opens-Duo fork still
+> ships as a dormant vault? If you'd rather it stay marker-free until Duo is selected, it's a one-line
+> change. I built it ship-as-vault per your stated ideal.
 
 ---
 
