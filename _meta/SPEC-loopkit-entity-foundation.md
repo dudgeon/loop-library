@@ -227,10 +227,10 @@ once — which is why "edges can carry data" is a primitive, not a convention.
 
 The four gaps the foreclosure review flagged, resolved consistent with the decisions below:
 
-1. **A status ladder's order lives in its golden type-template.** When a type is written down (Q6),
-   its template frontmatter carries a small *ordered* list — `statuses: [unread, reading, read,
-   processed]`. That's a user-authored ordered list, not a machine-cached corpus, so it's golden, not
-   a sidecar. "Below canonical" reads the order from there.
+1. **A status ladder's order lives in its type template** (`knowledge/templates/<type>.md`). When a
+   type is written down (Q6), its template frontmatter carries a small *ordered* list — `statuses:
+   [unread, reading, read, processed]`. That's a user-authored ordered list, not a machine-cached
+   corpus — which is the line that matters (no sidecar). "Below canonical" reads the order from there.
 2. **An edge survives a split because the split path copies it.** Preserve-unknown-keys protects a
    single rewrite; for a one-note→many-notes fan-out, `ingest` / `distill` **copy the source/
    attribution edge onto each child** as an explicit step. Decompose a note → every child inherits the
@@ -258,15 +258,13 @@ candidate (a §8 decision the human authorized).
 | **Q3** | `source:` → edge | **Keep `source:` as the floor; add an optional payload-bearing edge alongside it.** Nothing breaks; the richer citation/attribution edge is there when an app needs attribution to survive a split. |
 | **Q4** | Resolution | **Ship the mechanism + an illustrative, overridable order — and run resolution in *both* `ingest` and `distill`.** Resolve a vague reference to its canonical node at capture *and* at cleanup, not only at read time. |
 | **Q5** | `index.md` / `log.md` | **Stay reserved** (no `id:`, no app frontmatter). Derived views (a stakeholder map, a drift view) are their own `type: index-view` nodes — never the reserved files. |
-| **Q6** | Where type-templates live | **Golden-protected, at the Duo location.** A type's template is `knowledge/templates/<type>.md` — *where a Duo vault actually reads types from* (vault root = `knowledge/`) — and that folder is **treated as golden** (loaded first, never trimmed, user-owned, never synced). This honors the "templates are golden knowledge" intent (the protection) while keeping types Duo-visible. The first build put them in `knowledge/golden/types/`, which a build review caught as a second, **Duo-invisible** scheme — corrected here. Also where a type's ordered status ladder lives (Mechanisms #1). |
-| **Q7** | How the kit becomes a vault | **Ship-as-vault** (the human's ideal: download → just select it in Duo). The starter `knowledge/index.md` ships *with* the OKF marker as its first bytes + the `<!-- duo:listing -->` fence. Because `index.md` is user content (not in `managed_files`), it ships once and `sync` never touches it — the marker is delivered without `sync` ever writing it. *(One thing to confirm — below.)* |
+| **Q6** | Where type-templates live | **At the Duo location, accessible to both — not golden.** A type's template is `knowledge/templates/<type>.md` — *where a Duo vault reads types from* (vault root = `knowledge/`) — and the kit's skills read (and can refine) them there too. The human clarified (2026-06-16) that type templates **don't** need to be locked golden; they just need to be reachable by Duo and the skills. They're user content (not in `managed_files`, so `sync` never clobbers them). Earlier passes tried `knowledge/golden/types/` (Duo-invisible) then golden-protected `knowledge/templates/` (over-locked) — both corrected. Where a type's ordered status ladder lives (Mechanisms #1). |
+| **Q7** | How the kit becomes a vault | **Ship-as-vault** (the human's ideal: download → just select it in Duo). The starter `knowledge/index.md` ships *with* the OKF marker as its first bytes + the `<!-- duo:listing -->` fence. Because `index.md` is user content (not in `managed_files`), it ships once and `sync` never touches it — the marker is delivered without `sync` ever writing it. *(Confirmed 2026-06-16.)* |
 
-> **Q7, the bit to confirm.** Ship-as-vault means every fresh fork — even ones that never open Duo —
-> carries an `okf_version` / `type: index` header on `knowledge/index.md`. That's coherent now that
-> loopkit *is* an OKF-vault foundation, and it's inert + renders clean on GitHub (first-bytes, so it
-> shows as a table, not raw text). The only call: are you fine that a plain, never-opens-Duo fork still
-> ships as a dormant vault? If you'd rather it stay marker-free until Duo is selected, it's a one-line
-> change. I built it ship-as-vault per your stated ideal.
+> **Q7 — confirmed (2026-06-16).** Ship-as-vault: every fork carries the inert `okf_version` /
+> `type: index` marker on `knowledge/index.md`, so a download is already a Duo vault — just select it.
+> The human confirmed this is right now that loopkit *is* an OKF-vault foundation; a never-opens-Duo
+> fork simply ignores the marker (it renders as a small table on GitHub).
 
 ---
 

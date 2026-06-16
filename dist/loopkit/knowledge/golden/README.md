@@ -7,5 +7,5 @@ without asking**. `distill` never trims it; on a contradiction, golden wins. To 
 tell the assistant **"pin this"** (or "make this golden" / "this is the rule").
 
 **Entity types live next door.** Definitions of recurring kinds (a `person`, a `source`) live in
-`knowledge/templates/` — treated as golden too (locked, never synced), and the folder a Duo vault
-reads types from. See [`../templates/README.md`](../templates/README.md).
+`knowledge/templates/` — the folder a Duo vault reads types from, also read by the kit's skills. They
+aren't golden (the assistant can refine them); this folder is. See [`../templates/README.md`](../templates/README.md).

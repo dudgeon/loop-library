@@ -47,7 +47,7 @@ common things you'll want to build:
 | **People / a stakeholder map** | Typed `person` notes; open attributes so *you* name `proximity:`; a `type: index-view` map node; a timeline section in a note's body. |
 | **A source → knowledge lifecycle** | `source` and `knowledge` as distinct types; a **per-type ordered status ladder** (you name `unread → … → processed`); edges that carry a citation quote. |
 | **Roadmaps / changelogs** | Typed sections on a folder note; a per-note timeline distinct from the evergreen body. |
-| **Template propagation** | Types are golden notes (below); add a `template_version:` payload on a derivation edge and a regenerated "drift" view. |
+| **Template propagation** | Types are notes in `knowledge/templates/` (below); add a `template_version:` payload on a derivation edge and a regenerated "drift" view. |
 | **Multi-domain routing** | The attribution edge that survives a split (above), plus `id:`-driven moves so backfill relinks without severing edges. |
 
 The single affordance most of these lean on: **edges carry data, and the graph knows its backlinks.**
@@ -57,14 +57,13 @@ The single affordance most of these lean on: **edges carry data, and the graph k
 ## Types: emergent, then written down
 
 Don't author a schema up front. Give notes a sensible `type:` as you go. When a type earns being
-pinned, write it down as `knowledge/templates/<type>.md` — where a Duo vault reads types, treated as
-golden — plain prose plus a little frontmatter, *not* a hand-maintained field grid. A type's **ordered status ladder** lives
-there too:
+pinned, write it down as `knowledge/templates/<type>.md` (named for the type) — the folder a Duo vault
+reads types from, and the kit's skills read too — plain prose plus a little frontmatter, *not* a
+hand-maintained field grid. A type's **ordered status ladder** lives there too:
 
 ```markdown
 ---
-type: type-definition
-defines: source
+type: source
 statuses: [unread, reading, read, processed]   # only if this type has a lifecycle
 ---
 
@@ -72,9 +71,9 @@ statuses: [unread, reading, read, processed]   # only if this type has a lifecyc
 Something we read and want to remember. Carries a status (above), an author, a link.
 ```
 
-Because it's golden, it's loaded first, never trimmed, and the user owns it. This is how a concept
-gets defined once instead of reinvented on every pass — and it's where a query like "everything below
-`read`" finds its order.
+They're yours — `sync` never touches them — and read by both Duo and the assistant (neither is locked
+out; the assistant can refine a type). This is how a concept gets defined once instead of reinvented
+on every pass — and it's where a query like "everything below `read`" finds its order.
 
 ---
 
@@ -95,13 +94,13 @@ gets defined once instead of reinvented on every pass — and it's where a query
 ## How to extend without breaking the foundation
 
 1. **Own the mechanism, not the vocabulary.** Adding a specific lifecycle or tier? Put it in *your*
-   layer (a golden type note, an app convention), not in the kit's contract.
+   layer (a type template, an app convention), not in the kit's contract.
 2. **Preserve unknown keys** in anything that rewrites notes. This is the rule the whole layered model
    rests on.
 3. **Keep links rel-md** and let derived views regenerate; don't introduce a second link index or a
    hand-cached roll-up.
-4. **Write types down in `knowledge/templates/`** (a Duo vault's type location, treated as golden),
-   never as a top-level schema file.
+4. **Write types down in `knowledge/templates/`** (a Duo vault's type location, read by Duo and the
+   skills), never as a top-level schema file.
 5. **Let the vault own identity and resolution** when it's present; keep no parallel index.
 
 Stay inside those five and your richer agent composes cleanly on top — and a loopkit fork stays a

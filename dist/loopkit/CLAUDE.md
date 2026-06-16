@@ -41,7 +41,7 @@ this project/
   PROJECT.md           the goal, deliverables, and what's golden — the source of truth
   knowledge/           the graph — typed markdown notes (entities) linked to each other
     index.md           one-screen catalog (kept current); carries the Duo-vault marker
-    templates/         a note per entity type (where Duo reads them); treated as golden
+    templates/         a note per entity type — read by Duo and by these skills
     golden/            locked context — definitions, rules, contracts
   work/                the deliverable(s) (may be several; sections can be locked)
     templates/         deliverable scaffolds (managed) — NOT entity types
@@ -83,8 +83,9 @@ type keeps showing up and is worth pinning, **write it down** as `knowledge/temp
 (named for the type): what the type is, the attributes it usually carries, and — if it has a
 lifecycle — its **ordered status ladder** (e.g. `statuses: [unread, reading, read, processed]`). That
 folder is **where a Duo vault reads types from**, so writing one there makes the type real to Duo
-*and* to these skills at once — one scheme, not two. It's **treated as golden**: loaded first, never
-trimmed, never synced, and the user owns it. That's how a concept like "initiative" gets defined once
+*and* to these skills at once — one scheme, not two. They're **yours** — not kit machinery, so `sync`
+never touches them — and **both Duo and these skills read them**. The assistant can refine a type as
+the project teaches you what its types are. That's how a concept like "initiative" gets defined once
 instead of reinvented — and `ingest` / `distill` resolve notes against it (§6–§7). Keep each as plain
 prose + a little frontmatter, **not** a hand-maintained `## Fields` grid.
 
@@ -118,8 +119,9 @@ this **at ingest and again at distill** — at capture and at cleanup — not ju
   it mentions** (§6), link it to related notes with rel-md edges (§5), and update `knowledge/index.md`.
   If it extends an existing entity, enrich that note instead of making a near-duplicate. Don't write
   into `golden/`.
-- **query** — read `knowledge/index.md` first, then the relevant notes, plus `golden/` (types and
-  definitions) as authoritative constraints. Answer, or advance a deliverable in `work/`, citing the
+- **query** — read `knowledge/index.md` first, then the relevant notes, plus `golden/` (definitions)
+  as authoritative constraints and `knowledge/templates/` (the types) to resolve against. Answer, or
+  advance a deliverable in `work/`, citing the
   notes you used. File genuinely new conclusions back as notes. If the graph can't answer, say so and
   suggest what to ingest — don't fabricate.
 - **distill** — keep the graph lean and trustworthy (Karpathy's "lint"): propose a numbered list —
@@ -137,11 +139,11 @@ index` is the reserved-file *marker* — a different use of the field, not an en
 always a separate node.
 
 ## 9. Golden context — locked
-`knowledge/golden/` holds context that must not drift: definitions, hard rules, contracts, and the
-**type templates** from §4. It's loaded first and **wins on contradiction**. You **don't change
-anything under `golden/` without asking**, and `distill` never trims it. **Promotion path:** when the
-user says "pin this", "make this golden", or "this is the rule" — or when a type has earned being
-written down — move it into `golden/` after confirming the exact content.
+`knowledge/golden/` holds context that must not drift: definitions, hard rules, contracts. It's loaded
+first and **wins on contradiction**. You **don't change anything under `golden/` without asking**, and
+`distill` never trims it. **Promotion path:** when the user says "pin this", "make this golden", or
+"this is the rule", move that item into `golden/` after confirming the exact content. (Writing down a
+*type* is a different, lighter act — that goes to `knowledge/templates/`, §4, and isn't locked.)
 
 ## 10. Deliverables can be many, and locked in pieces
 `work/` holds the deliverable(s) — there may be **several**, and one can be **split into section

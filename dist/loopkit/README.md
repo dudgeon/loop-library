@@ -51,7 +51,8 @@ it's an accelerator (capture, search, link-repair), never a dependency.
 your project/
   PROJECT.md     your goal and deliverables (set up on first run)
   knowledge/     your notes — typed and linked
-    golden/      locked context: definitions, rules, and your type templates
+    templates/   your entity types (read by Duo and the assistant)
+    golden/      locked context: definitions, rules, contracts
   work/          your deliverables
   CLAUDE.md      how the assistant works here
 ```

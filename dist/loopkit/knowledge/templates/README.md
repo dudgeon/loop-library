@@ -6,8 +6,10 @@ Duo OKF vault reads type templates from, so writing a type here makes it real to
 type-picker, `duo vault stub`, filing rules) *and* to the kit's own skills at once — one template
 scheme, not two.
 
-It's treated as **golden**: loaded first, locked, yours. The kit never trims it and `sync` never
-touches it. Changing a type is deliberate — the assistant asks first.
+They're **yours, and both Duo and the kit's skills read them** — Duo files and stubs new notes from
+them, the skills resolve notes and catch type drift against them. `sync` doesn't touch them (they're
+your content, not kit machinery). They aren't locked: the assistant can propose adding or refining a
+type as the project teaches you what its types are.
 
 **Start empty.** A fresh project authors no types. Give each note a sensible `type:` as you go; when a
 type keeps showing up and is worth pinning, write it down here — so the project defines a concept once
