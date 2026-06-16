@@ -10,7 +10,9 @@ This kit is a **foundation**, not a finished application. It gives you the primi
 entities, links that can carry a little data, and entity resolution — that a richer work agent is
 built *on*. Keep it that way: **own the mechanism, not the vocabulary.** Ship the *kind* of thing (a
 `person` note, a `status:` field); don't bake in one team's lifecycle, proximity tiers, or domain
-scheme. Those are for the application to add on top.
+scheme. Those are for the application to add on top. **Building that richer agent? Read
+[`FOUNDATION.md`](FOUNDATION.md)** — the contract and the seam between what loopkit owns and what's
+yours.
 
 The notes are plain markdown and the links are plain relative-markdown, so everything renders on
 GitHub — and the folder is already a **Duo vault**, so if you use Duo you can just open the folder and
@@ -35,6 +37,7 @@ emerge with use (§4).
 ```
 this project/
   CLAUDE.md            how the assistant works here (this file)
+  FOUNDATION.md        what loopkit is + how to build a richer agent on it
   PROJECT.md           the goal, deliverables, and what's golden — the source of truth
   knowledge/           the graph — typed markdown notes (entities) linked to each other
     index.md           one-screen catalog (kept current); carries the Duo-vault marker

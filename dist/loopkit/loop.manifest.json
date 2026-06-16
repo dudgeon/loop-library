@@ -6,6 +6,7 @@
   "managed_files": [
     "README.md",
     "CLAUDE.md",
+    "FOUNDATION.md",
     "CHANGELOG.md",
     "loop.manifest.json",
     "scripts/sync.sh",

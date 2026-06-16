@@ -23,6 +23,9 @@ not *in*. **Candidate** — pending real-use validation.
 - **Derived views** (a stakeholder map, a drift list) are `type: index-view` notes, regenerated and
   stamped — never hand-cached. Reserved `index.md`/`log.md` stay reserved.
 
+- **Ships `FOUNDATION.md`** — a self-contained foundation contract so people and agents building a
+  richer layer on top can grok the model and the seam without leaving the kit.
+
 Replaces the parked, unmerged v0.2.0 prose-vocabulary candidate (PR #6), which under-read the goal.
 
 ## 0.1.0 — 2026-06-15

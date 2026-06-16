@@ -64,6 +64,11 @@ outside service.
 - Golden context is sacred — locked unless you change it deliberately.
 - It's all yours and self-contained.
 
+## Building on it
+loopkit is a *foundation* — a richer agent (domains, a stakeholder map, a source-to-knowledge
+pipeline) can be built on top of it. If that's you (or your agent), read
+[`FOUNDATION.md`](FOUNDATION.md): the contract and the seam between what loopkit owns and what's yours.
+
 ## Where this comes from
 loopkit packages a simple, proven idea: Andrej Karpathy's "LLM wiki," where an assistant keeps a
 markdown knowledge base current with three operations — **ingest, query, lint.** We use the same
