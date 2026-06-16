@@ -16,7 +16,8 @@ bar in `CLAUDE.md` §8.
 | T4 | `session-harvest` skill — review → validate → execute → update-heuristics loop over session evidence | pattern-candidate | active | low | H7, intent-heuristics.md |
 | T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
 | T6 | Ingest the Duo `vault` skill reference as a proper source (currently cited as a local doc, not in `sources/`) | chore | done | n/a | duo-vault-vs-wiki, loopkit-on-duo |
-| T7 | **Loopkit on Duo** — progressive-enhancement spec written (`_meta/SPEC-loopkit-on-duo.md`); A–D resolved; next is §8 go/no-go on P2/P3/P4 dist changes | pattern-candidate | active | medium | T5, loopkit-on-duo, duo-vault-vs-wiki, SPEC-loopkit-on-duo |
+| T7 | **Loopkit as the entity-graph foundation** (redirected from "progressive enhancement"). Spec written (`_meta/SPEC-loopkit-entity-foundation.md`); next is human decisions Q1–Q7 + designing the 4 "still to design" mechanisms. Prior prose-vocab spec + PR #6 parked. | pattern-candidate | active | medium | T5, T8, loopkit-on-duo, SPEC-loopkit-entity-foundation |
+| T8 | Ingest WAH as a source (staged in `inbox/work-agent-harness.md`); write a `WAH ↔ Duo-vault entity structure` comparison (hand-rolled vs native) | chore | open | n/a | T7, work-agent-harness |
 
 ## T1 — Define the loop primitives
 **Goal:** prototype the primitive shape at the root (alpha — this `loop/` folder), validate it,
@@ -105,3 +106,11 @@ Re-derivation guarantee is **query-path only** (shipped `ingest`/`distill` don't
 **Still open:** the §8 go/no-go on the dist-touching phases — **P2** (distill reads vocabulary +
 emits the live observed-count / off-vocabulary flags), **P3** (opt-in OKF marker), **P4** (ingest-time
 resolution + `inbox/` scan). P1 (golden vocabulary as a user-side convention) touches no managed file.
+**REDIRECTED (2026-06-16):** the progressive-enhancement / prose-vocabulary direction was the wrong
+target — it under-read the goal (a typed-entity graph with resolution) and absorbed too little of the
+entity model. New spec [`_meta/SPEC-loopkit-entity-foundation.md`](../_meta/SPEC-loopkit-entity-foundation.md):
+loopkit = the entity-graph **foundation** the next work-agent-harness is built *on*, not *in* (typed
+`type:` nodes, payload-bearing rel-md edges, resolution leaning on the vault, emergent→encoded taxonomy
+as templates). Designed + foreclosure-tested by a 23-agent pass (0 future WAH pieces foreclosed; 9
+at-risk → affordances; 4 mechanisms still to design). **PR #6 parked** (prose-vocab v0.2.0, draft).
+**Next:** human calls Q1–Q7 (esp. Q1 `kind:`→`type:`), then design the 4 open mechanisms, then §8.
