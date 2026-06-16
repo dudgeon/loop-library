@@ -4,33 +4,38 @@
 **shipping software**: deliberate, versioned, and reserved for patterns we have **extremely
 high confidence** in. Nothing lands here by default.
 
-## Currently shipped
+## Currently shipped — the loop-kit family
 
-### loopkit — v0.1.0 (2026-06-15)
-A forkable **context-aware project**: a knowledge base of plain markdown that stays sharp through
-three operations — **ingest / query / distill** (the Karpathy LLM-wiki loop; `distill` = his
-`lint`). Ships golden (locked) context with a "pin this" promotion path, and multiple deliverables
-in `work/` whose sections can be locked and finalized one at a time. Setup and golden-pinning are
-`CLAUDE.md` rules, not skills. **Self-contained** — no dependency on this repo's wiki.
+`dist/` holds a **family** of vendorable kits that share the Karpathy ingest / query / distill
+lineage, layered from a minimal primitive up. Each is self-contained (its own `CLAUDE.md`, skills,
+`loop.manifest.json`, `scripts/sync.sh`); they're related by heritage, not by dependency.
 
-- Path: [`dist/loopkit/`](loopkit/) · README, CLAUDE.md, three skills, templates, semver +
-  CHANGELOG + `loop.manifest.json` + `scripts/sync.sh` (managed-vs-user split realized & tested).
-- Go/no-go: explicit human decision (2026-06-15), after a multi-pass design review.
-- Status: **v0 — shipped for use and dogfooding.** Real-use validation is ongoing; expect
-  refinement before a 1.0. Known v0 limits are in its CHANGELOG.
+### karpathy-core — v0.1.0
+The pure **Karpathy LLM-wiki / OKF primitive**: ingest / query / distill over a plain-markdown
+knowledge base, golden (locked) context with a "pin this" promotion path, and multiple `work/`
+deliverables whose sections can be locked one at a time. Minimal and self-contained — **no
+entity-graph, no Duo machinery**. The floor of the family.
 
-### loopkit — v0.2.0 (CANDIDATE, 2026-06-16 · built on branch `claude/loopkit-entity-foundation`)
-The **entity-graph foundation**: loopkit becomes the typed-entity graph a richer work agent (the next
-work-agent-harness) is built *on*, not *in*. Typed `type:` nodes, payload-bearing relative-markdown
-edges, preserve-unknown-keys, entity resolution in `ingest` + `distill`, types written down as golden
-templates, and **ships-as-a-Duo-vault** (the marker rides the starter `knowledge/index.md`).
+- Path: [`dist/karpathy-core/`](karpathy-core/). This is the original kit (shipped 2026-06-15),
+  preserved under its proper name when the entity-graph work spun out as `loopkit`.
+- Status: **stable primitive, shipped for use.** Known v0 limits are in its CHANGELOG.
 
-- Spec: [`_meta/SPEC-loopkit-entity-foundation.md`](../_meta/SPEC-loopkit-entity-foundation.md) —
-  decisions Q1–Q7 resolved with the human; designed + foreclosure-tested by a 23-agent pass.
-- Go/no-go: the human **authorized building a candidate** (2026-06-16). **Not yet validated by real
-  use**, so it stays a candidate on its branch/PR — `main` keeps v0.1.0 until a deliberate merge.
-- Supersedes the **parked** prose-vocabulary v0.2.0 (PR #6, draft), which under-read the goal.
-- Open for confirm: ship-as-vault means a never-opens-Duo fork still carries the inert OKF marker (Q7).
+### loopkit — v0.1.0 (CANDIDATE, 2026-06-16 · branch `claude/loopkit-entity-foundation`)
+The **entity-graph foundation**, built on the same loop: typed `type:` nodes, payload-bearing
+relative-markdown edges, preserve-unknown-keys, entity resolution in `ingest` + `distill`, types
+written down at `knowledge/templates/`, and **ships-as-a-Duo-vault** (the marker rides the starter
+`knowledge/index.md`). The foundation a future work-agent-harness is built *on*, not *in*. Ships
+`FOUNDATION.md` for builders.
+
+- Path: [`dist/loopkit/`](loopkit/) · Spec: [`_meta/SPEC-loopkit-entity-foundation.md`](../_meta/SPEC-loopkit-entity-foundation.md).
+- Go/no-go: the human **authorized building a candidate** (2026-06-16); decisions Q1–Q7 resolved;
+  designed + foreclosure-tested by a 23-agent pass, then a 4-lens build review (1 major + 3 minors
+  fixed). **Not yet validated by real use** → a candidate on its branch/PR; merges on a deliberate call.
+- Lineage: descends from `karpathy-core`; an earlier prose-vocabulary attempt (PR #6) was discarded.
+
+### (future) a work-agent-harness kit, built **on** loopkit
+Not built yet — the application layer (domains, stakeholders, source lifecycle) stacks on loopkit's
+primitives. Tracked in the parent loop (T7/T8).
 
 ## The promotion bar (research → `dist/`)
 

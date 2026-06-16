@@ -13,7 +13,7 @@ inside.**
 > explicit human go/no-go). The shipped baseline is **v0.1.0 on `main`**.
 >
 > **What this replaces.** An earlier draft reduced entities to one prose `vocabulary.md` and refused
-> a `type:` field ([PR #6 / v0.2.0](https://github.com/dudgeon/loop-library/pull/6), parked). That
+> a `type:` field ([PR #6](https://github.com/dudgeon/loop-library/pull/6), parked). That
 > framing collapsed the very distinctions a foundation needs. This supersedes it.
 >
 > **Honesty up front.** A foreclosure review (one skeptic per future work-agent-harness piece) found
@@ -248,8 +248,9 @@ The four gaps the foreclosure review flagged, resolved consistent with the decis
 
 ## Decisions — resolved 2026-06-16
 
-Walked with the human via lettered questions. All seven are settled and **built** into the v0.2.0
-candidate (a §8 decision the human authorized).
+Walked with the human via lettered questions. All seven are settled and **built** into the loopkit
+v0.1.0 candidate (a §8 decision the human authorized). The pure Karpathy primitive this grew from is
+preserved separately as the **karpathy-core** kit.
 
 | # | Decision | Resolution |
 |---|---|---|

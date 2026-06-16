@@ -16,7 +16,7 @@ bar in `CLAUDE.md` §8.
 | T4 | `session-harvest` skill — review → validate → execute → update-heuristics loop over session evidence | pattern-candidate | active | low | H7, intent-heuristics.md |
 | T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
 | T6 | Ingest the Duo `vault` skill reference as a proper source (currently cited as a local doc, not in `sources/`) | chore | done | n/a | duo-vault-vs-wiki, loopkit-on-duo |
-| T7 | **Loopkit as the entity-graph foundation.** Q1–Q7 resolved + 4 mechanisms designed; **v0.2.0 candidate built** in `dist/loopkit` (PR #7), passed a 4-lens adversarial review (0 blockers; 1 major + 3 minors fixed); ships `FOUNDATION.md` for builders. Awaiting: confirm Q6/Q7 reconciliations + real-use validation before merge. Prior prose-vocab spec + PR #6 parked. | pattern-candidate | active | high | T5, T8, SPEC-loopkit-entity-foundation |
+| T7 | **Loopkit as the entity-graph foundation.** Q1–Q7 resolved + 4 mechanisms designed; **loopkit v0.1.0 candidate built** in `dist/loopkit` (PR #7), passed a 4-lens review (0 blockers; 1 major + 3 minors fixed); ships `FOUNDATION.md`. Dist split: pure primitive preserved as **`dist/karpathy-core`** v0.1.0; loopkit is the entity-graph sibling. Awaiting: real-use validation before merge. Prior prose-vocab attempt (PR #6) parked. | pattern-candidate | active | high | T5, T8, SPEC-loopkit-entity-foundation |
 | T8 | Ingest WAH as a source (staged in `inbox/work-agent-harness.md`); write a `WAH ↔ Duo-vault entity structure` comparison (hand-rolled vs native) | chore | open | n/a | T7, work-agent-harness |
 
 ## T1 — Define the loop primitives
