@@ -9,8 +9,8 @@ Keep the graph sharp — the cleanup that stops it from bloating or drifting. Re
 
 ## Steps
 1. Review `knowledge/` (notes + `index.md`) and `PROJECT.md` (what's golden, what's locked). **Read**
-   `knowledge/golden/` — including the `types/` notes — for context (you may read golden, never edit
-   it).
+   `knowledge/golden/` and `knowledge/templates/` (the types) for context — you may read them, never
+   edit them.
 2. Propose a **numbered list** of changes, each with a reason:
    - merge duplicates; retire stale or contradicted notes; resolve contradictions (golden wins — flag,
      don't silently overwrite);
@@ -18,7 +18,7 @@ Keep the graph sharp — the cleanup that stops it from bloating or drifting. Re
      `[label](./note.md)`; reject any absolute `/path`;
    - **resolve entities** (`CLAUDE.md` §6) — turn vague references into canonical notes, here as well as
      at ingest; when a vault is present, defer to `duo vault schema`;
-   - **type drift** — if a note's `type:` isn't among the types written down in `golden/types/`, or a
+   - **type drift** — if a note's `type:` isn't among the types written down in `knowledge/templates/`, or a
      recurring type isn't written down yet, *suggest* aligning it or pinning the type (the user pins —
      you never write golden yourself);
    - **edges on split notes** — if a note was decomposed, check each child kept its source/attribution
@@ -29,8 +29,8 @@ Keep the graph sharp — the cleanup that stops it from bloating or drifting. Re
 4. **Get the user's approval before deleting anything.** Apply only what's approved. Prefer tightening
    over erasing; never delete to hit a size target. **Preserve frontmatter keys you don't recognize**
    on every rewrite.
-5. Never touch `knowledge/golden/` or any `locked: true` file. Work in git so every change is a
-   reviewable diff.
+5. Never touch `knowledge/golden/`, `knowledge/templates/`, or any `locked: true` file. Work in git so
+   every change is a reviewable diff.
 
 ## Don'ts
 Don't delete without approval. Don't trim golden or locked content. Don't drop a key you didn't write.

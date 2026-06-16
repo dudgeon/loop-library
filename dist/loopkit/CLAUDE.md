@@ -41,8 +41,8 @@ this project/
   PROJECT.md           the goal, deliverables, and what's golden — the source of truth
   knowledge/           the graph — typed markdown notes (entities) linked to each other
     index.md           one-screen catalog (kept current); carries the Duo-vault marker
-    golden/            locked context — definitions, rules, contracts, and type templates
-      types/           a note per entity type, once a type has earned being written down
+    templates/         a note per entity type (where Duo reads them); treated as golden
+    golden/            locked context — definitions, rules, contracts
   work/                the deliverable(s) (may be several; sections can be locked)
     templates/         deliverable scaffolds (managed) — NOT entity types
   .claude/skills/      ingest · query · distill
@@ -77,15 +77,16 @@ Then:
   opens the vault), preserve it. Without one, links resolve by filename.
 - One topic per file; lowercase-hyphenated names; keep each `index.md` to about one screen.
 
-## 4. Types emerge, then get written down (golden)
+## 4. Types emerge, then get written down
 Don't design a schema up front. Start flat — just give each note a sensible `type:`. When the same
-type keeps showing up and is worth pinning, **write it down as a golden note** under
-`knowledge/golden/types/<type>.md`: what the type is, the attributes it usually carries, and — if it
-has a lifecycle — its **ordered status ladder** (e.g. `statuses: [unread, reading, read, processed]`).
-Because it lives in `golden/`, it's loaded first, never trimmed, and the user owns it. That's how a
-concept like "initiative" gets defined once instead of reinvented every time — and `distill` resolves
-notes against it (§7). Keep these as plain prose + a little frontmatter, **not** a hand-maintained
-`## Fields` grid.
+type keeps showing up and is worth pinning, **write it down** as `knowledge/templates/<type>.md`
+(named for the type): what the type is, the attributes it usually carries, and — if it has a
+lifecycle — its **ordered status ladder** (e.g. `statuses: [unread, reading, read, processed]`). That
+folder is **where a Duo vault reads types from**, so writing one there makes the type real to Duo
+*and* to these skills at once — one scheme, not two. It's **treated as golden**: loaded first, never
+trimmed, never synced, and the user owns it. That's how a concept like "initiative" gets defined once
+instead of reinvented — and `ingest` / `distill` resolve notes against it (§6–§7). Keep each as plain
+prose + a little frontmatter, **not** a hand-maintained `## Fields` grid.
 
 ## 5. Links are edges (and can carry a little data)
 A link between notes is an **edge** in the graph. Three faces of one edge: the link in the body, an
@@ -131,7 +132,9 @@ this **at ingest and again at distill** — at capture and at cleanup — not ju
 A roll-up — a map of people, a list of notes behind on a template — is its own note with
 `type: index-view`. Its body is **regenerated from the graph and stamped** (when, from what), not
 hand-maintained and not a live cache. Reserved files `index.md` / `log.md` are **not** entity nodes —
-don't give them a `type:`-node's frontmatter or links; a view is a separate node.
+don't give them an entity node's graph links or attributes. (`index.md`'s `okf_version` / `type:
+index` is the reserved-file *marker* — a different use of the field, not an entity `type:`.) A view is
+always a separate node.
 
 ## 9. Golden context — locked
 `knowledge/golden/` holds context that must not drift: definitions, hard rules, contracts, and the

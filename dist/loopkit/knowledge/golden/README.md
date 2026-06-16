@@ -6,6 +6,6 @@ The assistant loads this first, treats it as the source of truth, and **won't ch
 without asking**. `distill` never trims it; on a contradiction, golden wins. To pin something new,
 tell the assistant **"pin this"** (or "make this golden" / "this is the rule").
 
-**Entity types live here too.** When a kind of note (a `person`, a `source`, an `initiative`) has
-earned being written down, its template goes under `types/` — so the project defines a concept once
-instead of reinventing it. See [`types/README.md`](types/README.md).
+**Entity types live next door.** Definitions of recurring kinds (a `person`, a `source`) live in
+`knowledge/templates/` — treated as golden too (locked, never synced), and the folder a Duo vault
+reads types from. See [`../templates/README.md`](../templates/README.md).

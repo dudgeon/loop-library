@@ -57,8 +57,8 @@ The single affordance most of these lean on: **edges carry data, and the graph k
 ## Types: emergent, then written down
 
 Don't author a schema up front. Give notes a sensible `type:` as you go. When a type earns being
-pinned, write it down as a **golden note** under `knowledge/golden/types/<type>.md` — plain prose plus
-a little frontmatter, *not* a hand-maintained field grid. A type's **ordered status ladder** lives
+pinned, write it down as `knowledge/templates/<type>.md` — where a Duo vault reads types, treated as
+golden — plain prose plus a little frontmatter, *not* a hand-maintained field grid. A type's **ordered status ladder** lives
 there too:
 
 ```markdown
@@ -100,7 +100,8 @@ gets defined once instead of reinvented on every pass — and it's where a query
    rests on.
 3. **Keep links rel-md** and let derived views regenerate; don't introduce a second link index or a
    hand-cached roll-up.
-4. **Write types down in `knowledge/golden/types/`**, never as a top-level schema file.
+4. **Write types down in `knowledge/templates/`** (a Duo vault's type location, treated as golden),
+   never as a top-level schema file.
 5. **Let the vault own identity and resolution** when it's present; keep no parallel index.
 
 Stay inside those five and your richer agent composes cleanly on top — and a loopkit fork stays a

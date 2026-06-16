@@ -6,7 +6,7 @@ summary: starting scaffold for a recommended-best-practices document
 # Recommended best practices — <topic>
 
 > Copy this into `work/` to start. Built from the knowledge base; every recommendation needs a real
-> source reference (see `CLAUDE.md` §8).
+> source reference (see `CLAUDE.md` §3).
 
 ## Recommended practices
 The ratified set — each with what supports it (which sources / teams) and its source reference.

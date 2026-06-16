@@ -16,8 +16,9 @@ not *in*. **Candidate** — pending real-use validation.
   requester). Edges are **copied onto each child** when a note is split.
 - **Entity resolution** — vague reference → canonical note — runs in **both `ingest` and `distill`**,
   deferring to `duo vault schema` when a vault is present, else in-fork → golden → ask.
-- **Types emerge, then get written down** as golden notes under `knowledge/golden/types/` (where a
-  type's ordered status ladder lives). A fresh fork ships zero types and stays flat.
+- **Types emerge, then get written down** as type templates under `knowledge/templates/` — the folder
+  a Duo vault reads types from, treated as golden (locked, never synced). A type's ordered status
+  ladder lives there too. A fresh fork ships zero types and stays flat.
 - **Ships as a Duo vault.** `knowledge/index.md` carries the OKF marker, so a downloaded fork is
   already a vault — just select it in Duo. Inert and GitHub-clean for everyone else.
 - **Derived views** (a stakeholder map, a drift list) are `type: index-view` notes, regenerated and

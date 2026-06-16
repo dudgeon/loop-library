@@ -9,7 +9,7 @@ Fold new material into `knowledge/` as a typed entity, wired into the graph. Rea
 (it's the contract — §3 notes, §5 links, §6 resolution).
 
 ## Steps
-1. Read `PROJECT.md` (goal, deliverables, what's golden), `knowledge/index.md`, and the `golden/types/`
+1. Read `PROJECT.md` (goal, deliverables, what's golden), `knowledge/index.md`, and the `knowledge/templates/`
    notes so you know the types and definitions already in play.
 2. **Resolve the entities it mentions** (§6) — turn vague references into canonical notes. When a Duo
    vault is present, read `duo vault schema` for types and aliases; otherwise resolve against existing

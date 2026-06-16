@@ -10,8 +10,8 @@ Use the graph toward the goal, and file useful results back. Read `CLAUDE.md` fi
 ## Steps
 1. Read `PROJECT.md` and `knowledge/index.md` first — don't blind-scan. Pull the relevant notes and
    **follow their links** one hop at a time; the edges are the point. Load `knowledge/golden/` —
-   definitions and the `types/` notes — as authoritative constraints, and **resolve names against
-   them** so the same concept isn't reinvented.
+   definitions — plus the `knowledge/templates/` types — as authoritative constraints, and **resolve
+   names against them** so the same concept isn't reinvented.
 2. Answer the question, or advance a deliverable in `work/`, citing the notes you used (link to them).
    Treat golden context as hard constraints — flag anything that conflicts with it rather than
    overriding it.
