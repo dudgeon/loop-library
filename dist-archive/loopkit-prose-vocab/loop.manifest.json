@@ -1,0 +1,20 @@
+{
+  "name": "loopkit",
+  "version": "0.2.0",
+  "origin": "TODO: set to the git URL or local path you vendored loopkit from",
+  "note": "scripts/sync.sh overwrites ONLY the files listed in managed_files. Everything else — PROJECT.md, knowledge/**, and your work/** deliverables — is yours and is never touched.",
+  "managed_files": [
+    "README.md",
+    "CLAUDE.md",
+    "CHANGELOG.md",
+    "loop.manifest.json",
+    "scripts/sync.sh",
+    ".claude/skills/ingest/SKILL.md",
+    ".claude/skills/query/SKILL.md",
+    ".claude/skills/distill/SKILL.md",
+    "work/README.md",
+    "work/templates/prd.template.md",
+    "work/templates/best-practices.template.md",
+    "knowledge/golden/README.md"
+  ]
+}

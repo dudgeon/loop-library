@@ -3,6 +3,9 @@
 Chronological, newest-first. Grep recent activity:
 `grep -nE '^- (ingest|query|lint|supersede)' wiki/log.md`.
 
+## 2026-06-17
+- supersede | ARCHIVED the prose-vocabulary loopkit (PR #6) → dist-archive/loopkit-prose-vocab/ (frozen snapshot + ARCHIVED.md; preserved, not maintained). New dist-archive/ holds built-but-not-shipped kits. REGISTRY notes it. PR #6 closed (not merged).
+
 ## 2026-06-16
 - supersede | DIST FAMILY split: the pure Karpathy primitive (old loopkit v0.1.0) is preserved as a new sibling kit **dist/karpathy-core** v0.1.0 (rebranded, unchanged); **dist/loopkit** is reset to its own v0.1.0 = the entity-graph + Duo-vault foundation. Both live in dist/ (not archived) as a layered family: karpathy-core → loopkit → (future) WAH-on-loopkit. REGISTRY rewritten; loopkit CHANGELOG = fresh 0.1.0. Decisions taken with the human (AskUserQuestion: dist/karpathy-core sibling + two clean v0.1.0 lines).
 - query  | BUILT loopkit (entity-graph foundation) candidate in dist/loopkit — Q1–Q7 resolved with the human (AskUserQuestion), 4 mechanisms designed, spec updated. Typed type: nodes, payload-bearing rel-md edges, preserve-unknown-keys (all 3 skills), resolution in ingest+distill, types as golden-protected knowledge/templates/, ships-as-vault marker. Ships FOUNDATION.md (self-contained, for builders). 4-lens adversarial review: 0 blockers, 1 major (type-templates were Duo-invisible at golden/types/ → moved to knowledge/templates/) + 3 minors, all fixed. On PR #7; main stays v0.1.0 pending confirm (Q6/Q7) + validation. PR #6 stays parked.

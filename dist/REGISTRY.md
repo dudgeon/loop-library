@@ -37,6 +37,12 @@ written down at `knowledge/templates/`, and **ships-as-a-Duo-vault** (the marker
 Not built yet — the application layer (domains, stakeholders, source lifecycle) stacks on loopkit's
 primitives. Tracked in the parent loop (T7/T8).
 
+## Archived (built, not shipped)
+Discarded directions are preserved — not deleted — in [`../dist-archive/`](../dist-archive/):
+
+- **loopkit-prose-vocab** (v0.2.0, PR #6) — the prose-vocabulary attempt that under-read the goal;
+  superseded by the entity-graph `loopkit`. See `dist-archive/loopkit-prose-vocab/ARCHIVED.md`.
+
 ## The promotion bar (research → `dist/`)
 
 A pattern may be promoted from the research loop (`wiki/`) into `dist/` only when **all** hold:
