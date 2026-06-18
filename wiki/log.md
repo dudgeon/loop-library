@@ -3,6 +3,11 @@
 Chronological, newest-first. Grep recent activity:
 `grep -nE '^- (ingest|query|lint|supersede)' wiki/log.md`.
 
+## 2026-06-18
+- ingest | work-agent-harness (WAH) — approved + mirrored to /sources/work-agent-harness.md; wrote Source concept /wiki/sources/work-agent-harness.md; filed comparison /comparisons/wah-vs-duo-vault.md (hand-rolled vs native — WAH reimplements the entity graph a Duo vault gives natively). Closes T8.
+- query  | filed concept: brainkit (/concepts/brainkit.md) — the WAH application layer rebuilt as policy on loopkit (three features + embodied task model; ports WAH's policy, drops its breakers). Recorded the spec as a source (/sources/brainkit-spec.md, raw_mirror → _meta/SPEC-brainkit.md).
+- query  | BUILT brainkit v0.1.0 candidate in dist/brainkit (maintainer-authorized 2026-06-18). Policy layer on loopkit (contract unchanged): re-authored ingest/query/distill, 6 starter entity types (source·meeting·note·decision·person·task), first-run interview + task_policy, ships DESIGN.md (self-contained). Foreclosure-tested by a 50-agent pass (1 blocker + 9 majors + 9 minors, all folded in). REGISTRY: (future)-WAH stub → brainkit entry; T9 added. Not yet validated by real use.
+
 ## 2026-06-17
 - supersede | ARCHIVED the prose-vocabulary loopkit (PR #6) → dist-archive/loopkit-prose-vocab/ (frozen snapshot + ARCHIVED.md; preserved, not maintained). New dist-archive/ holds built-but-not-shipped kits. REGISTRY notes it. PR #6 closed (not merged).
 

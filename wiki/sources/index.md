@@ -7,3 +7,5 @@ Digests of ingested sources (`type: Source`). Each links to its immutable raw mi
 * [OKF Specification v0.1](/sources/google-2026-okf-spec.md) — the portable markdown+frontmatter bundle contract.
 * [Google Cloud — Introducing OKF](/sources/google-2026-okf-blog.md) — the motivation: a format, not another service.
 * [Duo — OKF Note Vault](/sources/duo-2026-note-vault.md) — productized runtime for an OKF/Obsidian markdown graph; one graph model, two serializers, an agent layer.
+* [work-agent-harness (WAH)](/sources/work-agent-harness.md) — a hand-rolled entity-graph KM system (typed entities, resolution, hub-spoke timelines, source→knowledge lineage); prior art for loopkit + brainkit.
+* [brainkit spec](/sources/brainkit-spec.md) — the brainkit design-of-record; living copy at `_meta/SPEC-brainkit.md`, shipped (stripped) as the kit's `DESIGN.md`.

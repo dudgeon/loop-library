@@ -17,7 +17,22 @@ bar in `CLAUDE.md` §8.
 | T5 | Ship **loopkit** v0 to `dist/` — context-aware project kit (ingest·query·distill + golden + lockable work products) | pattern-candidate | done | very-high | dist/loopkit, dist/REGISTRY.md |
 | T6 | Ingest the Duo `vault` skill reference as a proper source (currently cited as a local doc, not in `sources/`) | chore | done | n/a | duo-vault-vs-wiki, loopkit-on-duo |
 | T7 | **Loopkit as the entity-graph foundation.** Q1–Q7 resolved + 4 mechanisms designed; **loopkit v0.1.0 candidate built** in `dist/loopkit` (PR #7), passed a 4-lens review (0 blockers; 1 major + 3 minors fixed); ships `FOUNDATION.md`. Dist split: pure primitive preserved as **`dist/karpathy-core`** v0.1.0; loopkit is the entity-graph sibling. Awaiting: real-use validation before merge. Prior prose-vocab attempt (PR #6) parked. | pattern-candidate | active | high | T5, T8, SPEC-loopkit-entity-foundation |
-| T8 | Ingest WAH as a source (staged in `inbox/work-agent-harness.md`); write a `WAH ↔ Duo-vault entity structure` comparison (hand-rolled vs native) | chore | open | n/a | T7, work-agent-harness |
+| T8 | Ingest WAH as a source — DONE: mirrored to `sources/`, Source concept + `WAH ↔ Duo-vault` comparison (hand-rolled vs native) filed; brainkit spec recorded as a source | chore | done | n/a | T7, work-agent-harness, wah-vs-duo-vault |
+| T9 | **brainkit** — a policy layer on loopkit (re-authored skills + starter types + first-run interview; no plumbing change). **Candidate BUILT** in `dist/brainkit` (maintainer-authorized 2026-06-18), foreclosure-tested by a 50-agent pass (1 blocker + 9 majors + 9 minors folded in), ships `DESIGN.md`. Not yet validated by real use. | pattern-candidate | active | high | T7, T8, SPEC-brainkit, brainkit |
+
+## T9 — brainkit (policy layer on loopkit)
+**Goal:** a vendorable "second brain" kit whose north star is *recursive loops that build knowledge to
+improve one or more declared work products*. Built **on** loopkit's contract unchanged (§ "policy, not
+plumbing"): re-authored `ingest`/`query`/`distill`, a minimal set of pre-typed starter entities, a
+first-run interview that captures work products + declared-timeline entities + a task policy, and
+user-declared templates. Core features: **F1** interactive entity/alias resolution at intake, **F2**
+write-time, re-derivable per-entity timelines, **F3** source enrichment (acronym/shorthand expansion +
+linking, raw preserved). Task handling is **embody-or-externalize** (no mirrors). Excludes the WAH
+breakers (task mirroring, mirror-sync, publishing, domain-strategy layer).
+**Spec:** [`_meta/SPEC-brainkit.md`](../_meta/SPEC-brainkit.md). **Definition of done:** forks resolved
+(spec Q1–Q6), foreclosure-tested, **then** very-high confidence + explicit go/no-go before any `dist/`
+ship (§8). Doing T8 (ingest WAH) first would move the spec's provenance from `inferred` → `extracted`.
+**Open:** Q1 task-policy default (rec: externalized), Q5 name (`brainkit`), Q6 WAH-ingest-first.
 
 ## T1 — Define the loop primitives
 **Goal:** prototype the primitive shape at the root (alpha — this `loop/` folder), validate it,

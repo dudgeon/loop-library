@@ -1,0 +1,23 @@
+{
+  "name": "brainkit",
+  "version": "0.1.0",
+  "origin": "TODO: set to the git URL or local path you vendored brainkit from — its OWN repo, never loopkit (an origin pointing at loopkit would copy loopkit's skills over brainkit's on the next sync)",
+  "note": "scripts/sync.sh overwrites ONLY the literal paths in managed_files — it matches each entry as an exact path, no globbing. Everything else is yours and is never touched: PROJECT.md, your knowledge/ notes and golden/, your knowledge/templates/ type notes, the starter knowledge/index.md, and your work/ deliverables. The starter type templates under knowledge/templates/ are SEED-ONCE: shipped in this fork and deliberately ABSENT from managed_files, so they land once and sync never clobbers your evolved versions (the tradeoff: template fixes after 0.1.0 won't reach an existing vault — that's the price of you owning them).",
+  "managed_files": [
+    "README.md",
+    "CLAUDE.md",
+    "FOUNDATION.md",
+    "DESIGN.md",
+    "CHANGELOG.md",
+    "loop.manifest.json",
+    "scripts/sync.sh",
+    ".claude/skills/ingest/SKILL.md",
+    ".claude/skills/query/SKILL.md",
+    ".claude/skills/distill/SKILL.md",
+    "work/README.md",
+    "work/templates/prd.template.md",
+    "work/templates/best-practices.template.md",
+    "knowledge/golden/README.md",
+    "knowledge/templates/README.md"
+  ]
+}
