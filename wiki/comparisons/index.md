@@ -6,6 +6,9 @@ Pages that contrast two or more loops or patterns.
   repo, and which v0 decisions the root adopts vs. deliberately rejects.
 * [Duo Note Vault ↔ the wiki/loopkit construct](/comparisons/duo-vault-vs-wiki.md) — the same OKF
   markdown-graph substrate under three operating models; the vault as a candidate bookkeeping runtime.
+* [WAH ↔ Duo-vault entity structure](/comparisons/wah-vs-duo-vault.md) — work-agent-harness hand-rolls
+  the typed-entity graph a vault provides natively; the near one-to-one mapping, and the case for
+  building the next harness (loopkit → brainkit) on the native graph.
 
 More comparisons are filed back here from a [`/query`](/loops/automation/ingest-query-lint.md) when
 an answer contrasts loops worth keeping (e.g. ReAct vs Reflexion vs Plan-and-Execute).

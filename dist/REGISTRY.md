@@ -33,9 +33,21 @@ written down at `knowledge/templates/`, and **ships-as-a-Duo-vault** (the marker
   fixed). **Not yet validated by real use** → a candidate on its branch/PR; merges on a deliberate call.
 - Lineage: descends from `karpathy-core`; an earlier prose-vocabulary attempt (PR #6) was discarded.
 
-### (future) a work-agent-harness kit, built **on** loopkit
-Not built yet — the application layer (domains, stakeholders, source lifecycle) stacks on loopkit's
-primitives. Tracked in the parent loop (T7/T8).
+### brainkit — v0.1.0 (CANDIDATE, 2026-06-18 · branch `claude/elegant-mayer-f52497`)
+The **work-agent-harness application layer**, rebuilt as **policy on loopkit** — re-authored
+ingest/query/distill + starter entity types + a first-run interview, with loopkit's contract
+**unchanged** (no plumbing change). Core: **retrieval-grade ingest** (interactive entity/alias
+resolution + acronym/shorthand expansion, raw preserved), **write-time re-derivable per-entity
+timelines**, source→knowledge **maturity + lineage**, and **embodied tasks as typed nodes with parent
+edges**. Ports WAH's valuable policy; drops its breakers (hand-copied timelines, the hand-maintained
+stakeholder map, mirrored tasks, cross-agent mirror-sync, publishing, the domain-strategy layer).
+
+- Path: [`dist/brainkit/`](brainkit/) · Spec: [`_meta/SPEC-brainkit.md`](../_meta/SPEC-brainkit.md) ·
+  ships a self-contained `DESIGN.md`. Lineage: `karpathy-core` → `loopkit` → **brainkit**.
+- Go/no-go: maintainer **authorized the build** (2026-06-18); 6 design forks resolved; foreclosure-tested
+  by a 50-agent pass (1 blocker + 9 majors + 9 minors, all folded in). **Not yet validated by real
+  use** → a candidate. Building it also exercises loopkit's `FOUNDATION.md` seam (loopkit's own
+  validation).
 
 ## Archived (built, not shipped)
 Discarded directions are preserved — not deleted — in [`../dist-archive/`](../dist-archive/):
