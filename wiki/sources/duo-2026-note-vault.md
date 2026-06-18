@@ -36,11 +36,14 @@ loop-library already uses — the basis for treating a loopkit fork as a latent 
   reports types, entities, aliases, props-per-type, **observed enums**, and templates, and is the
   resolution table to read **before authoring a rollup or filing a note**. Note the hybrid: types
   are **declared** (via `templates/<type>.md`) but enum *values* are **observed** from usage.
-- **Typed entities via templates.** Each `templates/<type>.md` declares filing rules (D19):
-  parentless types (person, theme) file in a registry folder; parented types (milestone, meeting)
-  file under a `filingParent:` attribute's folder; folder-note types (initiative) own a folder.
-  **Folder layout is ergonomics only — every query is frontmatter-driven, so a note never loses
-  its edges when it moves.** "+ new type…" simply writes a new template file (no verb).
+- **Typed entities via templates.** Types are read **only** from `<vault-root>/templates/<type>.md`
+  (relative to the OKF vault root — the folder whose `index.md` carries the `okf_version` marker); a
+  type definition placed anywhere else is just a typed note, invisible to the type-picker, `duo vault
+  stub`, and `duo vault schema`'s templates/filing report. Each `templates/<type>.md` declares filing
+  rules (D19): parentless types (person, theme) file in a registry folder; parented types (milestone,
+  meeting) file under a `filingParent:` attribute's folder; folder-note types (initiative) own a
+  folder. **Folder layout is ergonomics only — every query is frontmatter-driven, so a note never
+  loses its edges when it moves.** "+ new type…" simply writes a new template file (no verb).
 - **Stable-`id` link integrity.** OKF notes get an `id:` at create time (D10). `duo vault mv`
   moves a note and rewrites inbound links; `duo vault relink` repairs out-of-band (Finder/git)
   moves by re-resolving each dangling link to its `id:` first, then slug — rewriting the

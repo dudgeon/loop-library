@@ -1,5 +1,12 @@
 # SPEC-loopkit-on-duo.md — loopkit as a Duo-optional OKF vault
 
+> **⛔ Superseded (2026-06-16) → [`SPEC-loopkit-entity-foundation.md`](SPEC-loopkit-entity-foundation.md).**
+> This spec's framing — entities reduced to a prose `vocabulary.md`, `kind:` kept, typed entities
+> refused — was the wrong target. The user's goal is a **typed-entity graph with resolution**, and
+> loopkit should be the **foundation the next work-agent-harness is built *on*, not *in*.** Read the
+> entity-foundation spec instead. This file is kept for history (and for its as-built record of the
+> parked [PR #6](https://github.com/dudgeon/loop-library/pull/6)).
+
 The normative contract for evolving the shipped `dist/loopkit` kit into a folder a
 [Duo](https://github.com/dudgeon/duo) user can treat as an **OKF Note Vault** — **without** the kit
 ever depending on Duo. It is a strict *extension* of the loopkit contract

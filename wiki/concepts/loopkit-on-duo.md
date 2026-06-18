@@ -15,14 +15,14 @@ related: [/comparisons/duo-vault-vs-wiki.md, /comparisons/loopkit-vs-root.md, /l
 > the §8 promotion bar + an explicit go/no-go. The Duo-side facts are grounded in the ingested
 > [Duo Note Vault source](/sources/duo-2026-note-vault.md); the design itself stays `inferred`.
 
-> **Normative version → [`_meta/SPEC-loopkit-on-duo.md`](../../_meta/SPEC-loopkit-on-duo.md).** An
-> adversarial multi-agent pass (2026-06-15) hardened this design into a spec and **reframed its
-> spine:** the "periodically *encode the schema into a file*" idea is **rejected** — a
-> `knowledge/schema.md` violates *both* loopkit's "no databases" rule **and** Duo's no-sidecar
-> ("compute the corpus live, never cache") rule. The encoded vocabulary instead lives as **golden
-> prose** (`knowledge/golden/vocabulary.md`); the "observed" rung is **computed live by `distill`**,
-> never persisted. The spec also **overrode Decision A** below (keep `kind:`, do not adopt `type:`).
-> Where this page and the spec differ, **the spec governs.**
+> **Direction changed (2026-06-16) → [`_meta/SPEC-loopkit-entity-foundation.md`](../../_meta/SPEC-loopkit-entity-foundation.md).**
+> This page (and the now-superseded prose-vocabulary spec) under-read the user's goal. The goal is a
+> **typed-entity graph with resolution** — and loopkit should be the **foundation the next
+> work-agent-harness is built *on*, not *in*.** So the design now **adopts `type:` typed entities**
+> (reversing the old Decision A), makes **payload-bearing rel-md edges** and **entity resolution**
+> first-class, and replaces the prose `vocabulary.md` with an **emergent→encoded taxonomy** (types
+> written down as templates when earned). The entity-foundation spec governs; this page is kept for
+> the progressive-enhancement framing it still gets right (GitHub-clean OKF, no-Duo degradation).
 
 ## The principle: progressive enhancement
 

@@ -6,6 +6,7 @@ The assistant loads this first, treats it as the source of truth, and **won't ch
 without asking**. `distill` never trims it; on a contradiction, golden wins. To pin something new,
 tell the assistant **"pin this"** (or "make this golden" / "this is the rule").
 
-**Entity types live next door.** Definitions of recurring kinds (a `person`, a `source`) live in
-`knowledge/templates/` — the folder a Duo vault reads types from, also read by the kit's skills. They
-aren't golden (the assistant can refine them); this folder is. See [`../templates/README.md`](../templates/README.md).
+A common one is **`vocabulary.md`** — a plain-language note of the recurring things this project
+tracks (e.g. *"we track initiatives, each with a scope of internal or external, and an owner"*) so
+the assistant names them consistently instead of reinventing them. Keep it prose, not a table of
+fields. See `CLAUDE.md` §4.1.

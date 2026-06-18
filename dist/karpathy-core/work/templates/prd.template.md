@@ -1,5 +1,5 @@
 ---
-type: deliverable-template
+kind: deliverable-template
 summary: starting scaffold for a PRD, grounded in the knowledge base
 ---
 
