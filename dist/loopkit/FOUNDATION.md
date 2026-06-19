@@ -71,8 +71,9 @@ statuses: [unread, reading, read, processed]   # only if this type has a lifecyc
 Something we read and want to remember. Carries a status (above), an author, a link.
 ```
 
-They're yours — `sync` never touches them — and read by both Duo and the assistant (neither is locked
-out; the assistant can refine a type). This is how a concept gets defined once instead of reinvented
+The type notes you write are yours — `sync` never touches them — and read by both Duo and the
+assistant (only the folder's `README.md` is managed; neither side is locked out, and the assistant can
+refine a type). This is how a concept gets defined once instead of reinvented
 on every pass — and it's where a query like "everything below `read`" finds its order.
 
 ---

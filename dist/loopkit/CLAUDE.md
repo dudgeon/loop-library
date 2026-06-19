@@ -83,8 +83,8 @@ type keeps showing up and is worth pinning, **write it down** as `knowledge/temp
 (named for the type): what the type is, the attributes it usually carries, and — if it has a
 lifecycle — its **ordered status ladder** (e.g. `statuses: [unread, reading, read, processed]`). That
 folder is **where a Duo vault reads types from**, so writing one there makes the type real to Duo
-*and* to these skills at once — one scheme, not two. They're **yours** — not kit machinery, so `sync`
-never touches them — and **both Duo and these skills read them**. The assistant can refine a type as
+*and* to these skills at once — one scheme, not two. The type notes you write are **yours** — `sync` never touches them — and **both Duo and these skills
+read them** (only this folder's `README.md` is kit machinery, kept current by `sync`). The assistant can refine a type as
 the project teaches you what its types are. That's how a concept like "initiative" gets defined once
 instead of reinvented — and `ingest` / `distill` resolve notes against it (§6–§7). Keep each as plain
 prose + a little frontmatter, **not** a hand-maintained `## Fields` grid.

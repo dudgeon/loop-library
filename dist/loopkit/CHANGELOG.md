@@ -29,3 +29,9 @@ validation.
 
 The pure ingest/query/distill primitive this grew from ships separately as **karpathy-core** v0.1.0.
 An earlier prose-vocabulary attempt (PR #6) was explored and discarded before this.
+
+_2026-06-18 (docs): clarified the managed-vs-user split — `sync` overwrites the two machinery READMEs
+`knowledge/templates/README.md` and `knowledge/golden/README.md`; your type notes and golden notes
+beside them are untouched. Corrected a blanket "sync never touches `knowledge/templates/`" wording in
+`CLAUDE.md` §4, `FOUNDATION.md`, the templates README, and the manifest note that contradicted
+`managed_files`. (Surfaced by brainkit's foreclosure pass.)_

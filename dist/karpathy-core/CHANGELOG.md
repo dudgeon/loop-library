@@ -17,3 +17,7 @@ First release.
 Known limitations (v0): nothing runs on a schedule — you invoke the operations. Golden/locked
 protection is by convention + git review, not a hard mechanical lock. Forking into a repo that
 already has a `CLAUDE.md` requires a manual merge.
+
+_2026-06-18 (docs): clarified that `sync` overwrites the machinery doc `knowledge/golden/README.md`;
+your golden notes beside it are untouched. The manifest note previously implied all of `knowledge/`
+was untouched. (Surfaced by brainkit's foreclosure pass.)_
