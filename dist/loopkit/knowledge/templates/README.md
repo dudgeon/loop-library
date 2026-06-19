@@ -7,8 +7,9 @@ type-picker, `duo vault stub`, filing rules) *and* to the kit's own skills at on
 scheme, not two.
 
 They're **yours, and both Duo and the kit's skills read them** — Duo files and stubs new notes from
-them, the skills resolve notes and catch type drift against them. `sync` doesn't touch them (they're
-your content, not kit machinery). They aren't locked: the assistant can propose adding or refining a
+them, the skills resolve notes and catch type drift against them. `sync` doesn't touch the type notes
+you write — they're your content (only this `README.md` is kit machinery, kept current by `sync`).
+They aren't locked: the assistant can propose adding or refining a
 type as the project teaches you what its types are.
 
 **Start empty.** A fresh project authors no types. Give each note a sensible `type:` as you go; when a
