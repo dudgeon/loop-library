@@ -7,8 +7,8 @@ timestamp: 2026-06-14T00:00:00Z
 summary: A living thesis page; v0 distills three robustness conditions — compile don't re-derive, ground every claim, and disclose progressively — from the founding sources.
 provenance: inferred
 confidence: 0.7
-sources: [/sources/karpathy-2026-llm-wiki.md, /sources/google-2026-okf-spec.md, /sources/google-2026-okf-blog.md]
-related: [/loops/automation/ingest-query-lint.md, /concepts/progressive-disclosure.md, /concepts/provenance.md]
+sources: [/sources/karpathy-2026-llm-wiki.md, /sources/google-2026-okf-spec.md, /sources/google-2026-okf-blog.md, /sources/ouimet-2026-wiki-graph-drift.md]
+related: [/loops/automation/ingest-query-lint.md, /concepts/progressive-disclosure.md, /concepts/provenance.md, /concepts/drift.md]
 status: draft
 ---
 
@@ -29,7 +29,12 @@ with cross-references and synthesis already present before a question is asked.
 A compounding artifact compounds its errors too. [Provenance](/concepts/provenance.md) — the
 extracted/inferred/ambiguous declaration, mandatory citations, human-in-the-loop ingest — is
 the discipline that keeps trust from decaying as the corpus grows. Robustness condition:
-**the loop must be auditable**, or delegation to an agent is unsafe.
+**the loop must be auditable**, or delegation to an agent is unsafe. The sharpest statement of
+the threat is [drift](/concepts/drift.md): "two copies of anything will drift," and a lint pass
+that checks pages *against each other* cannot catch a page diverging from its *source*. So
+citations are **necessary but not sufficient** — grounding is real only if something actually
+re-checks the page against the source, whether a human, a re-grounding pass, or a live
+[context-graph layer](/comparisons/wiki-vs-context-graph.md).
 
 ## 3. Disclose progressively
 [Progressive disclosure](/concepts/progressive-disclosure.md) — index first, drill second —
@@ -65,3 +70,4 @@ between studying and shipping.**
 [1] [Karpathy — "LLM Wiki"](/sources/karpathy-2026-llm-wiki.md)
 [2] [OKF Specification v0.1](/sources/google-2026-okf-spec.md)
 [3] [Google Cloud — Introducing OKF](/sources/google-2026-okf-blog.md)
+[4] [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md)

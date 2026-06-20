@@ -21,6 +21,7 @@ resolved from this `wiki/` directory.
 * [Concepts index](/concepts/index.md) — cross-cutting ideas loops rely on.
 * [Progressive disclosure](/concepts/progressive-disclosure.md) — index-first, context-budget-aware navigation.
 * [Provenance](/concepts/provenance.md) — extracted vs inferred vs ambiguous; the anti-hallucination discipline.
+* [Drift (two copies will drift)](/concepts/drift.md) — the silent failure where a compiled page diverges from its source; lint can't catch it alone.
 * [Loopkit on Duo](/concepts/loopkit-on-duo.md) — design (unvalidated, not shipped): progressive enhancement by an optional host.
 * [brainkit](/concepts/brainkit.md) — candidate (built in `dist/`, not yet validated): the WAH application layer rebuilt as policy on loopkit.
 
@@ -29,6 +30,7 @@ resolved from this `wiki/` directory.
 * [loopkit ↔ the root repo](/comparisons/loopkit-vs-root.md) — shipped kit vs this repo; which v0 decisions the root adopts vs rejects.
 * [Duo Note Vault ↔ the wiki/loopkit construct](/comparisons/duo-vault-vs-wiki.md) — same OKF substrate, three operating models; the vault as a candidate runtime.
 * [WAH ↔ Duo-vault entity structure](/comparisons/wah-vs-duo-vault.md) — hand-rolled vs native; the case for building the next harness on the graph.
+* [Codified wiki ↔ live context graph](/comparisons/wiki-vs-context-graph.md) — compiled-and-detached vs live-wired-to-source; the argued answer is both, split by knowledge type.
 
 ## Sources
 * [Sources index](/sources/index.md) — digests of ingested sources.
@@ -37,3 +39,4 @@ resolved from this `wiki/` directory.
 * [Google Cloud — Introducing OKF](/sources/google-2026-okf-blog.md)
 * [work-agent-harness (WAH)](/sources/work-agent-harness.md) — the hand-rolled entity-graph KM system brainkit ports from.
 * [brainkit spec](/sources/brainkit-spec.md) — the brainkit design-of-record (`_meta/SPEC-brainkit.md`).
+* [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md) — wiki drift and the live "context graph" complement (part vendor advocacy).

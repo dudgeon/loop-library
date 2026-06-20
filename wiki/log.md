@@ -3,6 +3,9 @@
 Chronological, newest-first. Grep recent activity:
 `grep -nE '^- (ingest|query|lint|supersede)' wiki/log.md`.
 
+## 2026-06-20
+- ingest | Ouimet "An LLM wiki can't tell you when it's wrong" (@entropy_eq X thread; part vendor advocacy for HipAI) — supplied by the human after the X URL proved unreachable from this environment (egress allowlist blocks x.com + mirrors). Mirrored verbatim to /sources/ouimet-2026-wiki-graph-drift.md; wrote Source concept /wiki/sources/ouimet-2026-wiki-graph-drift.md (with a Caveats block flagging the self-interested claims). Compiled: NEW concept /concepts/drift.md ("two copies of anything will drift" — the silent page-vs-source divergence lint can't adjudicate); NEW comparison /comparisons/wiki-vs-context-graph.md (codified wiki vs live context graph; both, split by knowledge type — graph layer marked candidate-not-shipped per §8). Wired into /loops/automation/ingest-query-lint.md (new Drift failure-mode row + source/citation) and /synthesis.md (condition 2 sharpened: citations necessary but not sufficient). Indexes updated (root + concepts + comparisons + sources).
+
 ## 2026-06-18
 - ingest | work-agent-harness (WAH) — approved + mirrored to /sources/work-agent-harness.md; wrote Source concept /wiki/sources/work-agent-harness.md; filed comparison /comparisons/wah-vs-duo-vault.md (hand-rolled vs native — WAH reimplements the entity graph a Duo vault gives natively). Closes T8.
 - query  | filed concept: brainkit (/concepts/brainkit.md) — the WAH application layer rebuilt as policy on loopkit (three features + embodied task model; ports WAH's policy, drops its breakers). Recorded the spec as a source (/sources/brainkit-spec.md, raw_mirror → _meta/SPEC-brainkit.md).
