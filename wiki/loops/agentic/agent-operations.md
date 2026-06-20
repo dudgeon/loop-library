@@ -17,6 +17,10 @@ world. It is the operations half of Ouimet's [Karpathy+ system](/sources/ouimet-
 and its organizing commitment is that every agent is a **steward, not a principal**: it drafts
 and reports; it never decides and ships. This page is a map of the sub-area, not a single loop.
 
+> **Scope (maintainer call, 2026-06-20):** operational agent-fleet loops are in-scope for the
+> *research wiki's* taxonomy (this page), but are **not** a direction for the shipped `dist/` kits.
+> Mine them for evidence on loop primitives and governance; don't build them into product.
+
 ## The six archetypes
 
 | Archetype | Trigger | Scope (what it may touch) |
