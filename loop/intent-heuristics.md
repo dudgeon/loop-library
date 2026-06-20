@@ -27,6 +27,17 @@ project's intent looks like."
 - Restating something **already** recorded (no new information).
 - The agent's own suggestions the user didn't endorse.
 
+## Escalation — when research and the roadmap contradict
+
+A finding from the research loop (`wiki/`) that **contradicts the roadmap, the golden/shipped
+product, or a recorded decision** is not a thing to silently resolve by picking a side. It is an
+**escalation point**: either the golden context / roadmap / shipped product is wrong, or the
+research (or the problem framing) is incomplete. Surface the contradiction to the human with both
+readings; do not let `/ingest` or `/query` quietly overwrite roadmap intent to match a new source,
+and do not discount a source just because it disagrees with the roadmap. (This is the intent-layer
+twin of the wiki's [drift](../wiki/concepts/drift.md) rule: flag the disagreement, let a human
+decide what's true.)
+
 ## Targets — where each kind of change lands (and the ownership rule)
 
 | Change | Target | Rule |
@@ -44,6 +55,23 @@ project's intent looks like."
 
 Newest-first. Each entry: the proposed change, the user's call (accepted / rejected / edited), and
 the session evidence. Seeded with this loop's own origin session (dogfooding).
+
+### 2026-06-20
+- **accepted (reframed)** | North star when research and roadmap conflict → *not* a priority dial;
+  treat a research↔roadmap contradiction as an **escalation point** (golden/roadmap/product wrong,
+  or research/framing incomplete). Recorded as the "Escalation" heuristic above. *Evidence:* user
+  reframed the question during the eqctrl-source guidance pass.
+- **flagged (revisit)** | Is verification / done-criteria a 4th enduring loop primitive (beyond
+  goal·work-product·tasks)? → thorny; recorded as **H8 (open, low confidence, not being worked)**,
+  to revisit later. *Evidence:* eqctrl's completion gate / verifier contract is strong but
+  unsettled evidence.
+- **accepted** | Self-contained rule for shipped kits, re: *external/hosted* tools → **case-by-case
+  at the §8 go/no-go**, no blanket rule. Recorded as a refinement under H6. *Evidence:* user, given
+  eqctrl's reliance on hosted tools (HipAI, Linear, Granola).
+- **accepted** | Library breadth → **yes, expand the research wiki's taxonomy** to cover operational
+  agent-fleet loops (eqctrl's six archetypes); **not** a direction for the shipped kit. The
+  `agent-operations` overview already lives in `wiki/`; scope note added there. *Evidence:* explicit
+  user call.
 
 ### 2026-06-15
 - **accepted** | "Collapse the generated loops registry" — at ~5 loops a hand list beats the

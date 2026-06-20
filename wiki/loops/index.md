@@ -10,3 +10,4 @@ in the repo's `_meta/taxonomy.md`).
 ## Agentic
 * [Agentic loops index](/loops/agentic/index.md) — all agentic loops.
 * [Goal-Directed Task Loop](/loops/agentic/goal-directed-task-loop.md) — hypothesis (unvalidated, not shipped): the most vanilla loop.
+* [Agent operations: a human-gated fleet](/loops/agentic/agent-operations.md) — overview: a steward-scoped fleet (six archetypes, four principles) where irreversible action stays behind a human yes.

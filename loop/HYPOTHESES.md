@@ -13,6 +13,7 @@ into a `dist/` primitive when proven. Alpha — add/revise freely.
 | H5 | A project hosts a **portfolio of loops** (≥2), not one; the unit of analysis is the set, not a single loop | medium | open |
 | H6 | Loops accrete over time and are encoded heterogeneously (skills, agents, `CLAUDE.md`, `loop/`), so a project needs an explicit **loop registry** to track where each loop lives and its primitives | medium | open |
 | H7 | A self-improving meta-loop (e.g. `session-harvest`) that revises project intent/heuristics from session evidence is a high-value loop class — and is itself the recursive improvement this library studies | low–medium | open |
+| H8 | A done-criteria / **verification** mechanism may be a 4th enduring loop primitive (beyond goal·work-product·tasks) | low | open (flagged — thorny, revisit later; not being worked) |
 
 ## H1 — Goal definition is an enduring loop primitive
 Every loop has a persistent goal that outlives any single iteration — even a minimal or
@@ -62,9 +63,30 @@ vendored kit has no research wiki, so it can't depend on wiki content. (That ins
 loopkit decoupling.) **Links:** [`TASKS.md`](TASKS.md) (T3), [`README.md`](README.md).
 _(Your hypothesis, 2026-06-15; mechanism collapsed after stress-testing usefulness.)_
 
+**Refinement (2026-06-20) — two different axes of "self-contained."** The sub-finding above is
+about *this repo's research wiki*: a kit can't depend on it, full stop (structural). Whether a kit
+may lean on an **external/hosted tool** (a graph service, Linear, Granola, etc.) is a *separate*
+question, decided **case-by-case at the §8 go/no-go — no blanket rule** (your call, prompted by
+eqctrl's hosted-tool field kit). The "baseline runs without the host; the host only accelerates"
+stance from [loopkit-on-Duo](../wiki/concepts/loopkit-on-duo.md) is one design to weigh per case,
+not a standing requirement.
+
 ## H7 — A self-improving intent loop (session-harvest) is a high-value class
 A meta-loop that (1) reviews the current/prior session for changes to project intent, guided by a
 **heuristics doc**, (2) validates proposed changes with the human, (3) executes the approved ones,
 and (4) updates the heuristics doc from the feedback — so it gets better over time. It is itself an
 instance of the recursive improvement this library studies (Purpose 2). **Links:**
 [`TASKS.md`](TASKS.md) (T4), [`GOAL.md`](GOAL.md). _(Your example, 2026-06-15.)_
+
+## H8 — Verification / done-criteria may be a 4th enduring primitive
+**Flagged, not being worked.** The Ouimet/eqctrl sources supply the strongest evidence yet that a
+loop has a *verification* primitive distinct from its goal and work product: the **completion gate**
+("nothing is done until the change works *and* the docs reflect it"), the **verifier contract**
+(each scheduled job declares an expected output, checked), and "**mechanical or loud, never
+polite**." The open question is whether this is a *fourth primitive* or merely a property of a
+*well-posed work product* (H2) — i.e. a done-criterion is part of defining the work product, not a
+separate thing. **Deliberately parked** as thorny; revisit when the existing primitives (H1–H4) are
+closer to validated, or when T2's research on well-posed done-criteria forces the question.
+**Links:** [`TASKS.md`](TASKS.md) (T2), [defense in depth](../wiki/concepts/defense-in-depth.md),
+[eqctrl "Karpathy+"](../wiki/sources/ouimet-2026-eqctrl-karpathy-plus.md). _(Your call to flag it,
+2026-06-20.)_

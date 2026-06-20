@@ -9,6 +9,9 @@ Pages that contrast two or more loops or patterns.
 * [WAH ↔ Duo-vault entity structure](/comparisons/wah-vs-duo-vault.md) — work-agent-harness hand-rolls
   the typed-entity graph a vault provides natively; the near one-to-one mapping, and the case for
   building the next harness (loopkit → brainkit) on the native graph.
+* [Codified wiki ↔ live context graph](/comparisons/wiki-vs-context-graph.md) — a compiled markdown
+  wiki (owned, cheap, but [drifts](/concepts/drift.md)) vs a live-wired graph (cited from source,
+  cross-source, but hosted/vendor-pitched); the argued answer is both, split by knowledge type.
 
 More comparisons are filed back here from a [`/query`](/loops/automation/ingest-query-lint.md) when
 an answer contrasts loops worth keeping (e.g. ReAct vs Reflexion vs Plan-and-Execute).
