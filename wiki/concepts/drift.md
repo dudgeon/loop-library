@@ -7,8 +7,8 @@ timestamp: 2026-06-20T00:00:00Z
 summary: Drift is when a compiled page silently diverges from its source; because lint cross-checks pages (not sources) and the model quotes its own summary, the page gets "confidently wrong, quoting a copy of itself" until a human catches it.
 provenance: extracted
 confidence: 0.8
-sources: [/sources/ouimet-2026-wiki-graph-drift.md, /sources/karpathy-2026-llm-wiki.md]
-related: [/concepts/provenance.md, /loops/automation/ingest-query-lint.md, /comparisons/wiki-vs-context-graph.md, /synthesis.md]
+sources: [/sources/ouimet-2026-wiki-graph-drift.md, /sources/ouimet-2026-eqctrl-karpathy-plus.md, /sources/karpathy-2026-llm-wiki.md]
+related: [/concepts/provenance.md, /concepts/knowledge-runtime-boundary.md, /loops/automation/ingest-query-lint.md, /comparisons/wiki-vs-context-graph.md, /synthesis.md]
 ---
 
 **Drift** is the failure where a compiled page quietly stops matching the source it was built
@@ -38,6 +38,26 @@ the cross-check is page-to-page, never page-to-source. This is not a tooling gap
 it is the same limit Karpathy states in the founding source: *lint can't resolve contradictions
 on its own; a human still decides what's true.* Lint keeps the wiki **tidy** (internally
 consistent); keeping it **correct** (faithful to sources) is a different job.
+
+## The snapshot framing (verify at consumption)
+
+Ouimet's fuller [Karpathy+ writeup](/sources/ouimet-2026-eqctrl-karpathy-plus.md) restates the
+same principle as the **snapshot problem** and adds the operative rule: *"copies drift; links
+don't."* The moment a fact leaves the canonical store it is a **snapshot, not a live reference** —
+this covers not just wiki pages but the agent's auto-memory, pasted UI instructions, and
+forwarded session prompts. Two rules follow:
+
+- **Verify at consumption, not at creation.** A copy is correct only when re-checked at the moment
+  it is used, never on the strength of having been right when written.
+- **Forwarded instructions are claims, not directions.** A session that opens with a terse "do
+  what the plan says" should re-derive scope from the current wiki before acting — the plan is
+  itself a snapshot, and *plans decay faster than the state they depend on*.
+
+The structural defense is to **not keep a second copy**: remove a duplicated fact and point to the
+canonical page (a hardcoded count drifts; a link cannot) — which is precisely what the
+[knowledge ↔ runtime boundary](/concepts/knowledge-runtime-boundary.md) enforces at write time, and
+why "DRIFT — one fact in three files" is one of Ouimet's three named causes of death for a
+knowledge system.
 
 ## How it shows up across loop families
 
@@ -73,5 +93,8 @@ makes (see [the comparison](/comparisons/wiki-vs-context-graph.md)).
 # Citations
 [1] [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md)
     — the drift failure mode, frozen-summary substitution, and "two copies of anything will drift."
-[2] [Karpathy — "LLM Wiki"](/sources/karpathy-2026-llm-wiki.md) — lint cannot resolve
+[2] [Ouimet — eqctrl.io "Karpathy+" system](/sources/ouimet-2026-eqctrl-karpathy-plus.md) — the
+    snapshot problem ("copies drift; links don't"), verify-at-consumption, forwarded-instructions-
+    as-claims, and "DRIFT" as one of the three causes of death.
+[3] [Karpathy — "LLM Wiki"](/sources/karpathy-2026-llm-wiki.md) — lint cannot resolve
     contradictions on its own; a human still decides what is true.

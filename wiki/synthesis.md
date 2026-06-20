@@ -7,8 +7,8 @@ timestamp: 2026-06-14T00:00:00Z
 summary: A living thesis page; v0 distills three robustness conditions — compile don't re-derive, ground every claim, and disclose progressively — from the founding sources.
 provenance: inferred
 confidence: 0.7
-sources: [/sources/karpathy-2026-llm-wiki.md, /sources/google-2026-okf-spec.md, /sources/google-2026-okf-blog.md, /sources/ouimet-2026-wiki-graph-drift.md]
-related: [/loops/automation/ingest-query-lint.md, /concepts/progressive-disclosure.md, /concepts/provenance.md, /concepts/drift.md]
+sources: [/sources/karpathy-2026-llm-wiki.md, /sources/google-2026-okf-spec.md, /sources/google-2026-okf-blog.md, /sources/ouimet-2026-wiki-graph-drift.md, /sources/ouimet-2026-eqctrl-karpathy-plus.md]
+related: [/loops/automation/ingest-query-lint.md, /concepts/progressive-disclosure.md, /concepts/provenance.md, /concepts/drift.md, /concepts/defense-in-depth.md, /concepts/knowledge-runtime-boundary.md]
 status: draft
 ---
 
@@ -42,6 +42,18 @@ is what keeps each pass inside the context window and lets an index stand in for
 at moderate scale. Robustness condition: **navigation must be context-budget-aware**, with a
 known escalation path (sub-bundles + search) when the index outgrows one window.
 
+## 4. Enforce mechanically, not by discipline
+Grounding and progressive disclosure are only real if something *makes* them happen — and
+discipline fails exactly when it's needed, during fires. Ouimet's
+[Karpathy+ system](/sources/ouimet-2026-eqctrl-karpathy-plus.md) supplies the missing condition:
+**[defense in depth](/concepts/defense-in-depth.md)** — a stack of cheap, independent checks plus a
+**completion gate** ("not done until the change works *and* the docs reflect it"), with the rule
+that enforcement must be *mechanical or loud, never polite*. Its structural twin is the
+**[knowledge ↔ runtime boundary](/concepts/knowledge-runtime-boundary.md)**: give every fact one
+canonical home so there is no second copy to drift. Robustness condition: **the loop's own upkeep
+must be enforced by machinery, not by the maintainer's good intentions** — because a quiet warning
+nobody reads is the same as no check at all.
+
 ## The hybrid in one line
 **OKF is the contract** (a portable bundle any consumer can read), **Karpathy is the operating
 model** (the agent compiles and maintains it), and **provenance is the addition both lack** (so
@@ -71,3 +83,4 @@ between studying and shipping.**
 [2] [OKF Specification v0.1](/sources/google-2026-okf-spec.md)
 [3] [Google Cloud — Introducing OKF](/sources/google-2026-okf-blog.md)
 [4] [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md)
+[5] [Ouimet — eqctrl.io "Karpathy+" system](/sources/ouimet-2026-eqctrl-karpathy-plus.md)
