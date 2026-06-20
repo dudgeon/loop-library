@@ -19,3 +19,5 @@ Karpathy's second operation: answer from the compiled wiki, then **file good ans
 ## Gaps
 
 If the wiki can't answer, say so plainly and propose the source(s) to ingest next — don't fabricate. A missing page is "not-yet-written knowledge," not an error.
+
+When a follow-up needs the user to choose — which output form, which of several readings to pursue, whether to file a new page — ask with the structured **AskUserQuestion** prompt (concrete options), not a free-text question.

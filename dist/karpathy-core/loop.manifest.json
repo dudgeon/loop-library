@@ -1,6 +1,6 @@
 {
   "name": "karpathy-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "origin": "TODO: set to the git URL or local path you vendored karpathy-core from",
   "note": "scripts/sync.sh overwrites ONLY the files listed in managed_files — which include the machinery doc knowledge/golden/README.md. Everything else is yours and is never touched: PROJECT.md, your knowledge/ notes, your knowledge/golden/ notes, and your work/** deliverables.",
   "managed_files": [

@@ -17,7 +17,8 @@ Use the knowledge base toward the goal, and file useful results back. Read `CLAU
 4. File back: when a genuinely new conclusion or connection emerges, add it as a note (and update
    `knowledge/index.md`) so it compounds for next time.
 5. If the knowledge base can't answer well, say so plainly and suggest what to ingest next — don't
-   fabricate an answer.
+   fabricate an answer. When a follow-up needs the user to choose, ask with the structured
+   **AskUserQuestion** prompt (`CLAUDE.md` §10), not a free-text question.
 
 ## Don'ts
 Don't answer from memory when the knowledge base should know. Don't overwrite golden or locked

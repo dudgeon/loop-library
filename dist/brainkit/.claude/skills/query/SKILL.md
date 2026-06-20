@@ -26,7 +26,8 @@ Use the graph toward the work product, and file useful results back. Read `CLAUD
 5. **File back.** When a genuinely new conclusion or connection emerges, add it as a typed note,
    resolve and link it into the graph, and update `knowledge/index.md` so it compounds next time.
 6. **Be honest about gaps.** If the graph can't answer well, say so plainly and suggest what to ingest
-   — don't fabricate.
+   — don't fabricate. When a follow-up needs the user to choose (which deliverable to advance, which
+   reading of an ambiguous ask), use the structured **AskUserQuestion** prompt (`CLAUDE.md` §17).
 
 ## Don'ts
 Don't answer from memory when the graph should know. Don't regenerate a timeline or index-view here

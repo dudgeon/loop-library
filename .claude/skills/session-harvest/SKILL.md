@@ -32,7 +32,10 @@ as real drift vs. noise, and which doc each change lands in); **Learn** appends 
    **target doc** (per the heuristics doc's Targets table), the **exact edit**, and the **session
    evidence** behind it. Apply nothing yet.
 3. **Validate** — present the list to the user; they accept / reject / edit each item. **Mandatory.**
-   If the user is absent, stop here with the proposal — do not apply.
+   Use the structured **AskUserQuestion** prompt — one question per proposed change with concrete
+   options (e.g. *accept / reject / edit*), not a free-text wall — so the gate is fast and each call is
+   unambiguous; the user can always pick "Other" to redirect. If the user is absent, stop here with the
+   proposal — do not apply.
 4. **Execute** — apply **only approved** items, respecting ownership:
    - **Edit freely (alpha):** `loop/GOAL.md`, `loop/HYPOTHESES.md`, `loop/TASKS.md`, and the
      "Loops in this project" list in `loop/README.md` (hand-maintained).

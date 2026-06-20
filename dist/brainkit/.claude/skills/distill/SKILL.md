@@ -34,9 +34,11 @@ Keep the graph sharp — the cleanup that stops it bloating or drifting. Read `C
 4. **Regenerate index-views (§12).** Any `type: index-view` note — the reading-queue (sources below
    `read`/`processed`), a people map, a drift list — is rebuilt from the current graph and re-stamped,
    never hand-edited.
-5. **Apply only what's approved.** Prefer tightening over erasing; never delete to hit a size target.
-   **Preserve frontmatter keys you don't recognize** on every rewrite. Never touch `knowledge/golden/`
-   or any `locked: true` file.
+5. **Apply only what's approved** — get that approval with the structured **AskUserQuestion** prompt
+   (the change + options like *merge / retire / re-parent / keep*; `CLAUDE.md` §17), not a free-text
+   question. Prefer tightening over erasing; never delete to hit a size target. **Preserve frontmatter
+   keys you don't recognize** on every rewrite. Never touch `knowledge/golden/` or any `locked: true`
+   file.
 
 ## Don'ts
 Don't delete without approval. Don't retire a task with open children. Don't clobber a hand-edited

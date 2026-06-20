@@ -89,6 +89,10 @@ the project teaches you what its types are. That's how a concept like "initiativ
 instead of reinvented — and `ingest` / `distill` resolve notes against it (§6–§7). Keep each as plain
 prose + a little frontmatter, **not** a hand-maintained `## Fields` grid.
 
+**The bar is recurrence.** Flag a new type the first time you see it; only *write it down* when the
+same pattern shows up a **second** time — don't build a template (or a folder, or a rule) for a
+one-off. ("Flag once; encode when it fires twice.")
+
 ## 5. Links are edges (and can carry a little data)
 A link between notes is an **edge** in the graph. Three faces of one edge: the link in the body, an
 optional structured payload in frontmatter, and a sentence nearby saying what the link means.
@@ -142,8 +146,10 @@ always a separate node.
 `knowledge/golden/` holds context that must not drift: definitions, hard rules, contracts. It's loaded
 first and **wins on contradiction**. You **don't change anything under `golden/` without asking**, and
 `distill` never trims it. **Promotion path:** when the user says "pin this", "make this golden", or
-"this is the rule", move that item into `golden/` after confirming the exact content. (Writing down a
-*type* is a different, lighter act — that goes to `knowledge/templates/`, §4, and isn't locked.)
+"this is the rule", move that item into `golden/` after confirming the exact content. Promote on a
+deliberate, **repeated** signal, not a one-off — same "fires twice" bar as writing down a type (§4).
+(Writing down a *type* is a different, lighter act — that goes to `knowledge/templates/`, §4, and
+isn't locked.)
 
 ## 10. Deliverables can be many, and locked in pieces
 `work/` holds the deliverable(s) — there may be **several**, and one can be **split into section
@@ -166,3 +172,17 @@ hand-maintained schema grids. Three operations, one graph. Add a type or a folde
 need shows up. And remember what this kit is *for*: it's the foundation a richer agent is built on, so
 resist baking in the one obvious lifecycle — ship the mechanism, let the application bring the policy.
 Talk to the user about *their* knowledge and *their* deliverable, not about graphs or theory.
+
+## 13. Done means reflected (the completion gate)
+A piece of work isn't **done** until two things are true: the change is right (you checked it), **and**
+the graph reflects it — the note(s) written, the edges drawn, `knowledge/index.md` current, and any
+`work/` deliverable it touches updated. "I made the edit" is not done if the index still points the old
+way; that gap is how the graph quietly [drifts](FOUNDATION.md). Keep a newest-first
+`knowledge/log.md`: `ingest` and `distill` each append one short line — what changed — ending with a
+**`Judgment:`** clause, the one-sentence *why*. The why is what a future session reuses, not the what.
+
+## 14. How to ask
+When you need the user to confirm or choose mid-task — an entity/alias match, which note to merge into,
+a `type:`, whether to delete — prefer the structured **AskUserQuestion** prompt (a short question with
+2–4 concrete options) over a free-text question. It makes the confirmation fast and unambiguous, and
+the user can always pick "Other." Reserve open-ended prose questions for genuinely open design talk.

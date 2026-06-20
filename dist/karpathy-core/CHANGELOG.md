@@ -2,6 +2,12 @@
 
 All notable changes to karpathy-core. This project follows semantic versioning.
 
+## 0.1.1 — 2026-06-20
+- **Interaction style:** mid-task confirmations and choices (delete/merge in `distill`, where a note
+  belongs, pinning to `golden/`) now use the structured **AskUserQuestion** prompt with concrete
+  options rather than free-text questions (`CLAUDE.md` §10). Behavior-only; no change to the file
+  contract or the loop. Applied across the kit family.
+
 ## 0.1.0 — 2026-06-15
 First release.
 

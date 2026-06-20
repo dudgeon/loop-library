@@ -13,8 +13,10 @@ Keep the knowledge base sharp — the cleanup that stops it from bloating. Read 
    contradicted notes; resolve contradictions (golden wins — flag rather than silently overwrite);
    fix broken links; fix the minimal note contract (summary / kind / source); and flag any `work/`
    deliverable that has drifted from the notes it cites.
-3. **Get the user's approval before deleting anything.** Apply only what's approved. Prefer
-   tightening over erasing; never delete to hit a size target.
+3. **Get the user's approval before deleting anything** — ask with the structured **AskUserQuestion**
+   prompt (the change + concrete options like *merge / retire / keep*), not a free-text question
+   (`CLAUDE.md` §10). Apply only what's approved. Prefer tightening over erasing; never delete to hit a
+   size target.
 4. Never touch `knowledge/golden/` or any `locked: true` file.
 5. Work in git so every change is a reviewable diff.
 

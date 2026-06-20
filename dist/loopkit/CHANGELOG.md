@@ -35,3 +35,16 @@ _2026-06-18 (docs): clarified the managed-vs-user split — `sync` overwrites th
 beside them are untouched. Corrected a blanket "sync never touches `knowledge/templates/`" wording in
 `CLAUDE.md` §4, `FOUNDATION.md`, the templates README, and the manifest note that contradicted
 `managed_files`. (Surfaced by brainkit's foreclosure pass.)_
+
+_2026-06-20 (candidate, no version bump): four guardrails folded into the unreleased 0.1.0 candidate,
+adapted from Ethan Ouimet's writing on wiki drift (the X thread "An LLM wiki can't tell you when it's
+wrong" + the eqctrl.io "Karpathy+" system) on top of Karpathy's loop._
+- _**Source-drift check** in `distill`: flag a note whose cited `source:` looks newer, or whose claims
+  no longer match the source — surface it, don't silently rewrite ("two copies of anything will drift")._
+- _**Running `knowledge/log.md` with `Judgment:` lines**: `ingest`/`distill` append one line each ending
+  with the one-sentence *why* — what a future session reuses, not the what (`CLAUDE.md` §8, §13)._
+- _**Two named guardrails around golden** (`CLAUDE.md` §13 + wired into §4/§9): the **completion gate**
+  ("a change isn't done until the change works AND the graph/index reflect it") and **"flag once; encode
+  when it fires twice"** as the explicit bar for writing down a type or pinning golden._
+- _**AskUserQuestion interaction style** (`CLAUDE.md` §14): confirmations and mid-task choices (entity
+  matches, merges, deletes) use the structured prompt with concrete options, not free-text._

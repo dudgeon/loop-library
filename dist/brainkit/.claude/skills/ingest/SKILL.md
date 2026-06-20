@@ -16,8 +16,9 @@ and wired into the graph. Read `CLAUDE.md` first (the contract — §3 notes, §
 2. **Resolve, with the user (§6).** Turn vague references into canonical notes *now*, while the user
    has the context — don't store a vague reference or a silent flag. Vault-first: when a Duo vault is
    present read `duo vault schema` (types/entities/**aliases**); else resolve against existing notes →
-   `golden/` → **ask**. When you resolve a shorthand, **write the alias onto the canonical entity note**
-   (`aliases: [...]`) so next time auto-resolves. Never invent a name you can't verify.
+   `golden/` → **ask with the structured AskUserQuestion prompt** (the reference + candidate notes as
+   options; `CLAUDE.md` §17). When you resolve a shorthand, **write the alias onto the canonical entity
+   note** (`aliases: [...]`) so next time auto-resolves. Never invent a name you can't verify.
 3. **Enrich + preserve raw (§7).** Produce **one** enriched note that represents the source — acronyms
    expanded, entities linked (`the vendor` → `[Acme](./acme.md)`), terms canonical. Keep the verbatim
    original in a `## Raw` section (external-link only if that original is durable and immutable, and

@@ -23,14 +23,21 @@ Keep the graph sharp — the cleanup that stops it from bloating or drifting. Re
      you never write golden yourself);
    - **edges on split notes** — if a note was decomposed, check each child kept its source/attribution
      edge;
-   - flag any `work/` deliverable that has drifted from the notes it cites.
+   - **source drift** — flag a note whose cited `source:` looks newer than the note, or whose claims no
+     longer match the source it came from; surface it for the user, don't silently rewrite (a summary
+     is a *copy* of its source, and two copies drift). Same for any `work/` deliverable that has
+     drifted from the notes it cites.
 3. **Regenerate stamped views** (`CLAUDE.md` §8): any `type: index-view` note is rebuilt from the
    current graph and re-stamped — never hand-edited.
-4. **Get the user's approval before deleting anything.** Apply only what's approved. Prefer tightening
-   over erasing; never delete to hit a size target. **Preserve frontmatter keys you don't recognize**
-   on every rewrite.
+4. **Get the user's approval before deleting anything** — ask with the structured **AskUserQuestion**
+   prompt (the change + a few concrete options, e.g. *merge / retire / keep*), not a free-text question;
+   `CLAUDE.md` §14. Apply only what's approved. Prefer tightening over erasing; never delete to hit a
+   size target. **Preserve frontmatter keys you don't recognize** on every rewrite.
 5. Never touch `knowledge/golden/` or any `locked: true` file. Work in git so every change is a
    reviewable diff.
+6. **Log it.** Append one newest-first line to `knowledge/log.md` for what you changed, ending with a
+   **`Judgment:`** clause — the one-sentence *why* (`CLAUDE.md` §8, §13). A distill pass isn't done
+   until the graph, `index.md`, and this log all reflect the change (the completion gate, §13).
 
 ## Don'ts
 Don't delete without approval. Don't trim golden or locked content. Don't drop a key you didn't write.
