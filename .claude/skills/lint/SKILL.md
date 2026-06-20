@@ -26,6 +26,8 @@ Review what scripts can't:
 - **Taxonomy drift:** `type`/`tags`/`loop_family` values not in `_meta/taxonomy.md`.
 
 ## Close out
-- Fix what's safe; list what needs the human.
+- Fix what's safe; list what needs the human. When a finding needs the human to decide (e.g. a
+  contradiction vs. a newer source — *supersede / keep / reconcile*), ask with the structured
+  **AskUserQuestion** prompt (concrete options), not a free-text question.
 - Append a `lint` entry to `wiki/log.md`: `- lint | <pass scope> — <result>`.
 - Re-run `scripts/conformance.sh` to confirm green.

@@ -37,3 +37,8 @@ Built on **loopkit** v0.1.0 (typed entities, payload-bearing edges, entity resol
 templates, ships-as-a-Duo-vault), which descends from the Karpathy LLM-wiki primitive shipped as
 **karpathy-core**. Designed and hardened by a 50-agent foreclosure pass (1 blocker + 9 majors + 9
 minors, all folded in). See [`DESIGN.md`](DESIGN.md) for the why.
+
+_2026-06-20 (candidate, no version bump): **AskUserQuestion interaction style** (`CLAUDE.md` §17) —
+brainkit's retrieval-grade intake asks the user a lot (entity matches, ambiguous aliases, retire/merge/
+re-parent), so those confirmations now use the structured prompt with concrete options instead of
+free-text. Applied across the kit family._

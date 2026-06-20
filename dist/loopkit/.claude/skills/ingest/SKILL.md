@@ -13,7 +13,9 @@ Fold new material into `knowledge/` as a typed entity, wired into the graph. Rea
    notes so you know the types and definitions already in play.
 2. **Resolve the entities it mentions** (§6) — turn vague references into canonical notes. When a Duo
    vault is present, read `duo vault schema` for types and aliases; otherwise resolve against existing
-   notes, then `golden/`, then ask. Don't invent a more formal name you can't verify.
+   notes, then `golden/`, then ask. When a match is ambiguous, **confirm with the structured
+   AskUserQuestion prompt** (the reference + the candidate notes as options; `CLAUDE.md` §14), not a
+   free-text guess. Don't invent a more formal name you can't verify.
 3. Decide where it belongs. Default: a new one-topic note in `knowledge/`. If it extends an existing
    entity, enrich that note (add to it, add a timeline line) instead of making a near-duplicate.
 4. Write the note with the three-line floor — `summary:`, `type:` (a sensible kind), `source:` — plus
@@ -24,7 +26,9 @@ Fold new material into `knowledge/` as a typed entity, wired into the graph. Rea
    asked), put that in frontmatter next to it. Say in prose what the link means.
 6. If one input decomposes into several notes, **copy the source/attribution edge onto each child** so
    each keeps its own back-reference.
-7. Update `knowledge/index.md`.
+7. Update `knowledge/index.md`, then append one newest-first line to `knowledge/log.md` ending with a
+   **`Judgment:`** clause — the one-sentence *why* (`CLAUDE.md` §8, §13). Ingest isn't done until the
+   note, its edges, the index, and the log all reflect what you filed (the completion gate, §13).
 
 ## Don'ts
 Don't dump raw material verbatim. Don't create near-duplicates. Don't touch `golden/` or locked files.

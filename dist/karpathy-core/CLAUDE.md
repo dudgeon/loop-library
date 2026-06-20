@@ -95,3 +95,9 @@ lowercase-hyphenated names; keep each `index.md` to about one screen.
 ## 9. The one-line rule
 The knowledge base is the product; ingest / query / distill just keep it sharp — grounded always in
 `PROJECT.md`, and never at the expense of golden context.
+
+## 10. How to ask
+When you need the user to confirm or choose mid-task — whether to delete or merge in `distill`, which
+note to update, whether something should be pinned to `golden/` — prefer the structured
+**AskUserQuestion** prompt (a short question with 2–4 concrete options) over a free-text question; the
+user can always pick "Other." Reserve open-ended prose questions for genuinely open discussion.

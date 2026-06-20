@@ -14,7 +14,7 @@ Karpathy's first operation: a source → many compiled pages. The bottleneck is 
 ## Steps
 
 1. **Read** the source fully from `sources/<id>.md` (or the approved `inbox/` file).
-2. **Discuss** the key takeaways with the human; ask what to emphasize. Ingest one source at a time and stay involved unless told to batch.
+2. **Discuss** the key takeaways with the human; ask what to emphasize. Ingest one source at a time and stay involved unless told to batch. When you need a decision (what to emphasize, whether to promote an `inbox/` file, which pages to compile), ask with the structured **AskUserQuestion** prompt (concrete options), not a free-text question.
 3. **Immutable mirror** — ensure `sources/<id>.md` exists (canonical name `<author-or-org>-<year>-<slug>.md`). If you just promoted it from `inbox/`, move it now. **Never edit a mirror after creation.**
 4. **Source concept** — create/update `wiki/sources/<id>.md` with `type: Source`, `resource:` (canonical URL), `raw_mirror: ../sources/<id>.md`, `authors:`, a one-paragraph digest, `# Key points`, `# Notable excerpts` (short verbatim quotes), `# Compiled into`.
 5. **Compile** into `wiki/`: create or update the **Loop**, **Concept**, and **Comparison** pages this source informs. One source typically touches several pages. Each compiled page must declare `type`, `summary:`, `sources:` (link back to `/sources/<id>.md`), `provenance:`, and a `# Citations` section. Tag each claim's basis honestly (extracted vs inferred).

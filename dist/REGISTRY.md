@@ -10,11 +10,12 @@ high confidence** in. Nothing lands here by default.
 lineage, layered from a minimal primitive up. Each is self-contained (its own `CLAUDE.md`, skills,
 `loop.manifest.json`, `scripts/sync.sh`); they're related by heritage, not by dependency.
 
-### karpathy-core — v0.1.0
+### karpathy-core — v0.1.1
 The pure **Karpathy LLM-wiki / OKF primitive**: ingest / query / distill over a plain-markdown
 knowledge base, golden (locked) context with a "pin this" promotion path, and multiple `work/`
 deliverables whose sections can be locked one at a time. Minimal and self-contained — **no
-entity-graph, no Duo machinery**. The floor of the family.
+entity-graph, no Duo machinery**. The floor of the family. (v0.1.1, 2026-06-20: mid-task
+confirmations use the structured AskUserQuestion prompt — behavior-only, contract unchanged.)
 
 - Path: [`dist/karpathy-core/`](karpathy-core/). This is the original kit (shipped 2026-06-15),
   preserved under its proper name when the entity-graph work spun out as `loopkit`.

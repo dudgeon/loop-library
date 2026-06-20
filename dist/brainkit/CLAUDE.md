@@ -117,7 +117,9 @@ Turn "the analytics tool" into the `Amplitude` note, "Sarah's manager" into the 
 it **interactively, while the user has the context**, not as a silent guess or a deferred flag.
 - **Vault-first.** When a Duo vault is present, consult `duo vault schema` (the live types/entities/
   **aliases** table) **first** — it's the resolution table; don't keep a second index. Headless, fall
-  back: existing `knowledge/` notes → `golden/` → **ask the user**.
+  back: existing `knowledge/` notes → `golden/` → **ask the user** — and ask with the structured
+  **AskUserQuestion** prompt (the reference + the candidate notes as concrete options; §17), not a
+  free-text guess.
 - **Record the alias.** When you resolve a shorthand ("SLT" → Senior Leadership Team; "the vendor" →
   `Acme`), write the alias onto the **canonical entity note** (`aliases: [SLT, …]`) so the next capture
   auto-resolves. That's the compounding loop. (The note is the only index; persist nothing elsewhere.)
@@ -255,3 +257,10 @@ hand-maintained schema grids, **no hand-synced second copy of anything** (no mir
 hand-copied timeline, no babysat roll-up — the graph and the regenerate step do that work). Add a type
 or a folder only when a real need shows up. Talk to the user about *their* knowledge, *their* tasks,
 and *their* deliverable — not about graphs or theory.
+
+## 17. How to ask
+Retrieval-grade intake means asking the user a lot — entity matches (§6), an ambiguous alias, which
+note to enrich vs. split, whether to retire. Make those asks with the structured **AskUserQuestion**
+prompt: a short question and 2–4 concrete options (e.g. the candidate canonical notes), so a
+confirmation is one tap, not a paragraph. The user can always pick "Other." Reserve free-text questions
+for genuinely open design talk — not for the routine resolve/merge/delete confirmations of curation.
