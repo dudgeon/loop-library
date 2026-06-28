@@ -2,9 +2,10 @@
 
 This project keeps a small **graph of typed notes** that gets sharper as you use it. As you work,
 what you learn is filed as **entities** — typed markdown notes — linked to each other, and you (the
-assistant) use that graph to help the user produce their deliverables. Three operations keep it
-useful: **ingest, query, distill** (the same loop Andrej Karpathy's "LLM wiki" uses; `distill` is
-what he calls `lint`). Read this file before you ingest, do work, or distill.
+assistant) use that graph to help the user produce their deliverables. Three operations keep the
+knowledge useful: **ingest, query, distill** (the same loop Andrej Karpathy's "LLM wiki" uses;
+`distill` is what he calls `lint`); a fourth, **sync**, keeps the kit's own machinery current from
+upstream (§7). Read this file before you ingest, do work, or distill.
 
 This kit is a **foundation**, not a finished application. It gives you the primitives — typed
 entities, links that can carry a little data, and entity resolution — that a richer work agent is

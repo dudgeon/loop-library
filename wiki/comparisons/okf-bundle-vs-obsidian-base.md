@@ -5,7 +5,7 @@ description: An OKF "bundle" and an Obsidian ".base" are not the same kind of th
 tags: [okf, obsidian, knowledge-base, frontmatter, view, provenance]
 timestamp: 2026-06-28T00:00:00Z
 summary: An OKF bundle is the corpus/container (bundle ≈ Obsidian vault, concept ≈ note, frontmatter ≈ the YAML block); an Obsidian `.base` is a layer below it — a YAML-encoded saved view/query over notes' frontmatter (≈ a SQL VIEW), holding no notes of its own. This repo adopted the bundle pattern (wiki/ is an OKF bundle; dist/ kits apply the self-describing-bundle idea to code) and ships nothing like a `.base`; its real divergences from OKF are deliberate extensions (provenance, typed edges, strict conformance).
-provenance: extracted
+provenance: inferred
 confidence: 0.75
 sources: [/sources/obsidian-2026-bases.md, /sources/google-2026-okf-spec.md, /sources/karpathy-2026-llm-wiki.md]
 related: [/comparisons/duo-vault-vs-wiki.md, /comparisons/wiki-vs-context-graph.md, /concepts/drift.md]
@@ -82,10 +82,13 @@ The one place an Obsidian convention would *break* OKF here is `[[wikilinks]]` �
 explicitly rewrite to relative-markdown on the way in.
 
 ## Limits
-`provenance: extracted`, but with a capture caveat: Obsidian's help pages 403 this environment's
-fetcher, so the [Bases source](/sources/obsidian-2026-bases.md) was built from official text surfaced
-via search + the 1.9.0 changelog. The layer-mapping argument does not depend on exact wording; the
-verbatim quotes do, and are flagged as such.
+`provenance: inferred`: the verbatim quotes are extracted from the cited sources, but the page's
+load-bearing claim — the **layer mapping** (bundle ≈ vault, `.base` ≈ a SQL `VIEW`) — is synthesis
+across the OKF spec and the Obsidian source; neither states the correspondence, so the framework is
+reasoning, not extraction. Plus a capture caveat: Obsidian's help pages 403 this environment's fetcher,
+so the [Bases source](/sources/obsidian-2026-bases.md) was built from official text surfaced via search
++ the 1.9.0 changelog. The mapping argument does not depend on exact wording; the verbatim quotes do,
+and are flagged as such.
 
 ## Citations
 [1] [Obsidian Bases — the `.base` feature](/sources/obsidian-2026-bases.md) — `.base` is valid YAML

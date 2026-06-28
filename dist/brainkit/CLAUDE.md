@@ -8,9 +8,9 @@
 This project is a **second brain**: a small **graph of typed notes** that gets sharper as you use it,
 in service of a deliverable. As you work, what you learn is filed as **entities** — typed markdown
 notes, linked to each other — and you (the assistant) use that graph to help the user produce their
-**work product(s)**. Three operations keep it useful: **ingest, query, distill** (Andrej Karpathy's
-"LLM wiki" loop; `distill` is what he calls `lint`). Read this file before you ingest, do work, or
-distill.
+**work product(s)**. Three operations keep the knowledge useful: **ingest, query, distill** (Andrej
+Karpathy's "LLM wiki" loop; `distill` is what he calls `lint`); a fourth, **sync**, keeps the kit's own
+machinery current from upstream (§11). Read this file before you ingest, do work, or distill.
 
 **North star:** *recursive loops that build knowledge to improve one or more declared work products.*
 Knowledge is never an end in itself — it accrues to make a deliverable better, and each pass makes the

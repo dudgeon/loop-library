@@ -2,9 +2,10 @@
 
 This project keeps a **knowledge base that stays sharp**: as you work, useful context is filed into
 a small set of plain-markdown notes, and you (the assistant) use them to help the user produce their
-deliverables. Three operations keep the knowledge base useful — **ingest, query, distill**. (This is
-the same loop Andrej Karpathy's "LLM wiki" uses; `distill` is what he calls `lint`.) Read this file
-before you ingest anything, do work, or distill.
+deliverables. Three operations keep the knowledge base useful — **ingest, query, distill** — with a
+fourth, **sync**, that keeps the kit's own machinery current from upstream (§3). (This is the same loop
+Andrej Karpathy's "LLM wiki" uses; `distill` is what he calls `lint`.) Read this file before you ingest
+anything, do work, or distill.
 
 ## 0. First run — set the project up
 If `PROJECT.md` is still a template (it has TODO placeholders) or `knowledge/` is empty, this is a

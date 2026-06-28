@@ -14,7 +14,7 @@ model for an LLM-maintained kit.
   clobbering, local tweaks**. Non-deterministic and suggest-only, like `distill`.
 - **`loop.manifest.json`** keeps `managed_files`, reframed as "machinery the `sync` skill compares
   against upstream and may offer to update"; `scripts/sync.sh` dropped, `.claude/skills/sync/SKILL.md`
-  added. Docs updated (`CLAUDE.md` §3/§7, `README.md`, `work/README.md`). Content contract unchanged —
+  added. Docs updated (`CLAUDE.md` §3/§6, `README.md`, `work/README.md`). Content contract unchanged —
   sync still touches nothing outside `managed_files`.
 
 ## 0.1.1 — 2026-06-20

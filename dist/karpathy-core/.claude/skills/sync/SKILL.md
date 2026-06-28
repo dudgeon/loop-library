@@ -46,9 +46,13 @@ work in git.
 5. **Apply only what's approved**, in git so every change is a reviewable diff. For a **both-changed**
    file, **merge the upstream improvement into the local tweak** rather than overwriting — preserve the
    user's intent. If the user adopted enough that the kit now tracks a newer upstream version, note it
-   (and update `loop.manifest.json`'s `version`/origin only with their OK).
+   — but treat `loop.manifest.json`'s `origin` and `version` as **the user's own fields**: never
+   replace their real `origin` with upstream's `TODO:` placeholder, even when they adopt other manifest
+   changes.
 
 ## Don'ts
 Don't bulk-overwrite. Don't touch anything outside `managed_files`. Don't clobber a file the user
 tweaked on purpose — merge or ask. Don't relay raw diffs without judgment. Don't pull a change just
 because it's newer; pull it because it's better *here*. Don't point `origin` at a sibling kit.
+**Don't overwrite the user's `origin` or `version` in `loop.manifest.json`** — those fields are theirs
+even though the file is machinery; offer only the genuine upstream machinery changes around them.
