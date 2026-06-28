@@ -2,6 +2,21 @@
 
 All notable changes to loopkit. This project follows semantic versioning.
 
+## 0.2.0 — 2026-06-28 (candidate)
+**Sync is now a curation skill, not a deterministic script.** The old `scripts/sync.sh` overwrote every
+`managed_files` path from origin, which nuked intentional local tweaks to machinery files — the wrong
+model for an LLM-maintained kit.
+
+- **Removed `scripts/sync.sh`** (and the empty `scripts/` dir).
+- **Added the `sync` skill** (`.claude/skills/sync/SKILL.md`) — a fourth operation alongside
+  ingest/query/distill: read what changed in canonical loopkit, reason about which upstream improvements
+  are worth adopting *here*, and pull in only what the user approves — **merging, never clobbering, local
+  tweaks**. Non-deterministic and suggest-only, like `distill`.
+- **`loop.manifest.json`** keeps `managed_files`, reframed as "machinery the `sync` skill compares
+  against upstream and may offer to update"; `scripts/sync.sh` dropped, `.claude/skills/sync/SKILL.md`
+  added. Docs updated (`CLAUDE.md` §7/§11, `README.md`, `work/README.md`). Content contract unchanged —
+  sync still touches nothing outside `managed_files`.
+
 ## 0.1.0 — 2026-06-16 (candidate)
 **First release — the entity-graph foundation.** loopkit is the typed-entity graph a richer work
 agent is built *on*, not *in*. It descends from the Karpathy LLM-wiki loop (shipped standalone as

@@ -33,6 +33,14 @@ breakers (task mirroring, mirror-sync, publishing, domain-strategy layer).
 (spec Q1–Q6), foreclosure-tested, **then** very-high confidence + explicit go/no-go before any `dist/`
 ship (§8). Doing T8 (ingest WAH) first would move the spec's provenance from `inferred` → `extracted`.
 **Open:** Q1 task-policy default (rec: externalized), Q5 name (`brainkit`), Q6 WAH-ingest-first.
+**Progress (2026-06-28) — first real-use signal:** maintainer tested brainkit on a real work
+implementation. Verdict: the kit is "fine" but its **scripted sync is heavy-handed** — deterministic
+overwrite "nukes local tweaks that are expected." Acted on it (maintainer-authorized §8 go/no-go, all
+three kits): **removed `scripts/sync.sh`**, **added a `sync` skill** (agent-run curation — read what
+changed upstream → reason about value → curate with the user → merge-don't-clobber), reframed
+`managed_files`, bumped karpathy-core/loopkit/brainkit to **v0.2.0**. Finding filed as
+[`/concepts/kit-sync.md`](../wiki/concepts/kit-sync.md) (provenance: extracted). n=1 evidence: raises
+confidence the core kit works and that the sync *mechanism* needed this fix.
 
 ## T1 — Define the loop primitives
 **Goal:** prototype the primitive shape at the root (alpha — this `loop/` folder), validate it,

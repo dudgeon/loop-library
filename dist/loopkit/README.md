@@ -77,4 +77,6 @@ loop; we just call `lint` **`distill`**, because that's what it does for you. Wo
 from this — research that compounds, a document built from accumulating evidence — is "loopable,"
 and loopkit is a way to make that kind of work easy to set up and keep running.
 
-To update the kit's machinery later without touching your content, run `scripts/sync.sh`.
+To pull upstream improvements into the kit's machinery later, ask the assistant to **sync** — it reads
+what's changed in canonical loopkit and curates the compelling changes *with* you, selectively, never
+clobbering the tweaks you've made on purpose.

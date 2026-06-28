@@ -2,6 +2,25 @@
 
 All notable changes to brainkit. This project follows semantic versioning.
 
+## 0.2.0 — 2026-06-28 (candidate)
+**Sync is now a curation skill, not a deterministic script.** Real use surfaced that the old
+`scripts/sync.sh` — which overwrote every `managed_files` path from origin — *nuked intentional local
+tweaks* to managed files (a tweaked `CLAUDE.md`, an adjusted skill). That's the wrong model for an
+LLM-maintained kit.
+
+- **Removed `scripts/sync.sh`** (and the empty `scripts/` dir). Updating the kit is no longer a
+  bulk-overwrite.
+- **Added the `sync` skill** (`.claude/skills/sync/SKILL.md`) — a fourth operation alongside
+  ingest/query/distill. The assistant reads what changed in canonical brainkit, **reasons about which
+  upstream improvements are worth adopting here**, and pulls in only what you approve — **merging, never
+  clobbering, your local tweaks**. Non-deterministic and suggest-only, like `distill`.
+- **`loop.manifest.json`** keeps `managed_files`, but its meaning shifts from "paths `sync.sh`
+  overwrites" to "machinery files the `sync` skill *compares against upstream and may offer to update*."
+  `scripts/sync.sh` dropped from the list; `.claude/skills/sync/SKILL.md` added.
+- Docs updated throughout (`CLAUDE.md` §11/§15 + header, `README.md`, `work/README.md`) to describe
+  curate-don't-overwrite. **Contract for your content is unchanged** — sync still touches nothing
+  outside `managed_files`.
+
 ## 0.1.0 — 2026-06-18 (candidate)
 **First release — a "second brain" built on loopkit.** brainkit is the application layer on loopkit's
 entity-graph foundation (see [`FOUNDATION.md`](FOUNDATION.md)): it re-authors the three

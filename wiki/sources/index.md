@@ -11,3 +11,4 @@ Digests of ingested sources (`type: Source`). Each links to its immutable raw mi
 * [brainkit spec](/sources/brainkit-spec.md) — the brainkit design-of-record; living copy at `_meta/SPEC-brainkit.md`, shipped (stripped) as the kit's `DESIGN.md`.
 * [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md) — practitioner thread (part vendor advocacy) on wiki drift and a live "context graph" as the proposed complement.
 * [Ouimet — eqctrl.io "Karpathy+" system](/sources/ouimet-2026-eqctrl-karpathy-plus.md) — a full file-based persistent-memory architecture: three layers, the boundary rule, defense in depth, the snapshot problem, and a human-gated agent fleet.
+* [Obsidian Bases — the `.base` feature](/sources/obsidian-2026-bases.md) — a core plugin (Obsidian 1.9, 2026) whose `.base` file is a YAML view/query over note frontmatter; the data stays in the notes. The view layer, not a corpus/container.

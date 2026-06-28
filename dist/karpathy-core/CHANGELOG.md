@@ -2,6 +2,21 @@
 
 All notable changes to karpathy-core. This project follows semantic versioning.
 
+## 0.2.0 — 2026-06-28
+**Sync is now a curation skill, not a deterministic script.** The old `scripts/sync.sh` overwrote every
+`managed_files` path from origin, which nuked intentional local tweaks to machinery files — the wrong
+model for an LLM-maintained kit.
+
+- **Removed `scripts/sync.sh`** (and the empty `scripts/` dir).
+- **Added the `sync` skill** (`.claude/skills/sync/SKILL.md`) — a fourth operation alongside
+  ingest/query/distill: read what changed in canonical karpathy-core, reason about which upstream
+  improvements are worth adopting *here*, and pull in only what the user approves — **merging, never
+  clobbering, local tweaks**. Non-deterministic and suggest-only, like `distill`.
+- **`loop.manifest.json`** keeps `managed_files`, reframed as "machinery the `sync` skill compares
+  against upstream and may offer to update"; `scripts/sync.sh` dropped, `.claude/skills/sync/SKILL.md`
+  added. Docs updated (`CLAUDE.md` §3/§6, `README.md`, `work/README.md`). Content contract unchanged —
+  sync still touches nothing outside `managed_files`.
+
 ## 0.1.1 — 2026-06-20
 - **Interaction style:** mid-task confirmations and choices (delete/merge in `distill`, where a note
   belongs, pinning to `golden/`) now use the structured **AskUserQuestion** prompt with concrete

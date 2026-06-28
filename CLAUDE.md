@@ -24,9 +24,9 @@ This repo is a **hybrid** of two ideas:
 1. **Research loop (`wiki/`, Purpose 2)** — this OKF bundle, maintained by `ingest → query →
    lint`, accumulating the state of the art in loop construction and recursive improvement.
 2. **Loop kits (`dist/`, Purpose 1)** — vendorable, self-syncing prototypes that let any task
-   *begin by defining a loop, then running it*. Each kit carries `loop.manifest.json` +
-   `scripts/sync.sh` (managed machinery updates; user content preserved). See
-   [`dist/REGISTRY.md`](dist/REGISTRY.md).
+   *begin by defining a loop, then running it*. Each kit carries `loop.manifest.json` + a `sync` skill
+   (managed-machinery updates curated by an agent; user content and local tweaks preserved). See
+   [`dist/REGISTRY.md`](dist/REGISTRY.md) and [`/concepts/kit-sync.md`](wiki/concepts/kit-sync.md).
 
 Research improves the kits; vendored kits throw off usage that becomes new research sources.
 Designs and candidate patterns are developed and recorded in the wiki **first** (hedged with
@@ -228,7 +228,7 @@ happen in `wiki/` (as hedged hypotheses) and in the task register — not in `di
 1. **Validated**, not notional — grounded in cited sources and/or real use, recorded in `wiki/`.
 2. **Confidence: very-high** — tracked on the pattern's task in the parent loop.
 3. **Deliberate human go/no-go** — an explicit decision, never a side effect of building.
-4. **Shippable** — semver + CHANGELOG + `loop.manifest.json` + `scripts/sync.sh` + README, with
+4. **Shippable** — semver + CHANGELOG + `loop.manifest.json` + a `sync` skill + README, with
    the managed-vs-user file split.
 
 **Hard rules:**

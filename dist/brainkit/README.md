@@ -89,4 +89,6 @@ hand-rolled predecessor (a work-agent harness); brainkit keeps its good ideas an
 hand-maintained machinery a typed-entity graph makes unnecessary. The *why* and the seam are in
 [`DESIGN.md`](DESIGN.md); the foundation contract is in [`FOUNDATION.md`](FOUNDATION.md).
 
-To update the kit's machinery later without touching your content, run `scripts/sync.sh`.
+To pull upstream improvements into the kit's machinery later, ask the assistant to **sync** — it reads
+what's changed in canonical brainkit and curates the compelling changes *with* you, selectively, never
+clobbering the tweaks you've made on purpose.

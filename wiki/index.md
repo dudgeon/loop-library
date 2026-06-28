@@ -27,6 +27,7 @@ resolved from this `wiki/` directory.
 * [Defense in depth](/concepts/defense-in-depth.md) — stacked cheap nets + a completion gate; enforce mechanically or loudly, never politely.
 * [Loopkit on Duo](/concepts/loopkit-on-duo.md) — design (unvalidated, not shipped): progressive enhancement by an optional host.
 * [brainkit](/concepts/brainkit.md) — candidate (built in `dist/`, not yet validated): the WAH application layer rebuilt as policy on loopkit.
+* [Kit sync as curation, not overwrite](/concepts/kit-sync.md) — real-use finding: a vendored kit refreshes its machinery by agent curation (pull only what you approve, merge local tweaks), not a deterministic overwrite script.
 
 ## Comparisons
 * [Comparisons index](/comparisons/index.md) — contrasts between loops/patterns.
@@ -34,6 +35,7 @@ resolved from this `wiki/` directory.
 * [Duo Note Vault ↔ the wiki/loopkit construct](/comparisons/duo-vault-vs-wiki.md) — same OKF substrate, three operating models; the vault as a candidate runtime.
 * [WAH ↔ Duo-vault entity structure](/comparisons/wah-vs-duo-vault.md) — hand-rolled vs native; the case for building the next harness on the graph.
 * [Codified wiki ↔ live context graph](/comparisons/wiki-vs-context-graph.md) — compiled-and-detached vs live-wired-to-source; the argued answer is both, split by knowledge type.
+* [OKF bundle ↔ Obsidian Bases (.base)](/comparisons/okf-bundle-vs-obsidian-base.md) — the corpus/container layer (bundle ≈ vault) vs the view-over-frontmatter layer (`.base` ≈ a SQL VIEW); where this repo's OKF usage diverges.
 
 ## Sources
 * [Sources index](/sources/index.md) — digests of ingested sources.
@@ -44,3 +46,4 @@ resolved from this `wiki/` directory.
 * [brainkit spec](/sources/brainkit-spec.md) — the brainkit design-of-record (`_meta/SPEC-brainkit.md`).
 * [Ouimet — "An LLM wiki can't tell you when it's wrong"](/sources/ouimet-2026-wiki-graph-drift.md) — wiki drift and the live "context graph" complement (part vendor advocacy).
 * [Ouimet — eqctrl.io "Karpathy+" system](/sources/ouimet-2026-eqctrl-karpathy-plus.md) — a full file-based persistent-memory architecture (boundary rule, defense in depth, snapshot problem, human-gated fleet).
+* [Obsidian Bases — the `.base` feature](/sources/obsidian-2026-bases.md) — the `.base` YAML view/query over note frontmatter; the data stays in the notes.
