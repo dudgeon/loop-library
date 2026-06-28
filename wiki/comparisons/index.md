@@ -12,6 +12,10 @@ Pages that contrast two or more loops or patterns.
 * [Codified wiki ↔ live context graph](/comparisons/wiki-vs-context-graph.md) — a compiled markdown
   wiki (owned, cheap, but [drifts](/concepts/drift.md)) vs a live-wired graph (cited from source,
   cross-source, but hosted/vendor-pitched); the argued answer is both, split by knowledge type.
+* [OKF bundle ↔ Obsidian Bases (.base)](/comparisons/okf-bundle-vs-obsidian-base.md) — different
+  layers, not rivals: a bundle is the corpus/container (bundle ≈ vault, concept ≈ note), a `.base` is a
+  saved view/query over frontmatter (≈ a SQL VIEW); plus where this repo's OKF usage diverges from
+  Obsidian (it adopted the bundle pattern; its real departures are deliberate extensions).
 
 More comparisons are filed back here from a [`/query`](/loops/automation/ingest-query-lint.md) when
 an answer contrasts loops worth keeping (e.g. ReAct vs Reflexion vs Plan-and-Execute).
