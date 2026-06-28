@@ -10,5 +10,6 @@ This folder holds what you're producing. A few things the assistant follows:
   finalize sections one at a time.
 - `query` drafts and advances the **unlocked** parts from your `knowledge/` notes, with citations.
 - `distill` flags an unlocked deliverable that has drifted from the notes it cites.
-- `templates/` holds starting scaffolds. They're part of the kit (updated by `sync.sh`), so copy a
-  template into a new file to start a deliverable rather than editing the template in place.
+- `templates/` holds starting scaffolds. They're part of the kit's machinery (the **sync** skill may
+  offer upstream updates to them), so copy a template into a new file to start a deliverable rather than
+  editing the template in place.

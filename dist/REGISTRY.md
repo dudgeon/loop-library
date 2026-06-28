@@ -8,9 +8,9 @@ high confidence** in. Nothing lands here by default.
 
 `dist/` holds a **family** of vendorable kits that share the Karpathy ingest / query / distill
 lineage, layered from a minimal primitive up. Each is self-contained (its own `CLAUDE.md`, skills,
-`loop.manifest.json`, `scripts/sync.sh`); they're related by heritage, not by dependency.
+`loop.manifest.json`, a `sync` skill); they're related by heritage, not by dependency.
 
-### karpathy-core — v0.1.1
+### karpathy-core — v0.2.0
 The pure **Karpathy LLM-wiki / OKF primitive**: ingest / query / distill over a plain-markdown
 knowledge base, golden (locked) context with a "pin this" promotion path, and multiple `work/`
 deliverables whose sections can be locked one at a time. Minimal and self-contained — **no
@@ -21,7 +21,7 @@ confirmations use the structured AskUserQuestion prompt — behavior-only, contr
   preserved under its proper name when the entity-graph work spun out as `loopkit`.
 - Status: **stable primitive, shipped for use.** Known v0 limits are in its CHANGELOG.
 
-### loopkit — v0.1.0 (CANDIDATE, 2026-06-16 · branch `claude/loopkit-entity-foundation`)
+### loopkit — v0.2.0 (CANDIDATE, 2026-06-16 · branch `claude/loopkit-entity-foundation`)
 The **entity-graph foundation**, built on the same loop: typed `type:` nodes, payload-bearing
 relative-markdown edges, preserve-unknown-keys, entity resolution in `ingest` + `distill`, types
 written down at `knowledge/templates/`, and **ships-as-a-Duo-vault** (the marker rides the starter
@@ -34,7 +34,7 @@ written down at `knowledge/templates/`, and **ships-as-a-Duo-vault** (the marker
   fixed). **Not yet validated by real use** → a candidate on its branch/PR; merges on a deliberate call.
 - Lineage: descends from `karpathy-core`; an earlier prose-vocabulary attempt (PR #6) was discarded.
 
-### brainkit — v0.1.0 (CANDIDATE, 2026-06-18 · branch `claude/elegant-mayer-f52497`)
+### brainkit — v0.2.0 (CANDIDATE, 2026-06-18 · branch `claude/elegant-mayer-f52497`)
 The **work-agent-harness application layer**, rebuilt as **policy on loopkit** — re-authored
 ingest/query/distill + starter entity types + a first-run interview, with loopkit's contract
 **unchanged** (no plumbing change). Core: **retrieval-grade ingest** (interactive entity/alias
@@ -64,7 +64,7 @@ A pattern may be promoted from the research loop (`wiki/`) into `dist/` only whe
 2. **Confidence: very-high** — tracked on its task in the parent loop (see the repo's
    task register, once established).
 3. **Deliberate human review** — an explicit go/no-go, not a side effect of building something.
-4. **Shippable** — semver + CHANGELOG + `loop.manifest.json` + `scripts/sync.sh`, README, and
+4. **Shippable** — semver + CHANGELOG + `loop.manifest.json` + a `sync` skill, README, and
    the managed-vs-user file split below.
 
 This gate is the thing whose *absence* let a notional idea ship prematurely. It now exists.
@@ -75,16 +75,23 @@ This gate is the thing whose *absence* let a notional idea ship prematurely. It 
   `dist/` on 2026-06-15** as premature; it was a notional idea, not a validated pattern. It is
   now an open research question in the parent loop. It ships only if it clears the bar above.
 
-## Sync mechanism (the design we'll use when we ship)
+## Sync mechanism — curation, not overwrite (changed 2026-06-28)
 
-Each shipped kit will carry a self-describing `loop.manifest.json` splitting files into:
+Each shipped kit carries a self-describing `loop.manifest.json` whose `managed_files` names the
+machinery upstream owns (skills, docs, templates), separating it from the vendor's content
+(`PROJECT.md`, `knowledge/`, `work/`).
 
-- **`managed_files`** — the loop machinery (skill, templates, scripts, docs). `scripts/sync.sh`
-  overwrites these from origin.
-- **`user_files`** — the vendor's content (their goal, requirements, logs, runs). `sync.sh`
-  never touches these.
+**Sync is an agent operation, not a script.** The original design shipped a deterministic
+`scripts/sync.sh` that *overwrote* every `managed_files` path from origin. Real use (a brainkit work
+implementation) found this **heavy-handed: it nuked intentional local tweaks** to managed files. The
+fix inverts the model: sync is now a **`sync` skill** — the assistant reads what changed in canonical
+upstream, reasons about which improvements are worth adopting *here*, and pulls in only what the user
+approves, **merging rather than clobbering local edits**. Non-deterministic and suggest-only, like
+`distill`. The user "runs sync to learn what changed upstream, then selectively pulls in the compelling
+improvements." `scripts/sync.sh` was removed from all three kits (`karpathy-core` 0.2.0, `loopkit`
+0.2.0, `brainkit` 0.2.0).
 
-This is the OKF "self-describing bundle" idea applied to a code artifact: a vendored copy knows
-where it came from and updates only its engine. **Realized in `loopkit` v0.1.0** —
-`dist/loopkit/loop.manifest.json` lists `managed_files`; `scripts/sync.sh` overwrites only those
-and never touches `PROJECT.md`, `knowledge/`, or the user's `work/` deliverables.
+`managed_files` is still the OKF "self-describing bundle" idea applied to a code artifact — a vendored
+copy knows where it came from and what its engine is — but the engine is now *refreshed by judgment*,
+not bulk-replaced. The rationale and the research finding are in
+[`/concepts/kit-sync.md`](../wiki/concepts/kit-sync.md).

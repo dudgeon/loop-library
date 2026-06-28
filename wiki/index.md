@@ -27,6 +27,7 @@ resolved from this `wiki/` directory.
 * [Defense in depth](/concepts/defense-in-depth.md) — stacked cheap nets + a completion gate; enforce mechanically or loudly, never politely.
 * [Loopkit on Duo](/concepts/loopkit-on-duo.md) — design (unvalidated, not shipped): progressive enhancement by an optional host.
 * [brainkit](/concepts/brainkit.md) — candidate (built in `dist/`, not yet validated): the WAH application layer rebuilt as policy on loopkit.
+* [Kit sync as curation, not overwrite](/concepts/kit-sync.md) — real-use finding: a vendored kit refreshes its machinery by agent curation (pull only what you approve, merge local tweaks), not a deterministic overwrite script.
 
 ## Comparisons
 * [Comparisons index](/comparisons/index.md) — contrasts between loops/patterns.

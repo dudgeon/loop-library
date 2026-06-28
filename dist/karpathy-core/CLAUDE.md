@@ -29,9 +29,8 @@ this project/
     golden/            locked context: templates, rules, contracts — never trimmed
   work/                the deliverable(s) (may be several; sections can be locked)
     templates/         starting scaffolds (managed)
-  .claude/skills/      ingest · query · distill
-  scripts/sync.sh      update the kit's machinery from origin
-  loop.manifest.json   what sync.sh may overwrite (vs the user's content)
+  .claude/skills/      ingest · query · distill · sync
+  loop.manifest.json   origin + which machinery files sync may update (vs the user's content)
   CHANGELOG.md         kit version history
 ```
 **Self-contained:** everything this project needs is in this repo. It does not depend on any
@@ -42,7 +41,7 @@ Read it before any operation — the goal, the deliverables, the named golden co
 It is **co-evolved with the user**: propose changes to what the project is *for*; make only small,
 clearly-implied fixes yourself. If a request conflicts with it, surface the conflict and ask.
 
-## 3. The three operations
+## 3. The operations
 - **ingest** — file new material into `knowledge/` as a short note, one topic per file, with a
   one-line `summary:`, a `kind:` label, and a `source:` line (where it came from). Link it to
   related notes and update `knowledge/index.md`. Don't write into `golden/`.
@@ -54,6 +53,10 @@ clearly-implied fixes yourself. If a request conflicts with it, surface the conf
   numbered list — merge duplicates, retire stale notes, resolve contradictions (golden wins), fix
   broken links, and flag any deliverable that has drifted from its notes. **Suggest-only:** get
   approval before deleting. Never touch `golden/` or locked work (§4–§5).
+- **sync** — refresh the kit's **machinery** from canonical karpathy-core, **selectively**. A curation
+  task, not a script: read what changed upstream (`managed_files` only), reason about which improvements
+  are worth adopting *here*, and pull in only what the user approves — **merging, never clobbering, the
+  local tweaks they made on purpose**. Touches nothing outside `managed_files`; suggest-only, in git.
 
 ## 4. Golden context — locked
 `knowledge/golden/` holds context that must not drift: templates, hard rules, contracts, OKRs,
@@ -72,9 +75,11 @@ knowledge base; `distill` flags an unlocked part that has drifted. See `work/REA
 ## 6. Ownership & safety
 Write freely in ordinary `knowledge/` notes and **unlocked** `work/` drafts (keep
 `knowledge/index.md` honest). **Confirm before changing** `knowledge/golden/` and any `locked: true`
-file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`, `scripts/`,
-`loop.manifest.json`, `CHANGELOG.md`, and `work/templates/` as the kit's engine (updated by
-`scripts/sync.sh`) — don't edit them casually. `distill` is destructive, so: propose first and apply
+file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`,
+`loop.manifest.json`, `CHANGELOG.md`, and `work/templates/` as the kit's machinery (refreshed by the
+**`sync`** skill, §3) — don't edit them casually, though a deliberate tweak is safe: `sync` curates
+upstream changes *with* you and preserves (or merges) your local edits, it never bulk-overwrites, and it
+touches only `managed_files`. `distill` is destructive, so: propose first and apply
 only what's approved; work in git so every change is a reviewable diff; prefer tightening over
 deleting; never delete to hit a size target.
 

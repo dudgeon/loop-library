@@ -45,9 +45,8 @@ this project/
     golden/            locked context — definitions, rules, contracts
   work/                the deliverable(s) (may be several; sections can be locked)
     templates/         deliverable scaffolds (managed) — NOT entity types
-  .claude/skills/      ingest · query · distill
-  scripts/sync.sh      update the kit's machinery from origin
-  loop.manifest.json   what sync.sh may overwrite (vs the user's content)
+  .claude/skills/      ingest · query · distill · sync
+  loop.manifest.json   origin + which machinery files sync may update (vs the user's content)
   CHANGELOG.md         kit version history
 ```
 **Self-contained:** everything this project needs is in this repo. It doesn't depend on any outside
@@ -118,7 +117,7 @@ this **at ingest and again at distill** — at capture and at cleanup — not ju
 - **Prefer a vague-but-correct name over a confident-but-invented one.** Never upgrade a name you
   can't verify. If you can't resolve it, keep what you have and flag it.
 
-## 7. The three operations
+## 7. The operations
 - **ingest** — file new material as a typed entity note (§3): pick its `type:`, **resolve the entities
   it mentions** (§6), link it to related notes with rel-md edges (§5), and update `knowledge/index.md`.
   If it extends an existing entity, enrich that note instead of making a near-duplicate. Don't write
@@ -133,6 +132,10 @@ this **at ingest and again at distill** — at capture and at cleanup — not ju
   rewrite any stray `[[wikilink]]` to rel-md, **resolve entities** and flag a `type:` that drifts from
   a written-down type (§4), and regenerate any stamped view (§8). **Suggest-only:** get approval before
   deleting. Never touch `golden/` or locked work (§9–§10). You may *read* `golden/` for context.
+- **sync** — refresh the kit's **machinery** from canonical loopkit, **selectively**. A curation task,
+  not a script: read what changed upstream (`managed_files` only), reason about which improvements are
+  worth adopting *here*, and pull in only what the user approves — **merging, never clobbering, the
+  local tweaks they made on purpose**. Touches nothing outside `managed_files`; suggest-only, in git.
 
 ## 8. Derived views are regenerated, never hand-cached
 A roll-up — a map of people, a list of notes behind on a template — is its own note with
@@ -160,11 +163,13 @@ you then treat it like golden — no rewrites without asking. `query` advances t
 ## 11. Ownership & safety
 Write freely in ordinary `knowledge/` notes and **unlocked** `work/` drafts (keep `knowledge/index.md`
 honest, and preserve keys you didn't write — §3). **Confirm before changing** `knowledge/golden/` and
-any `locked: true` file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`, `scripts/`,
-`loop.manifest.json`, `CHANGELOG.md`, and `work/templates/` as the kit's engine (updated by
-`scripts/sync.sh`) — don't edit them casually. `sync.sh` overwrites only the managed files and deletes
-nothing else, so your notes, your `golden/`, and your `work/` are safe. `distill` is destructive:
-propose first, apply only what's approved, work in git, prefer tightening over deleting.
+any `locked: true` file; **propose** changes to `PROJECT.md`. Treat `.claude/skills/`,
+`loop.manifest.json`, `CHANGELOG.md`, and `work/templates/` as the kit's machinery (refreshed by the
+**`sync`** skill, §7) — don't edit them casually, though a deliberate tweak is safe: `sync` curates
+upstream changes *with* you and preserves (or merges) your local edits, it never bulk-overwrites, and it
+touches only `managed_files`, so your notes, your `golden/`, and your `work/` stay out of scope.
+`distill` is destructive: propose first, apply only what's approved, work in git, prefer tightening over
+deleting.
 
 ## 12. Keep it light — and keep it a foundation
 Use only what the platform gives you: skills, this `CLAUDE.md`, plain files. No databases, no

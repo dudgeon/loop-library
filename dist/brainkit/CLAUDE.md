@@ -1,7 +1,9 @@
 # CLAUDE.md — how this project works
 
-> **Editing this file?** It's managed: `scripts/sync.sh` overwrites it from origin. Put durable
-> customization in `PROJECT.md` or `knowledge/templates/` (both yours) — never as a local edit here.
+> **Editing this file?** It's machinery: the `sync` skill may *offer* you an upstream version of it.
+> Local edits here are safe — sync curates with your approval and preserves (or merges) your tweaks,
+> it never bulk-overwrites — but durable customization still belongs in `PROJECT.md` or
+> `knowledge/templates/` (both yours), where it's unambiguously yours.
 
 This project is a **second brain**: a small **graph of typed notes** that gets sharper as you use it,
 in service of a deliverable. As you work, what you learn is filed as **entities** — typed markdown
@@ -60,9 +62,8 @@ this project/
     golden/            locked context — definitions, rules, contracts
   work/                the deliverable(s) (may be several; sections can be locked)
     templates/         deliverable scaffolds (managed) — NOT entity types
-  .claude/skills/      ingest · query · distill
-  scripts/sync.sh      update the kit's machinery from origin
-  loop.manifest.json   what sync.sh may overwrite (vs your content)
+  .claude/skills/      ingest · query · distill · sync
+  loop.manifest.json   origin + which machinery files sync may update (vs your content)
   CHANGELOG.md         kit version history
 ```
 **Self-contained:** everything this project needs is in this repo. No outside service, wiki, or parent
@@ -205,7 +206,7 @@ This is how raw material becomes deliverable-grade knowledge.
 - **Reading-queue view.** "What's unprocessed?" is a regenerated `type: index-view` over source status
   (§12) — `distill` rebuilds it, `query` reads it.
 
-## 11. The three operations
+## 11. The operations
 - **ingest** — capture new material as a typed entity (§3): **resolve** what it mentions (§6),
   **enrich** it and preserve the raw (§7), **link** it (§5), **append** to any touched entity's
   timeline (§8), **extract** reusable knowledge and tasks (§7, §9), set the right `status:`, and update
@@ -220,6 +221,10 @@ This is how raw material becomes deliverable-grade knowledge.
   `[[wikilink]]`, **resolve entities** (§6), flag `type:` drift (§4), **re-derive timelines** and
   **regenerate index-views** (§8, §12), and flag a `work/` deliverable that has drifted. **Suggest-only**
   — get approval before deleting; preserve unknown keys; never touch `golden/` or locked work.
+- **sync** — refresh the kit's **machinery** from canonical brainkit, **selectively**. A curation task,
+  not a script: read what changed upstream (`managed_files` only), reason about which improvements are
+  worth adopting *here*, and pull in only what you approve — **merging, never clobbering, the local
+  tweaks you made on purpose**. Touches nothing outside `managed_files`; suggest-only, in git.
 
 ## 12. Derived views are regenerated, never hand-cached — from loopkit, unchanged
 A roll-up (a reading queue, a people map, a drift list) is its own `type: index-view` note, its body
@@ -243,13 +248,14 @@ See `work/README.md`.
 ## 15. Ownership & safety
 Write freely in ordinary `knowledge/` notes and **unlocked** `work/` drafts (keep `knowledge/index.md`
 honest; preserve keys you didn't write — §3). **Confirm before changing** `knowledge/golden/` and any
-`locked: true` file; **propose** changes to `PROJECT.md`. The kit's **engine** is managed — `sync.sh`
-overwrites only the files listed in `loop.manifest.json` (the skills, this `CLAUDE.md`, `FOUNDATION.md`,
-`DESIGN.md`, `work/templates/`, the two README machinery docs). Everything else is yours and untouched:
-`PROJECT.md`, your notes and `golden/`, **your `knowledge/templates/` type notes** (the shipped starters
-are seed-once — landed in this fork, deliberately *not* managed, so `sync` never clobbers your evolved
-versions), and your `work/`. `distill` is destructive: propose first, apply only what's approved, work
-in git, prefer tightening over deleting.
+`locked: true` file; **propose** changes to `PROJECT.md`. The kit's **engine** is upstream-owned
+machinery — the **`sync`** skill (§11) can pull upstream improvements into the files listed in
+`loop.manifest.json` (the skills, this `CLAUDE.md`, `FOUNDATION.md`, `DESIGN.md`, `work/templates/`, the
+two README machinery docs), **with your approval and preserving any local tweaks** — it *curates*, it
+never bulk-overwrites, so a deliberate edit here is safe. Everything else is yours and out of scope for
+sync: `PROJECT.md`, your notes and `golden/`, **your `knowledge/templates/` type notes** (the shipped
+starters are seed-once — landed in this fork, deliberately *not* managed), and your `work/`. `distill`
+is destructive: propose first, apply only what's approved, work in git, prefer tightening over deleting.
 
 ## 16. Keep it light
 Use only what the platform gives you: skills, this `CLAUDE.md`, plain files. No databases, no
