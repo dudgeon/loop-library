@@ -26,8 +26,11 @@ and wired into the graph. Read `CLAUDE.md` first (the contract — §3 notes, §
    fidelity record — don't dump raw as the body, and don't make a separate "clean twin."
 4. **File it** as a typed note with the floor — `summary:`, `type:`, `source:` — plus a `status:` from
    the type's ladder and whatever else it needs. **Preserve any frontmatter key you don't recognize**
-   (an `id:`, an `owner:`); never mint an `id:`. If it extends an existing entity, enrich that note
-   instead of making a near-duplicate.
+   (an `id:`, an `owner:`) — never drop or rewrite one. You **may mint** a stable `id:` when the note
+   needs one (e.g. before it nests under a parent): a short opaque URL-safe vault-unique token; prefer a
+   Duo host to mint when present (§3). **Place it by its parent (§3a):** if the note has a `parent:`
+   edge, file it *inside that parent's folder* (recursively); a parentless note files flat in its type
+   folder. If it extends an existing entity, enrich that note instead of making a near-duplicate.
 5. **Link it (§5)** with relative-markdown edges — `[label](./other-note.md)`, never `[[wikilink]]`,
    never absolute. Put a payload (a citation's key quote, `requested_by`) in frontmatter next to the
    link. If one input decomposes into several notes, **copy the source/attribution edge onto each
@@ -43,12 +46,14 @@ and wired into the graph. Read `CLAUDE.md` first (the contract — §3 notes, §
      restate the passage, it's a cleaned copy — skip it.
    - *Tasks (per `task_policy`, §9):* recognize action items. **Embodied** → a `type: task` node with
      owner / `requested_by` / `due` / `status: open` / a **`parent`** edge (refuse an edge that closes
-     a cycle — walk the chain first). **Externalized** → hand off, keep only a pointer edge.
-     Attribution and parentage ride edges that survive a split. Never write a task into a second file.
+     a cycle — walk the chain first). That `parent` edge is also the **folder axis** — the task files
+     inside its parent's folder (§3a), so the task tree is a work-breakdown on disk. **Externalized** →
+     hand off, keep only a pointer edge. Attribution and parentage ride edges that survive a split.
+     Never write a task into a second file.
 8. **Update `knowledge/index.md`.**
 
 ## Don'ts
 Don't store a vague reference you could have resolved with the user. Don't dump raw material as the
 note body, or make a synced clean-twin of a source. Don't append a timeline entry for an incidental
-mention. Don't mirror a task into another file. Don't strip a frontmatter key you didn't write, mint an
-`id:`, touch `golden/` or locked files, or author a big schema up front.
+mention. Don't mirror a task into another file. Don't strip or rewrite a frontmatter key you didn't
+write (including an `id:`), touch `golden/` or locked files, or author a big schema up front.

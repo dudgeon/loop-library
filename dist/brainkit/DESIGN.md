@@ -8,9 +8,9 @@ brings and what it deliberately leaves out.
 ## The one-line idea
 
 brainkit is a **second brain** that makes *intake* high-fidelity and *knowledge* trustworthy enough to
-drive a deliverable. It is **loopkit's entity-graph foundation, unchanged, plus a policy layer** — a
-few starter entity types, retrieval-grade intake, per-entity timelines, maturity/lineage, and a task
-model. Everything is justified against one goal:
+drive a deliverable. It is **loopkit's entity-graph foundation plus a policy layer** — a few starter
+entity types, retrieval-grade intake, per-entity timelines, maturity/lineage, and a task model.
+Everything is justified against one goal:
 
 > **Recursive loops that build knowledge to improve one or more declared work products.**
 
@@ -19,24 +19,35 @@ next intake cheaper. Two corollaries drive the whole design: **retrieval is the 
 pays an enrichment tax up front) and **trust is the point** (so knowledge carries maturity and
 lineage).
 
-## Policy, not plumbing
+## Policy, not plumbing — and the two foundation rules v2 relaxes
 
 brainkit changes **policy** — the skill bodies, the starter types, the first-run interview, the
-`PROJECT.md` shape. It does **not** change loopkit's **contract**. These foundation invariants are
-preserved exactly, and any feature that would violate one is out of scope:
+`PROJECT.md` shape. It changes the foundation **contract** in exactly **two** places (both in
+contract v2, both additive and OKF-conformant): `id:` is now tool-mintable, and folders are now
+derived from the parent edge. Every other foundation invariant is preserved exactly, and any feature
+that would violate one is out of scope.
 
-| Invariant (from the foundation) | brainkit relies on it for |
-|---|---|
-| Notes are typed entities; `type:` is the node field | every starter type |
-| Frontmatter is a floor; **never drop an unknown key** | user-added `status:`/`owner:`/`aliases:` survive every pass |
-| Links are rel-md edges; an edge can carry a payload | citation quotes, attribution, timeline back-refs |
-| Edges survive a split | attribution + parentage surviving task/knowledge extraction |
-| `id:` optional, never minted by the kit | safe moves; Duo interop |
-| **Derived views regenerated + stamped — never hand-cached / never query-time** | the per-entity timeline, the reading-queue view |
-| Resolution leans on the vault/notes; persist nothing extra | interactive resolution; aliases live *on the entity note* |
-| Golden is locked; keep it light — no databases, no schema grids | starters are prose templates |
+### Invariant ledger — the checkable "what's unchanged"
 
-If a proposed feature can't be expressed within that table, it doesn't belong in brainkit.
+This table is what makes "keeps the contract unchanged" a *mechanical* claim rather than a promise:
+diff a fork against it. Only two rows are **CHANGED**.
+
+| Foundation invariant | v1 | v2 | Changed? |
+|---|---|---|---|
+| Notes are typed entities; `type:` is the node field | yes | yes | — |
+| Frontmatter is a floor; **never drop an unknown key** | yes | yes | — |
+| Links are rel-md edges (no `[[wikilinks]]`, no `/absolute`); an edge can carry a payload | yes | yes | — |
+| Edges survive a split | yes | yes | — |
+| Derived views regenerated + stamped — never hand-cached, never query-time | yes | yes | — |
+| Resolution leans on the vault/notes; persist nothing extra | yes | yes | — |
+| Reserved files (`index.md` / `log.md`) are not nodes | yes | yes | — |
+| **Identity is `id:` or filename — never the folder path** | yes | yes | — *(load-bearing for the new derived path)* |
+| **`id:` minting** | optional, **never minted by the kit** | **tool-mintable + always preserved** (heal id-first, then filename) | **CHANGED — D4** |
+| **Folder placement** | flat bag; folders carry only ownership/lifecycle meaning | **derived from the `parent:` edge by default** (a WBS projection of the graph); secondary groupings are `index.md` outlines | **CHANGED — D1** |
+
+The two changes are coupled on purpose: the derived folder path needs **loss-free moves** (re-parent →
+re-file without breaking inbound links), and loss-free moves need an **id-first relink**, which needs a
+**mintable `id:`**. You can't take the folder change without the `id:` change.
 
 ## The three features
 
@@ -69,15 +80,23 @@ star: **source→knowledge lineage** with citation-bearing edges; **maturity lad
 missing for *this* deliverable?") that closes the loop; a **reading-queue** view; and **extraction
 discipline** (one idea per note, name it by what it teaches, don't duplicate—enrich).
 
+> **This content layer is brainkit's most differentiated, validated-by-design asset — and it is the
+> canonical reference a Duo vault adopts as OPTIONAL conventions** (D6: port brainkit's content layer
+> *into* Duo, not the reverse). Duo's general work-notes vault has no maturity ladder, no task
+> primitive, and no `## Raw` rule today; these brainkit conventions are what it copies. Nothing here is
+> cut — it's kept here and referenced there.
+
 ## Tasks: typed nodes, one source of truth
 
 Task extraction runs at intake regardless of policy; the *sink* is a policy choice (`embodied` by
 default, `externalized`, or `off`). The default makes a task a graph **node** with owner,
 `requested_by`, `due`, `status`, and a **`parent`** edge to a parent task or the initiative /
 work-product it advances. That hierarchy is *knowledge* — it connects "what needs doing" to "what
-we're building." Integrity rules keep it honest: no cycles (checked at ingest), a task with open
-children isn't retired (children re-parent first), and status is a closeable/reopenable transition.
-The non-negotiable: **one source of truth, no mirrors** — no second copy of a task in any other file.
+we're building." It is also **the primary axis the derived folder path follows** (v2): a task with a
+`parent:` files inside the parent's folder, so the task tree *is* a browsable work-breakdown on disk.
+Integrity rules keep it honest: no cycles (checked at ingest), a task with open children isn't retired
+(children re-parent first), and status is a closeable/reopenable transition. The non-negotiable: **one
+source of truth, no mirrors** — no second copy of a task in any other file.
 
 ## What brainkit deliberately does NOT do
 
@@ -92,6 +111,12 @@ purpose:
 - **No mirrored task list** — a single-source-of-truth node, never a copy that can drift.
 - **No multi-agent control-file mirroring, no publish/share pipeline, no strategy/roadmap layer** —
   those are separate concerns, not knowledge-compilation, and would overload the loop.
+- **No second folder tree for secondary groupings** *(new in v2)* — the parent edge gets the one
+  derived folder tree; every *other* way you'd want to slice the graph (by person, by quarter) is a
+  regenerated `index.md` nested-bullet outline, not a competing directory layout.
+- **No `id:` churn** *(new in v2)* — a stable `id:` is minted once and preserved forever; the kit
+  never rewrites or reuses one. Minting is additive (at create or explicit backfill), never a
+  rolling rename.
 
 People, tasks, and domains can still exist — but as plain typed notes and folders, not as their own
 hand-maintained subsystems. That restraint is what keeps brainkit a *foundation-respecting* application
@@ -104,3 +129,10 @@ templates and skill conventions, not as changes to the foundation contract. Pres
 anything that rewrites a note; keep links rel-md; let derived views regenerate; let the graph host
 (when present) own identity and resolution. Stay inside those and your additions compose cleanly — and
 the kit stays a clean, GitHub-readable, graph-host-openable second brain the whole way up.
+
+---
+
+*Conformance check for a v2 build:* every **—** row of the invariant ledger holds unchanged, **and**
+both CHANGED rows are present (a mintable-but-preserved `id:`, and parent-derived folders with `id:`
+heal on move). A fork that drops an unknown key, hand-caches a view, or ties identity to the path is
+not conformant — regardless of version number.

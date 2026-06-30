@@ -21,6 +21,10 @@ Keep the graph sharp — the cleanup that stops it bloating or drifting. Read `C
      while);
    - **link hygiene** — fix broken links; rewrite any stray `[[wikilink]]` to `[label](./note.md)`;
      reject any absolute `/path`;
+   - **`id:` integrity (§3)** — backfill a missing `id:` (idempotent, byte-preserving) on any note that
+     has inbound links; relink a dangling link **id-first**, then by filename;
+   - **parent re-file (§3a)** — when a note's `parent:` edge changed, *propose* re-filing it under the
+     new parent's folder (loss-free via its `id:`); **never auto-refile** — suggest-only;
    - **resolve entities (§6)** — vague reference → canonical note, here as well as at ingest;
      vault-first when present;
    - **type drift** — a `type:` not among the written-down types, or a recurring type not yet written
@@ -33,7 +37,8 @@ Keep the graph sharp — the cleanup that stops it bloating or drifting. Read `C
    **never silently clobber it.** Touch predicate: attendee or explicitly-linked subject only.
 4. **Regenerate index-views (§12).** Any `type: index-view` note — the reading-queue (sources below
    `read`/`processed`), a people map, a drift list — is rebuilt from the current graph and re-stamped,
-   never hand-edited.
+   never hand-edited. A **secondary-axis `index.md` outline** (a non-parent slice, §3a) regenerates the
+   same way.
 5. **Apply only what's approved** — get that approval with the structured **AskUserQuestion** prompt
    (the change + options like *merge / retire / re-parent / keep*; `CLAUDE.md` §17), not a free-text
    question. Prefer tightening over erasing; never delete to hit a size target. **Preserve frontmatter
@@ -43,4 +48,5 @@ Keep the graph sharp — the cleanup that stops it bloating or drifting. Read `C
 ## Don'ts
 Don't delete without approval. Don't retire a task with open children. Don't clobber a hand-edited
 timeline — surface it. Don't trim golden or locked content. Don't drop a key you didn't write. Don't
-resolve a contradiction by guessing — surface it when it's not clear-cut.
+auto-refile a note when its parent changed — propose it. Don't resolve a contradiction by guessing —
+surface it when it's not clear-cut.
