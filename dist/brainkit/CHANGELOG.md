@@ -2,6 +2,29 @@
 
 All notable changes to brainkit. This project follows semantic versioning.
 
+## 0.3.0 — 2026-06-29 (candidate)
+**Contract v2 — `id:` becomes mintable, folders follow the parent edge.** Exactly two foundation rules
+relax (see the invariant ledger in [`DESIGN.md`](DESIGN.md)); everything else is unchanged. This entry
+is the **contract-version anchor**: a vault is **contract v2** iff `loop.manifest.json` `version` ≥
+`0.3.0` (and `FOUNDATION.md` carries `contract_version: 2`). NOTE: `0.2.0` is still **contract v1** — it
+was the sync-skill change, where `id:` is still "never mint." Migrating a pre-`0.3.0` vault to contract
+v2 is a one-time, atomic, reversible pass — see [`MIGRATION.md`](MIGRATION.md).
+
+- **`id:` is a shared, tool-mintable integrity tag** (was: "never minted by the kit"). The kit may mint
+  a short, opaque, URL-safe, vault-unique `id:` and always preserves one it finds; links heal id-first,
+  then by filename. A **contract, not an algorithm** — Duo's 8-char base36 is the reference shape.
+- **Folders are derived from the `parent:` edge, by default.** A note with a parent files inside the
+  parent's folder, recursively — the folder tree mirrors the work-breakdown. The graph stays canonical;
+  re-parent/reorg is loss-free via `id:`. Parentless notes stay in flat type folders; secondary
+  groupings are `index.md` nested-bullet outlines, never a second folder tree.
+- **At-rest format reframed: bare Google OKF v0.1 + the shared `id:` tag + a documented dialect.** A Duo
+  vault and a brainkit vault are both valid bare OKF v0.1 and interoperate at rest.
+- **Content layer kept — and now the reference a Duo vault adopts** as OPTIONAL conventions (maturity
+  ladders, task model, `## Raw` provenance, deliverable-coupling). Nothing cut.
+- **New `MIGRATION.md`** (a managed file): contract-version detection, behave-by-version rules for
+  agents on old/modified vaults, and the atomic contract v1 → v2 migration. The `sync` skill carries the
+  v2 machinery; seed-once type templates need the hand-update steps in `MIGRATION.md`.
+
 ## 0.2.0 — 2026-06-28 (candidate)
 **Sync is now a curation skill, not a deterministic script.** Real use surfaced that the old
 `scripts/sync.sh` — which overwrote every `managed_files` path from origin — *nuked intentional local

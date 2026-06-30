@@ -21,8 +21,9 @@ Use the graph toward the work product, and file useful results back. Read `CLAUD
    don't fabricate to fill the hole.
 4. **Read the views (don't regenerate them here).** For "what's unprocessed?" read the reading-queue
    `index-view`; for "what's open under initiative Y / requested by Z?" traverse the `task` nodes and
-   their `parent`/`requested_by` edges. (Regenerating a view is `distill`'s job, §12 / §8 — `query`
-   only reads.)
+   their `parent`/`requested_by` edges — or just **browse the folder tree, which mirrors the parent
+   chain** (§3a). Secondary `index.md` nested-bullet outlines are other slices (read-only). (Regenerating
+   a view is `distill`'s job, §12 / §8 — `query` only reads.)
 5. **File back.** When a genuinely new conclusion or connection emerges, add it as a typed note,
    resolve and link it into the graph, and update `knowledge/index.md` so it compounds next time.
 6. **Be honest about gaps.** If the graph can't answer well, say so plainly and suggest what to ingest

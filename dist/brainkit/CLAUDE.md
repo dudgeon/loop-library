@@ -22,11 +22,14 @@ next intake cheaper. Two things follow, and they shape every operation below:
   — so knowledge carries a status ladder and a traceable source edge.
 
 brainkit is the **application layer** on **loopkit** (the entity-graph foundation — its contract is in
-[`FOUNDATION.md`](FOUNDATION.md)). brainkit keeps that contract **unchanged** and adds *policy*: a few
-starter entity types, retrieval-grade intake, per-entity timelines, maturity/lineage, and a task
-model. It stays **light** — it does *not* add a domain system, a stakeholder-proximity scheme, a
-source-synthesis engine, or a strategy/roadmap layer. The *why*, and what's deliberately excluded, are
-in [`DESIGN.md`](DESIGN.md).
+[`FOUNDATION.md`](FOUNDATION.md)). This is **brainkit v0.3.0 (contract v2)**: it keeps loopkit's
+invariants and relaxes **exactly two** rules — `id:` is now tool-mintable, and folders are derived from
+the `parent:` edge (the invariant ledger in [`DESIGN.md`](DESIGN.md) is the before/after). It adds
+*policy*: a few starter entity types, retrieval-grade intake, per-entity timelines, maturity/lineage,
+and a task model. It stays **light** — it does *not* add a domain system, a stakeholder-proximity
+scheme, a source-synthesis engine, or a strategy/roadmap layer. The *why*, and what's deliberately
+excluded, are in [`DESIGN.md`](DESIGN.md). **If you're not sure this vault is contract v2** (an older or
+hand-modified fork — note `0.2.0` is still contract v1), read [`MIGRATION.md`](MIGRATION.md) first.
 
 ## 0. First run — set the project up
 If `PROJECT.md` still has TODO placeholders or `knowledge/` has no notes, this is a fresh fork.
@@ -47,7 +50,9 @@ If `PROJECT.md` still has TODO placeholders or `knowledge/` has no notes, this i
 Write the answers into `PROJECT.md` (including the `task_policy:` line, §2), create `knowledge/golden/`
 if needed, pin any golden context, and — if one fits — start a deliverable in `work/` from a template.
 The starter entity types are already in `knowledge/templates/` (§4); refine them to the user's world,
-don't invent a big schema up front.
+don't invent a big schema up front. Finally, **stamp `brainkit_version: 2` into `knowledge/index.md`
+frontmatter** (the contract-version marker, §3a) — and note that notes and tasks with a `parent:` edge
+nest by default.
 
 ## 1. The shape
 ```
@@ -76,7 +81,7 @@ context, the cadence. It carries a `task_policy: embodied | externalized | off` 
 user**: propose changes to what the project is *for*; make only small, clearly-implied fixes yourself.
 If a request conflicts with it, surface the conflict and ask.
 
-## 3. Notes are typed entities (the contract — from loopkit, unchanged)
+## 3. Notes are typed entities (the contract — from loopkit; v2 relaxes the `id:` rule, below)
 Every `knowledge/` note is an **entity** — one thing, one file. Three frontmatter lines are a **floor,
 not a ceiling**:
 - `summary:` — one line.
@@ -88,9 +93,28 @@ Then:
 - **Add any other typed attributes you need** — a `status:`, a date, an owner, `aliases:`.
 - **Keep frontmatter keys you don't recognize.** Never drop a key you didn't write — an `id:` Duo
   added, an `owner:` an app set. *(Load-bearing: dropping an unknown key silently deletes data.)*
-- **`id:` is optional and you never mint it.** Preserve one if present; without one, links resolve by
-  filename.
+- **`id:` is a shared, tool-mintable integrity tag** *(changed in v2)*. **Preserve** any `id:` you find
+  — never drop it, never rewrite it. You **may mint** one when a note needs stable identity (e.g. before
+  it moves into a parent's folder): a short, opaque, URL-safe token, unique within the vault (Duo's
+  8-char base36 is the reference shape; prefer letting a Duo host mint it when one is present). Links
+  heal by `id:` first, then by filename. *(This reverses the earlier "never mint" rule (contract v1) — a
+  contract, not an algorithm; any unique, preserved, URL-safe token conforms. See [`MIGRATION.md`](MIGRATION.md).)*
 - One topic per file; lowercase-hyphenated names; keep each `index.md` to about one screen.
+
+## 3a. Folders follow the parent edge (v2)
+The folder tree is **derived from the graph**, not a place you choose by hand:
+- **A note with a `parent:` edge files inside that parent's folder, recursively** — so the directory
+  tree mirrors the parent/child structure (a work-breakdown you can browse). A `task` under another
+  `task` under an initiative lands at `…/<initiative>/<parent-task>/<task>.md`.
+- **A parentless note** (a `person`, a `theme`) stays flat in its type/registry folder, as before.
+- **The graph is the single source of truth; the path is a projection of it.** Re-parenting a note
+  (changing its `parent:` edge) re-files it — **loss-free, because its `id:` heals the inbound links**
+  (§3). That coupling is why v2 made `id:` mintable.
+- **Other ways to slice the graph** (by person, by quarter) are **`index.md` nested-bullet outlines**,
+  **never** a second folder tree. One parent axis → one folder tree; everything else is an outline.
+
+This is on **by default** in v2. (It generalizes a Duo OKF vault's single-level folder-note filing to
+the full parent chain — the same files open natively in Duo.)
 
 ## 4. Types: starters ship, the rest emerge then get written down
 brainkit ships a few **starter types** in `knowledge/templates/` (`source`, `meeting`, `note`,
@@ -176,7 +200,9 @@ Task **extraction** — recognizing an action item in raw capture ("David to sen
 - **`embodied` (default):** a task is a `type: task` **node** — owner edge, `requested_by`/`source`
   edge, `due:`, `status:` (ladder `[open, in-progress, blocked, done]`), and a **`parent` edge** to a
   parent task (decomposition) and/or the initiative / work-product it advances. The node **is** the
-  single source of truth — **no mirror** in any other file.
+  single source of truth — **no mirror** in any other file. *(The `parent` edge is also the folder axis
+  (§3a): a task files inside its parent's folder, so the task tree is a browsable work-breakdown on
+  disk.)*
 - **`externalized`:** brainkit extracts and hands the task to the user's real tracker, keeping at most
   a **pointer edge** (a `task` node linking to the external item) — never a copy of mutable state.
 - **`off`:** no task handling.
